@@ -31,9 +31,8 @@ public class Address {
 	private Integer zip;
 
 	private boolean flag;
-
+	
 	public Address() {
-		super();
 	}
 
 	public int getId() {
