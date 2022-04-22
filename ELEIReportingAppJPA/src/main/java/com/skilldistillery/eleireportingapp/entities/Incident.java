@@ -29,6 +29,7 @@ public class Incident {
 	private LocalDateTime incidentDate;
 
 	public Incident() {
+		super();
 	}
 
 	public int getId() {

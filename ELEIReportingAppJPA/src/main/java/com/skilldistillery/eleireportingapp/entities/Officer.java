@@ -21,6 +21,7 @@ public class Officer {
 	private String imageUrl;
 
 	public Officer() {
+		super();
 	}
 
 	public int getId() {

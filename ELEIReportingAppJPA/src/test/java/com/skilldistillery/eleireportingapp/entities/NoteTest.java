@@ -2,6 +2,7 @@ package com.skilldistillery.eleireportingapp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,11 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class NoteTest {
 	
 	private static  EntityManagerFactory emf;
 	private static EntityManager em;
-	private User user;
+	private Note note;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,25 +34,28 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 1);
+		note = em.find(Note.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		note = null;
 	}
 
 	@Test
-	@DisplayName("test basic User mappings")
+	@DisplayName("test basic Note mappings")
 	void test1() {
-//		+----+-----------+------------------+----------+----------+--------+
-//		| id | person_id | permission_level | username | password | active |
-//		+----+-----------+------------------+----------+----------+--------+
-//		|  1 |         1 | admin            | admin    | admin    |      1 |
-//		+----+-----------+------------------+----------+----------+--------+
-		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+//		+----+---------+---------+---------+---------+
+//		| id | created | updated | content | user_id |
+//		+----+---------+---------+---------+---------+
+//		|  1 | NULL    | NULL    | CONTENT | 1       |
+//		+----+---------+---------+---------+---------+
+		assertNotNull(note);
+		assertNull(note.getCreated());
+		assertNull(note.getUpdated());
+		assertEquals("CONTENT", note.getContent());
+		assertEquals(1, note.getUserId());
 	}
 
 }

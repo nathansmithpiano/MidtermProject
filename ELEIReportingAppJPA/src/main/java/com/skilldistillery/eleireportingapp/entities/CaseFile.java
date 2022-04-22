@@ -19,8 +19,14 @@ public class CaseFile {
 
 	@Column(name = "suspected_crime")
 	private String suspectedCrime;
+
 	private String description;
+
 	private boolean flag;
+	
+	public CaseFile() {
+		super();
+	}
 
 	public int getId() {
 		return id;

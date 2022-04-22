@@ -22,14 +22,18 @@ public class Address {
 
 	@Column(name = "street2")
 	private String streetTwo;
+
 	private String city;
 
 	@Column(name = "state_code")
 	private String stateCode;
+
 	private Integer zip;
+
 	private boolean flag;
 
 	public Address() {
+		super();
 	}
 
 	public int getId() {

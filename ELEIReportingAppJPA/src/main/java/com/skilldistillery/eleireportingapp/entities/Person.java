@@ -40,6 +40,10 @@ public class Person {
 	private String description;
 
 	private String notes;
+	
+	public Person() {
+		super();
+	}
 
 	public int getId() {
 		return id;
