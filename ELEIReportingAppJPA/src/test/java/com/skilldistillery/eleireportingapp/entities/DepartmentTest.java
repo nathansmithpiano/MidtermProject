@@ -56,5 +56,23 @@ class DepartmentTest {
 		assertEquals("SKILL DISTILLERY PD", department.getName());
 		
 	}
+	
+	@Test
+	@DisplayName("testing Department 1:1 Address mapping")
+	void test2 (){
+		
+		assertNotNull(department);
+		
+//		SELECT a.street1 FROM address a JOIN department d ON d.address_id = a.id WHERE d.id = 1;
+//		+----------------------+
+//		| street1              |
+//		+----------------------+
+//		| 9551 Civic Center Dr |
+//		+----------------------+
+		
+		assertEquals("9551 Civic Center Dr", department.getAddress().getStreetOne());
+		
+		
+	}
 
 }
