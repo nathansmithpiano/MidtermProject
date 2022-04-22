@@ -54,6 +54,9 @@ class IncidentWithPersonTest {
 		
 		
 		assertNotNull(incidentWithPerson);
+		assertNotNull(incidentWithPerson.getIncidentWithPersonId());
+		assertEquals(4, incidentWithPerson.getIncidentWithPersonId().getPersonId());
+		assertEquals(1, incidentWithPerson.getIncidentWithPersonId().getIncidentId());
 		assertEquals("Shoplift", incidentWithPerson.getSuspectedCrime());
 		assertEquals(20, incidentWithPerson.getAgeMinimum());
 		assertEquals(25, incidentWithPerson.getAgeMaximum());
