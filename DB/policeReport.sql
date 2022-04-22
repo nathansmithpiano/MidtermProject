@@ -381,9 +381,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (1, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 1, DEFAULT, 'Police Officer', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (1, 'William ', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 1, DEFAULT, 'Police Supervisor', NULL, 1);
 INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (2, 'Omar ', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', 1, DEFAULT, 'Police Officer', NULL, 3);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (3, 'William ', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 1, DEFAULT, 'Police Supervisor', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (3, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 1, DEFAULT, 'Police Officer', NULL, 1);
 INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (4, 'John', 'Adams', 'Parker', NULL, '1992-07-01', 'Male', 2, DEFAULT, 'Contacted Person', NULL, 1);
 
 COMMIT;
@@ -447,7 +447,7 @@ COMMIT;
 START TRANSACTION;
 USE `eleidb`;
 INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (4, 1, 'Shoplift', 20, 25, NULL, 'Suspect of shoplifting power tools from Walmart');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (1, 1, 'Shoplift', 1, 50, NULL, NULL);
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (2, 1, 'Shoplift', 1, 50, NULL, NULL);
 
 COMMIT;
 
@@ -507,9 +507,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (DEFAULT, 1, NULL, '2201', NULL);
-INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (DEFAULT, 2, NULL, '2202', NULL);
-INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (DEFAULT, 3, NULL, '2001', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (1, 1, NULL, '2201', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (2, 2, 1, '2202', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (3, 3, 1, '2001', NULL);
 
 COMMIT;
 
