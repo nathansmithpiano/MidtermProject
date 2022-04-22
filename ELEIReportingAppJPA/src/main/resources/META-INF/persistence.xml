@@ -6,10 +6,11 @@
     
 	     <!-- BEGIN List Entities Here -->
 	     <class>com.skilldistillery.eleireportingapp.entities.Address</class>
+	     <class>com.skilldistillery.eleireportingapp.entities.CaseFile</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.Department</class>
-	     <class>com.skilldistillery.eleireportingapp.entities.User</class>
-	     <class>com.skilldistillery.eleireportingapp.entities.Note</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.Ethnicity</class>
+	     <class>com.skilldistillery.eleireportingapp.entities.Note</class>
+	     <class>com.skilldistillery.eleireportingapp.entities.User</class>
 	    
 	     <!-- END List Entities Here -->
 	    
