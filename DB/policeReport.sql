@@ -40,8 +40,8 @@ CREATE TABLE IF NOT EXISTS `person` (
   `title` VARCHAR(45) NULL,
   `birthdate` DATE NULL,
   `gender` VARCHAR(45) NOT NULL,
-  `address_id` VARCHAR(45) NULL DEFAULT NULL,
-  `flag` TINYINT NULL,
+  `address_id` INT NULL,
+  `flag` TINYINT NOT NULL DEFAULT 0,
   `description` TEXT NULL,
   `notes` TEXT NULL,
   `ethnicity_id` INT NOT NULL,
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `permission_level` VARCHAR(45) NULL DEFAULT NULL,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
-  `active` TINYINT NULL,
+  `active` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_User_Person1_idx` (`person_id` ASC),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
@@ -91,7 +91,7 @@ CREATE TABLE IF NOT EXISTS `address` (
   `city` VARCHAR(45) NULL DEFAULT NULL,
   `state_code` VARCHAR(2) NULL DEFAULT NULL,
   `zip` INT(5) UNSIGNED NULL DEFAULT NULL,
-  `flag` TINYINT NULL,
+  `flag` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `case_file` (
   `id` INT NOT NULL,
   `suspected_crime` VARCHAR(45) NULL,
   `description` TEXT NULL,
-  `flag` TINYINT NULL,
+  `flag` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `incident` (
   `address_id` INT NOT NULL,
   `case_id` INT NOT NULL,
   `description` TEXT NULL,
-  `flag` TINYINT NULL,
+  `flag` TINYINT NOT NULL DEFAULT 0,
   `incident_date` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_incident_address1_idx` (`address_id` ASC),
@@ -176,7 +176,7 @@ CREATE TABLE IF NOT EXISTS `incident_with_person` (
   `age_minimum` INT NOT NULL,
   `age_maximum` INT NOT NULL,
   `notes` TEXT NULL,
-  `description` VARCHAR(45) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`person_id`, `incident_id`),
   INDEX `fk_person_has_incident_incident1_idx` (`incident_id` ASC),
   INDEX `fk_person_has_incident_person1_idx` (`person_id` ASC),
@@ -307,11 +307,12 @@ DROP TABLE IF EXISTS `officer` ;
 CREATE TABLE IF NOT EXISTS `officer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `person_id` INT NOT NULL,
-  `supervisor_id` INT NOT NULL,
+  `supervisor_id` INT NULL,
   `badge` VARCHAR(45) NULL,
   `image_url` VARCHAR(2000) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_officer_officer1_idx` (`supervisor_id` ASC),
+  UNIQUE INDEX `badge_UNIQUE` (`badge` ASC),
   CONSTRAINT `fk_officer_person1`
     FOREIGN KEY (`person_id`)
     REFERENCES `person` (`id`)
@@ -364,7 +365,13 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `ethnicity` (`id`, `name`) VALUES (1, 'WHITE');
+INSERT INTO `ethnicity` (`id`, `name`) VALUES (1, 'White');
+INSERT INTO `ethnicity` (`id`, `name`) VALUES (2, 'Black');
+INSERT INTO `ethnicity` (`id`, `name`) VALUES (3, 'Hispanic');
+INSERT INTO `ethnicity` (`id`, `name`) VALUES (4, 'Asian');
+INSERT INTO `ethnicity` (`id`, `name`) VALUES (5, 'American Indian');
+INSERT INTO `ethnicity` (`id`, `name`) VALUES (6, 'Pacific Islander');
+INSERT INTO `ethnicity` (`id`, `name`) VALUES (7, 'Other');
 
 COMMIT;
 
@@ -374,7 +381,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (1, 'FIRSTNAME', 'MIDDLENAME', 'LASTNAME', 'admin', '9999-12-31', 'male', 'ADDRESSID', NULL, 'DESCRIPTION', 'NOTES', 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (1, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 1, DEFAULT, 'Police Officer', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (2, 'Omar ', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', 1, DEFAULT, 'Police Officer', NULL, 3);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (3, 'William ', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 1, DEFAULT, 'Police Supervisor', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (4, 'John', 'Adams', 'Parker', NULL, '1992-07-01', 'Male', 2, DEFAULT, 'Contacted Person', NULL, 1);
 
 COMMIT;
 
@@ -394,7 +404,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (1, 'DESCRIPTION', 'STREET1', 'STREET2', 'CITY', 'CO', ZIP, NULL);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (1, 'Employer', '9551 Civic Center Dr', '', 'Thornton', 'CO', 80229, DEFAULT);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (2, 'Residence', '9025 W Jefferson Ave', NULL, 'Denver', 'CO', 80235, DEFAULT);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (3, 'Business', '9901 Grant St', NULL, 'Thornton ', 'CO', 80229, DEFAULT);
 
 COMMIT;
 
@@ -414,7 +426,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `case_file` (`id`, `suspected_crime`, `description`, `flag`) VALUES (1, 'SUSPECTED CRIME', 'DESCRIPTION', NULL);
+INSERT INTO `case_file` (`id`, `suspected_crime`, `description`, `flag`) VALUES (1, 'Shoplifting', 'Shoplifing', DEFAULT);
 
 COMMIT;
 
@@ -424,7 +436,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `incident` (`id`, `reason_for_contact`, `location`, `address_id`, `case_id`, `description`, `flag`, `incident_date`) VALUES (1, 'REASONFORCONTACT', 'LOCATION', 1, 1, 'DESCRIPTION', NULL, '9999-12-31');
+INSERT INTO `incident` (`id`, `reason_for_contact`, `location`, `address_id`, `case_id`, `description`, `flag`, `incident_date`) VALUES (1, 'Dispatched call for service', 'Walmart', 3, 1, 'Shoplift', DEFAULT, '2022-04-22');
 
 COMMIT;
 
@@ -434,7 +446,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (1, 1, 'SUSPECTED CRIME', 1, 99, 'NOTES', 'DESCRIPTION');
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (4, 1, 'Shoplift', 20, 25, NULL, 'Suspect of shoplifting power tools from Walmart');
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (1, 1, 'Shoplift', 1, 50, NULL, NULL);
 
 COMMIT;
 
@@ -494,7 +507,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (1, 1, 1, '2201', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (DEFAULT, 1, NULL, '2201', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (DEFAULT, 2, NULL, '2202', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (DEFAULT, 3, NULL, '2001', NULL);
 
 COMMIT;
 
