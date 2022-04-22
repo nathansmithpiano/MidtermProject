@@ -9,6 +9,7 @@
 	     <class>com.skilldistillery.eleireportingapp.entities.CaseFile</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.Department</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.Ethnicity</class>
+	     <class>com.skilldistillery.eleireportingapp.entities.Incident</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.Note</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.Officer</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.User</class>
