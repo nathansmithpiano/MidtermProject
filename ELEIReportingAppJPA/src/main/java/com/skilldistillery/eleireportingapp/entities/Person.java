@@ -1,5 +1,6 @@
 package com.skilldistillery.eleireportingapp.entities;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -28,7 +29,7 @@ public class Person {
 	private String title;
 
 	@Column(name = "birthdate")
-	private Date birthDate;
+	private LocalDate birthDate;
 
 	private String gender;
 
@@ -80,11 +81,11 @@ public class Person {
 		this.title = title;
 	}
 
-	public Date getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 
