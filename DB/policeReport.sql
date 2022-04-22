@@ -222,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `note` (
   `created` TIMESTAMP NULL,
   `updated` TIMESTAMP NULL,
   `content` TEXT NULL,
-  `user_id` VARCHAR(45) NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -384,7 +384,11 @@ USE `eleidb`;
 INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (1, 'William ', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 1, DEFAULT, 'Police Supervisor', NULL, 1);
 INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (2, 'Omar ', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', 1, DEFAULT, 'Police Officer', NULL, 3);
 INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (3, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 1, DEFAULT, 'Police Officer', NULL, 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (4, 'John', 'Adams', 'Parker', NULL, '1992-07-01', 'Male', 2, DEFAULT, 'Contacted Person', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (4, 'John', 'Adams', 'Terry', NULL, '1992-07-01', 'Male', 2, DEFAULT, 'Contacted Person', NULL, 2);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (5, 'Morty', NULL, 'Smith', NULL, '2000-09-12', 'Male', 4, DEFAULT, 'Contacted Person', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (6, 'Rick', NULL, 'Sanchez', NULL, '1975-01-21', 'Male', 5, DEFAULT, 'Contacted Person', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (7, 'Summer', NULL, 'Smith', NULL, '1995-03-22', 'Female', 4, DEFAULT, 'Contacted Person', NULL, 1);
+INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `notes`, `ethnicity_id`) VALUES (8, 'Tammy', NULL, 'Guetermann', NULL, '1982-02-01', 'Female', 7, DEFAULT, 'Contacted Person', NULL, 1);
 
 COMMIT;
 
@@ -407,6 +411,10 @@ USE `eleidb`;
 INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (1, 'Employer', '9551 Civic Center Dr', '', 'Thornton', 'CO', 80229, DEFAULT);
 INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (2, 'Residence', '9025 W Jefferson Ave', NULL, 'Denver', 'CO', 80235, DEFAULT);
 INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (3, 'Business', '9901 Grant St', NULL, 'Thornton ', 'CO', 80229, DEFAULT);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (4, 'Residence', '9656 Lane St', NULL, 'Denver', 'CO', 80260, DEFAULT);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (5, 'Residence', '9967 Clayton St', NULL, 'Denver', 'CO', 80229, DEFAULT);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (6, 'Business', '10003 Grant St', NULL, 'Thornton', 'CO', 80229, DEFAULT);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (7, 'Residence', '8873 Colorado Ave', '207', 'Denver', 'CO', 80229, DEFAULT);
 
 COMMIT;
 
@@ -467,7 +475,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `note` (`id`, `created`, `updated`, `content`, `user_id`) VALUES (1, NULL, NULL, 'CONTENT', '1');
+INSERT INTO `note` (`id`, `created`, `updated`, `content`, `user_id`) VALUES (1, NULL, NULL, 'CONTENT', 1);
 
 COMMIT;
 
