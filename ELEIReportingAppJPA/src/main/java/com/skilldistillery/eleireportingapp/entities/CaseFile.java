@@ -1,6 +1,5 @@
 package com.skilldistillery.eleireportingapp.entities;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "case_file")
 public class CaseFile {
 
 	@Id
@@ -20,7 +21,6 @@ public class CaseFile {
 	private String suspectedCrime;
 	private String description;
 	private boolean flag;
-	private String userId;
 
 	public int getId() {
 		return id;
@@ -54,14 +54,6 @@ public class CaseFile {
 		this.flag = flag;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -82,7 +74,7 @@ public class CaseFile {
 	@Override
 	public String toString() {
 		return "CaseFile [id=" + id + ", suspectedCrime=" + suspectedCrime + ", description=" + description + ", flag="
-				+ flag + ", userId=" + userId + "]";
+				+ flag + "]";
 	}
 
 }

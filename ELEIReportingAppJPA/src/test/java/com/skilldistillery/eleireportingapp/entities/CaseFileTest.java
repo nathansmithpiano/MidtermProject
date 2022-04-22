@@ -3,11 +3,6 @@ package com.skilldistillery.eleireportingapp.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -20,11 +15,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class PersonTest {
-
-	private static EntityManagerFactory emf;
+class CaseFileTest {
+	
+	private static  EntityManagerFactory emf;
 	private static EntityManager em;
-	private Person person;
+	private CaseFile file;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -39,28 +34,27 @@ class PersonTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		person = em.find(Person.class, 3);
+		file = em.find(CaseFile.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		person = null;
+		file = null;
 	}
 
 	@Test
-	@DisplayName("test basic Person mappings")
+	@DisplayName("test basic CaseFile mappings")
 	void test1() {
-		assertNotNull(person);
-		assertEquals("Steven", person.getFirstName());
-		assertEquals("Adam", person.getMiddleName());
-		assertEquals("Burris", person.getLastName());
-		assertNull(person.getTitle());
-		assertEquals(person.getBirthDate(), LocalDate.parse("1990-02-07"));
-		assertEquals(person.getGender(), "Male");
-		assertFalse(person.isFlag());
-		assertEquals(person.getDescription(), "Police Officer");
-		assertNull(person.getNotes());
+//		+----+-----------------+-------------+------+
+//		| id | suspected_crime | description | flag |
+//		+----+-----------------+-------------+------+
+//		|  1 | Shoplifting     | Shoplifing  |    0 |
+//		+----+-----------------+-------------+------+
+		assertNotNull(file);
+		assertEquals(file.getSuspectedCrime(), "Shoplifting");
+		assertEquals(file.getDescription(), "Shoplifing");
+		assertFalse(file.isFlag());
 	}
 
 }

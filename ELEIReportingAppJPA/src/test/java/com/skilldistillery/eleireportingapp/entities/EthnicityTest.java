@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 class EthnicityTest {
@@ -42,7 +43,19 @@ class EthnicityTest {
 	}
 
 	@Test
-	void test_User_entity_mapping() {
+	@DisplayName("test basic Ethnicity mappings")
+	void test1() {
+//		+----+------------------+
+//		| id | name             |
+//		+----+------------------+
+//		|  1 | White            |
+//		|  2 | Black            |
+//		|  3 | Hispanic         |
+//		|  4 | Asian            |
+//		|  5 | American Indian  |
+//		|  6 | Pacific Islander |
+//		|  7 | Other            |
+//		+----+------------------+
 		assertNotNull(ethnicity);
 		assertEquals(ethnicity.getName(), "White");
 	}
