@@ -32,7 +32,7 @@ class IncidentWithPersonTest {
 	@BeforeEach
 	void setUp() throws Exception {
 	    em = emf.createEntityManager();
-	    incidentWithPerson = em.find(IncidentWithPerson.class, 1);
+	    incidentWithPerson = em.find(IncidentWithPerson.class, new IncidentWithPersonId(4, 1));
 	}
 
 	@AfterEach
