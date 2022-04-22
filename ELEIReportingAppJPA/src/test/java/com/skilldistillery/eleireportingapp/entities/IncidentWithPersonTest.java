@@ -52,7 +52,6 @@ class IncidentWithPersonTest {
 //		|         4 |           1 | Shoplift        |          20 |          25 | NULL  | Suspect of shoplifting power tools from Walmart |
 //		+-----------+-------------+-----------------+-------------+-------------+-------+-------------------------------------------------+
 		
-		
 		assertNotNull(incidentWithPerson);
 		assertNotNull(incidentWithPerson.getIncidentWithPersonId());
 		assertEquals(4, incidentWithPerson.getIncidentWithPersonId().getPersonId());

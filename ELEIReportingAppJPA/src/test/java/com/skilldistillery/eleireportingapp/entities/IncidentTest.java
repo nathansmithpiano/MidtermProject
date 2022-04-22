@@ -48,11 +48,13 @@ class IncidentTest {
 	@Test
 	@DisplayName("test basic Incident mappings")
 	void test1() {
+		
 //		+----+-----------------------------+----------+------------+---------+-------------+------+---------------------+
 //		| id | reason_for_contact          | location | address_id | case_id | description | flag | incident_date       |
 //		+----+-----------------------------+----------+------------+---------+-------------+------+---------------------+
 //		|  1 | Dispatched call for service | Walmart  |          3 |       1 | Shoplift    |    0 | 2022-04-22 00:00:00 |
 //		+----+-----------------------------+----------+------------+---------+-------------+------+---------------------+
+		
 		assertNotNull(incident);
 		assertEquals("Dispatched call for service", incident.getReasonForContact());
 		assertEquals("Walmart", incident.getLocation());

@@ -46,11 +46,13 @@ class CaseFileTest {
 	@Test
 	@DisplayName("test basic CaseFile mappings")
 	void test1() {
+		
 //		+----+-----------------+-------------+------+
 //		| id | suspected_crime | description | flag |
 //		+----+-----------------+-------------+------+
 //		|  1 | Shoplifting     | Shoplifing  |    0 |
 //		+----+-----------------+-------------+------+
+		
 		assertNotNull(file);
 		assertEquals(file.getSuspectedCrime(), "Shoplifting");
 		assertEquals(file.getDescription(), "Shoplifing");

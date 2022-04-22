@@ -46,11 +46,13 @@ class NoteTest {
 	@Test
 	@DisplayName("test basic Note mappings")
 	void test1() {
+		
 //		+----+---------+---------+---------+---------+
 //		| id | created | updated | content | user_id |
 //		+----+---------+---------+---------+---------+
 //		|  1 | NULL    | NULL    | CONTENT | 1       |
 //		+----+---------+---------+---------+---------+
+		
 		assertNotNull(note);
 		assertNull(note.getCreated());
 		assertNull(note.getUpdated());

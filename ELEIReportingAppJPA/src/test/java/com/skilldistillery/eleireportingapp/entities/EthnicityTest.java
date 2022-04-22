@@ -45,6 +45,7 @@ class EthnicityTest {
 	@Test
 	@DisplayName("test basic Ethnicity mappings")
 	void test1() {
+		
 //		+----+------------------+
 //		| id | name             |
 //		+----+------------------+
@@ -56,6 +57,7 @@ class EthnicityTest {
 //		|  6 | Pacific Islander |
 //		|  7 | Other            |
 //		+----+------------------+
+		
 		assertNotNull(ethnicity);
 		assertEquals(ethnicity.getName(), "White");
 	}

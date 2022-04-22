@@ -51,6 +51,16 @@ class PersonTest {
 	@Test
 	@DisplayName("test basic Person mappings")
 	void test1() {
+		
+//		+----+------------+-------------+-----------+-------+------------+--------+------------+------+-------------------+-------+--------------+
+//		| id | first_name | middle_name | last_name | title | birthdate  | gender | address_id | flag | description       | notes | ethnicity_id |
+//		+----+------------+-------------+-----------+-------+------------+--------+------------+------+-------------------+-------+--------------+
+//		|  1 | William    | Aaron       | Padget    | NULL  | 1988-06-27 | Male   |          1 |    0 | Police Supervisor | NULL  |            1 |
+//		|  2 | Omar       | NULL        | Hernandez | jr    | 1995-03-15 | Male   |          1 |    0 | Police Officer    | NULL  |            3 |
+//		|  3 | Steven     | Adam        | Burris    | NULL  | 1990-02-07 | Male   |          1 |    0 | Police Officer    | NULL  |            1 |
+//		|  4 | John       | Adams       | Parker    | NULL  | 1992-07-01 | Male   |          2 |    0 | Contacted Person  | NULL  |            1 |
+//		+----+------------+-------------+-----------+-------+------------+--------+------------+------+-------------------+-------+--------------+
+		
 		assertNotNull(person);
 		assertEquals("Steven", person.getFirstName());
 		assertEquals("Adam", person.getMiddleName());
