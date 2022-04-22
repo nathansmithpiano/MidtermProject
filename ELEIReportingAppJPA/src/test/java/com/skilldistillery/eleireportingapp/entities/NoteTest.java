@@ -59,5 +59,14 @@ class NoteTest {
 		assertEquals("CONTENT", note.getContent());
 		assertEquals(1, note.getUserId());
 	}
+	
+	@Test
+	@DisplayName("test Note m:m Note mappings")
+	void test2() {
+		assertNotNull(note);
+		assertNotNull(note.getCaseFiles());
+		assertEquals(1, note.getCaseFiles().size());
+		assertEquals(1, note.getCaseFiles().get(0).getId());
+	}
 
 }

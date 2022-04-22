@@ -1,17 +1,25 @@
 package com.skilldistillery.eleireportingapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "case_file")
-public class CaseFile {
+public class CaseFile implements Cloneable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +32,18 @@ public class CaseFile {
 
 	private boolean flag;
 	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "case_file_note", 
+		joinColumns = @JoinColumn(name = "case_id"), 
+		inverseJoinColumns = @JoinColumn(name = "note_id"))
+	private List<Note> notes;
+	
 	public CaseFile() {
 		super();
+	}
+	
+	public CaseFile clone() {
+		return this.clone();
 	}
 
 	public int getId() {
@@ -58,6 +76,33 @@ public class CaseFile {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+	
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+	
+	public void addNote(Note note) {
+		if (notes == null) {
+			notes = new ArrayList<>();
+		}
+		if (!notes.contains(note)) {
+			notes.add(note);
+			note.addCaseFile(this);
+		}
+	}
+
+	public Note removeNote(Note note) {
+		Note backup = (Note) note.clone();
+		if (notes != null && notes.contains(note)) {
+			notes.remove(note);
+			note.removeCaseFile(this);
+		}
+		return backup;
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.skilldistillery.eleireportingapp.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -57,6 +58,15 @@ class CaseFileTest {
 		assertEquals(file.getSuspectedCrime(), "Shoplifting");
 		assertEquals(file.getDescription(), "Shoplifing");
 		assertFalse(file.isFlag());
+	}
+	
+	@Test
+	@DisplayName("test Casefile m:m Note mappings")
+	void test2() {
+		assertNotNull(file);
+		assertNotNull(file.getNotes());
+		assertEquals(1, file.getNotes().size());
+		assertEquals(1, file.getNotes().get(0).getId());
 	}
 
 }
