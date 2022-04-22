@@ -5,6 +5,8 @@
     </provider>
     
 	     <!-- BEGIN List Entities Here -->
+	     <class>com.skilldistillery.eleireportingapp.entities.Address</class>
+	     <class>com.skilldistillery.eleireportingapp.entities.Department</class>
 	     <class>com.skilldistillery.eleireportingapp.entities.User</class>
 	    
 	     <!-- END List Entities Here -->
