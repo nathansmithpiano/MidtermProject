@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Officer {
@@ -19,6 +21,10 @@ public class Officer {
 
 	@Column(name = "image_url")
 	private String imageUrl;
+	
+	@OneToOne
+	@JoinColumn(name = "person_id")
+	private Person person;
 
 	public Officer() {
 		super();
@@ -48,6 +54,14 @@ public class Officer {
 		this.imageUrl = imageUrl;
 	}
 
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -67,7 +81,7 @@ public class Officer {
 
 	@Override
 	public String toString() {
-		return "Officer [id=" + id + ", badge=" + badge + ", imageUrl=" + imageUrl + "]";
+		return "Officer [id=" + id + ", badge=" + badge + ", imageUrl=" + imageUrl + ", person=" + person + "]";
 	}
 
 }
