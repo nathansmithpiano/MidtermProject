@@ -8,5 +8,10 @@
 </head>
 <body>
 
+<h1>Welcome to the reporting app</h1>
+${DEBUG}
+
+
+
 </body>
 </html>
