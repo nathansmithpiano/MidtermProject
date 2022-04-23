@@ -491,7 +491,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (1, NULL, 'Employer', '9551 Civic Center Dr', '', 'Thornton', 'CO', 80229, DEFAULT, DEFAULT);
+INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (1, 1, 'Employer', 'ARCHIVED ST ', '', 'Thornton', 'CO', 80229, DEFAULT, DEFAULT);
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (2, NULL, 'Residence', '9025 W Jefferson Ave', NULL, 'Denver', 'CO', 80235, DEFAULT, DEFAULT);
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (3, NULL, 'Business', '9901 Grant St', NULL, 'Thornton ', 'CO', 80229, DEFAULT, DEFAULT);
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (4, NULL, 'Residence', '9656 Lane St', NULL, 'Denver', 'CO', 80260, DEFAULT, DEFAULT);
@@ -513,6 +513,7 @@ INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (20 , NULL, 'Residence', '1201 W Thornotn Pkwy', NULL, 'Thornton', 'CO', 80260, DEFAULT, DEFAULT);
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (21, NULL, 'Business', '750 E 104th Ave', NULL, 'Thornton', 'CO', 80233, DEFAULT, DEFAULT);
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (22, NULL, 'Street', '700 block of Eppinger Blvd', NULL, 'Thornton', 'CO', 80229, DEFAULT, DEFAULT);
+INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (23, NULL, 'Employer', '9551 Civic Center Dr', '', 'Thornton', 'CO', 80229, DEFAULT, DEFAULT);
 
 COMMIT;
 
@@ -522,7 +523,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (1, 1);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (1, 23);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (2, 23);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (3, 23);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (4, 2);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (5, 4);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (6, 4);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (7, 5);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (8, 7);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (9, 8);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (10, 9);
 
 COMMIT;
 
@@ -575,7 +585,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `department` (`id`, `address_id`, `name`) VALUES (1, 1, 'SKILL DISTILLERY PD');
+INSERT INTO `department` (`id`, `address_id`, `name`) VALUES (1, 23, 'SKILL DISTILLERY PD');
 
 COMMIT;
 
