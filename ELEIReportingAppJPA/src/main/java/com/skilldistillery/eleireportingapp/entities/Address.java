@@ -1,5 +1,7 @@
 package com.skilldistillery.eleireportingapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
@@ -31,8 +34,15 @@ public class Address {
 	private Integer zip;
 
 	private boolean flag;
-	
+
+	@OneToMany(mappedBy = "address")
+	private List<Incident> incidents;
+
 	public Address() {
+	}
+
+	public Address clone() {
+		return this.clone();
 	}
 
 	public int getId() {
@@ -97,6 +107,33 @@ public class Address {
 
 	public void setFlag(boolean flag) {
 		this.flag = flag;
+	}
+
+	public List<Incident> getIncidents() {
+		return incidents;
+	}
+
+	public void setIncidents(List<Incident> incidents) {
+		this.incidents = incidents;
+	}
+
+//	TODO Check the add /remove methods
+
+	public void addIncident(Incident incident) {
+		if (incidents == null) {
+			incidents = new ArrayList<>();
+		}
+		if (!incidents.contains(incident)) {
+			incidents.add(incident);
+		}
+	}
+
+	public Incident removeIncident(Incident incident) {
+		Incident backup = incident.clone();
+		if (incidents != null && incidents.contains(incident)) {
+			incidents.remove(incident);
+		}
+		return backup;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.skilldistillery.eleireportingapp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,6 +62,28 @@ class AddressTest {
 		assertEquals("CO", address.getStateCode());
 		assertEquals(80229, address.getZip());
 		assertEquals(false, address.isFlag());
+		
+	}
+	
+	@Test
+	@DisplayName("Testing Address 1:m Incident mapping")
+	void test2() {
+		
+		address = null;
+		address = em.find(Address.class, 3); // had to use id 3 for this test due to the current limited DB entries
+		
+		assertNotNull(address);
+		
+//		SELECT COUNT(*) FROM incident i JOIN address a ON a.id = i.address_id WHERE a.id = 3;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+		
+		assertTrue(address.getIncidents().size() > 0);
+		assertNotNull(address.getIncidents());
+		assertTrue(address.getIncidents().size() == 1);
 		
 	}
 

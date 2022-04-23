@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Incident {
@@ -27,6 +29,14 @@ public class Incident {
 
 	@Column(name = "incident_date")
 	private LocalDateTime incidentDate;
+
+	@ManyToOne
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	public Incident clone() {
+		return this.clone();
+	}
 
 	public Incident() {
 		super();
@@ -80,6 +90,14 @@ public class Incident {
 		this.incidentDate = incidentDate;
 	}
 
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -100,7 +118,8 @@ public class Incident {
 	@Override
 	public String toString() {
 		return "Incident [id=" + id + ", reasonForContact=" + reasonForContact + ", location=" + location
-				+ ", description=" + description + ", flag=" + flag + ", incidentDate=" + incidentDate + "]";
+				+ ", description=" + description + ", flag=" + flag + ", incidentDate=" + incidentDate + ", address="
+				+ address + "]";
 	}
 
 }

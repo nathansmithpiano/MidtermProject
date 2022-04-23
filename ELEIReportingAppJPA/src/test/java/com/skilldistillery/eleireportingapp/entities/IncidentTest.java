@@ -62,5 +62,24 @@ class IncidentTest {
 		assertFalse(incident.isFlag());
 		assertEquals(LocalDateTime.parse("2022-04-22T00:00"), incident.getIncidentDate());
 	}
+	
+	@Test
+	@DisplayName("Testing Incident m:1 Address mapping")
+	void test2() {
+		
+		assertNotNull(incident);
+		
+//		SELECT a.street1 FROM address a JOIN incident i ON i.address_id = a.id WHERE i.id = 1;
+//		+---------------+
+//		| street1       |
+//		+---------------+
+//		| 9901 Grant St |
+//		+---------------+
+		
+		
+		assertEquals("9901 Grant St", incident.getAddress().getStreetOne());
+		
+	
+	}
 
 }
