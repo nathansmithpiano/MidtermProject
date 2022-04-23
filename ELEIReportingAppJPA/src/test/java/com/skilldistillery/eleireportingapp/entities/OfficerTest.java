@@ -57,5 +57,24 @@ class OfficerTest {
 		assertEquals(null, officer.getImageUrl());
 		
 	}
+	
+	@Test
+	@DisplayName("testing Officer 1:1 Person mapping")
+	void test2 (){
+		
+		assertNotNull(officer);
+		
+//		SELECT CONCAT(p.first_name, " ", p.last_name) FROM person p JOIN officer o ON o.person_id = p.id WHERE o.id
+//				= 1;
+//				+----------------------------------------+
+//				| CONCAT(p.first_name, " ", p.last_name) |
+//				+----------------------------------------+
+//				| William  Padget                        |
+//				+----------------------------------------+
+		
+		assertEquals("William  Padget", officer.getPerson().getFirstName() + " " + officer.getPerson().getLastName());
+		
+		
+	}
 
 }
