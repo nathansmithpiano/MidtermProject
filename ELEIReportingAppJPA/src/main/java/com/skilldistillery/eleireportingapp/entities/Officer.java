@@ -1,9 +1,12 @@
 package com.skilldistillery.eleireportingapp.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -31,7 +36,15 @@ public class Officer {
 
 	@ManyToMany(mappedBy = "officers")
 	private List<Department> departments;
-
+	
+	
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="supervisor_id")
+	private Officer supervisor;
+	
+	@OneToMany(mappedBy = "supervisor")
+	private List<Officer> subordinates;
+	
 	public Officer() {
 		super();
 	}
@@ -78,6 +91,23 @@ public class Officer {
 
 	public void setDepartments(List<Department> departments) {
 		this.departments = departments;
+	}
+
+	public Officer getSupervisor() {
+		return supervisor;
+	}
+
+	public void setSupervisor(Officer supervisor) {
+		this.supervisor = supervisor;
+	}
+
+
+	public List<Officer> getSubordinates() {
+		return subordinates;
+	}
+
+	public void setSubordinates(List<Officer> subordinates) {
+		this.subordinates = subordinates;
 	}
 
 	public void addDepartment(Department department) {

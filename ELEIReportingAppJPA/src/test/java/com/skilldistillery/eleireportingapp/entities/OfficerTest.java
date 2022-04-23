@@ -1,6 +1,8 @@
 package com.skilldistillery.eleireportingapp.entities;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -21,49 +23,49 @@ class OfficerTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-	    emf = Persistence.createEntityManagerFactory("ELEIReportingAppJPA");
+		emf = Persistence.createEntityManagerFactory("ELEIReportingAppJPA");
 	}
 
 	@AfterAll
 	static void tearDownAfterClass() throws Exception {
-	    emf.close();
+		emf.close();
 	}
 
 	@BeforeEach
 	void setUp() throws Exception {
-	    em = emf.createEntityManager();
-	    officer = em.find(Officer.class, 1);
+		em = emf.createEntityManager();
+		officer = em.find(Officer.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
-	    em.close();
-	    officer = null;
+		em.close();
+		officer = null;
 	}
-	
+
 	@Test
 	@DisplayName("test basic Officer mappings")
 	void test1() {
-		
+
 //		SELECT * FROM officer o WHERE o.id = 1;
 //		+----+-----------+---------------+-------+-----------+
 //		| id | person_id | supervisor_id | badge | image_url |
 //		+----+-----------+---------------+-------+-----------+
 //		|  1 |         1 |          NULL | 2201  | NULL      |
 //		+----+-----------+---------------+-------+-----------+
-		
+
 		assertNotNull(officer);
 		assertEquals("2201", officer.getBadge());
 		assertEquals(null, officer.getImageUrl());
-		
+
 	}
-	
+
 	@Test
 	@DisplayName("testing Officer 1:1 Person mapping")
-	void test2 (){
-		
+	void test2() {
+
 		assertNotNull(officer);
-		
+
 //		SELECT CONCAT(p.first_name, " ", p.last_name) FROM person p JOIN officer o ON o.person_id = p.id WHERE o.id
 //				= 1;
 //				+----------------------------------------+
@@ -71,12 +73,11 @@ class OfficerTest {
 //				+----------------------------------------+
 //				| William  Padget                        |
 //				+----------------------------------------+
-		
+
 		assertEquals("William  Padget", officer.getPerson().getFirstName() + " " + officer.getPerson().getLastName());
-		
-		
+
 	}
-	
+
 	@Test
 	@DisplayName("Testing Officer m:m Department mapping")
 	void test3() {
@@ -93,7 +94,24 @@ class OfficerTest {
 		assertTrue(officer.getDepartments().size() > 0);
 		assertNotNull(officer.getDepartments());
 		assertTrue(officer.getDepartments().size() == 1);
-
 	}
 
+	@Test
+	@DisplayName("Testing supervisor to officer self join mapping")
+	void test4(){		
+		/*
+		 * SELECT ob.badge FROM officer oa, officer ob WHERE oa.supervisor_id = ob.id AND oa.id = 2;
+		+-------+
+		| badge |
+		+-------+
+		| 2201  |
+		+-------+
+		 */
+		officer = null;
+		officer = em.find(Officer.class, 2);
+		
+		assertNotNull(officer);
+		assertEquals("2201",officer.getSupervisor().getBadge());
+
+	}
 }
