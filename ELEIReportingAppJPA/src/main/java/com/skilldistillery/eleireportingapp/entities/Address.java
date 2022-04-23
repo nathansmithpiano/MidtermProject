@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -38,7 +39,9 @@ public class Address {
 	private Integer zip;
 
 	private boolean flag;
-
+	
+	private boolean archived;
+	
 	@OneToMany(mappedBy = "address")
 	private List<Incident> incidents;
 	
@@ -47,6 +50,13 @@ public class Address {
 		joinColumns = @JoinColumn(name = "address_id"), 
 		inverseJoinColumns = @JoinColumn(name = "person_id"))
 	private List<Person> persons;
+	
+	@ManyToOne(cascade= {CascadeType.ALL})
+	@JoinColumn(name="record_id")
+	private Address mainRecord;
+	
+	@OneToMany(mappedBy = "mainRecord")
+	private List<Address> archives;
 
 	public Address() {
 	}
@@ -62,7 +72,7 @@ public class Address {
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getDescription() {
 		return description;
 	}
@@ -118,6 +128,14 @@ public class Address {
 	public void setFlag(boolean flag) {
 		this.flag = flag;
 	}
+	
+	public boolean isArchived() {
+		return archived;
+	}
+
+	public void setArchived(boolean archived) {
+		this.archived = archived;
+	}
 
 	public List<Incident> getIncidents() {
 		return incidents;
@@ -125,16 +143,6 @@ public class Address {
 
 	public void setIncidents(List<Incident> incidents) {
 		this.incidents = incidents;
-	}
-
-//	TODO Check the add /remove methods
-
-	public List<Person> getPersons() {
-		return persons;
-	}
-
-	public void setPersons(List<Person> persons) {
-		this.persons = persons;
 	}
 
 	public void addIncident(Incident incident) {
@@ -153,13 +161,22 @@ public class Address {
 		}
 		return backup;
 	}
-	
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+
 	public void addPerson(Person person) {
 		if (persons == null) {
 			persons = new ArrayList<>();
 		}
 		if (!persons.contains(person)) {
 			persons.add(person);
+			person.addAddress(this);
 		}
 	}
 
@@ -167,10 +184,27 @@ public class Address {
 		Person backup = person.clone();
 		if (persons != null && persons.contains(person)) {
 			persons.remove(person);
+			person.removeAddress(this);
 		}
 		return backup;
 	}
+	
+	public List<Address> getArchives() {
+		return archives;
+	}
 
+	public void setArchives(List<Address> archives) {
+		this.archives = archives;
+	}
+	
+	public Address getMainRecord() {
+		return mainRecord;
+	}
+
+	public void setMainRecord(Address mainRecord) {
+		this.mainRecord = mainRecord;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
