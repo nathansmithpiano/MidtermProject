@@ -93,5 +93,27 @@ class PersonTest {
 		assertTrue(person.getAddresses().size() == 1);
 
 	}
+	
+	@Test
+	@DisplayName("Testing Person m:m Incident mapping")
+	void test3() {
+
+		person = null;
+		person = em.find(Person.class, 2); // // had to use id 2 for this test due to the current limited DB entries
+		
+		assertNotNull(person);
+
+//		SELECT COUNT(*) FROM incident i JOIN incident_with_person iwp ON iwp.incident_id = i.id JOIN person p ON iwp.person_id = p.id WHERE p.id = 2;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+
+		assertTrue(person.getIncidents().size() > 0);
+		assertNotNull(person.getIncidents());
+		assertTrue(person.getIncidents().size() == 1);
+
+	}
 
 }

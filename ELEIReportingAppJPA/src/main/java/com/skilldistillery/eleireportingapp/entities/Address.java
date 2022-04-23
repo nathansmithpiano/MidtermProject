@@ -153,6 +153,23 @@ public class Address {
 		}
 		return backup;
 	}
+	
+	public void addPerson(Person person) {
+		if (persons == null) {
+			persons = new ArrayList<>();
+		}
+		if (!persons.contains(person)) {
+			persons.add(person);
+		}
+	}
+
+	public Person removePerson(Person person) {
+		Person backup = person.clone();
+		if (persons != null && persons.contains(person)) {
+			persons.remove(person);
+		}
+		return backup;
+	}
 
 	@Override
 	public int hashCode() {

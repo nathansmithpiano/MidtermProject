@@ -1,14 +1,19 @@
 package com.skilldistillery.eleireportingapp.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -37,6 +42,12 @@ public class Incident {
 	@ManyToOne
 	@JoinColumn(name = "case_id")
 	private CaseFile caseFile;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "incident_with_person", 
+		joinColumns = @JoinColumn(name = "incident_id"), 
+		inverseJoinColumns = @JoinColumn(name = "person_id"))
+	private List<Person> persons;
 
 	public Incident clone() {
 		return this.clone();
@@ -108,6 +119,31 @@ public class Incident {
 
 	public void setCaseFile(CaseFile caseFile) {
 		this.caseFile = caseFile;
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+	
+	public void addPerson(Person person) {
+		if (persons == null) {
+			persons = new ArrayList<>();
+		}
+		if (!persons.contains(person)) {
+			persons.add(person);
+		}
+	}
+
+	public Person removePerson(Person person) {
+		Person backup = person.clone();
+		if (persons != null && persons.contains(person)) {
+			persons.remove(person);
+		}
+		return backup;
 	}
 
 	@Override

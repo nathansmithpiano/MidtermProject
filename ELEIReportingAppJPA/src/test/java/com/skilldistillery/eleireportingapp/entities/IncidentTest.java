@@ -3,6 +3,7 @@ package com.skilldistillery.eleireportingapp.entities;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
@@ -98,6 +99,26 @@ class IncidentTest {
 		assertEquals("Shoplifting", incident.getCaseFile().getSuspectedCrime());
 		
 	
+	}
+	
+	@Test
+	@DisplayName("Testing Incident m:m Person mapping")
+	void test4() {
+		
+		assertNotNull(incident);
+		
+//		SELECT COUNT(*) FROM incident i JOIN incident_with_person iwp ON i.id = iwp.incident_id JOIN person p ON iwp.person_id = p
+//				.id WHERE i.id = 1;
+//				+----------+
+//				| COUNT(*) |
+//				+----------+
+//				|        2 |
+//				+----------+
+		
+		assertTrue(incident.getPersons().size() > 0);
+		assertNotNull(incident.getPersons());
+		assertTrue(incident.getPersons().size() == 2);
+		
 	}
 
 }

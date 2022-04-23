@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -45,6 +48,9 @@ public class Person {
 	
 	@ManyToMany(mappedBy = "persons")
 	List<Address> addresses;
+	
+	@ManyToMany(mappedBy = "persons")
+	private List<Incident> incidents;
 	
 	public Person() {
 		super();
@@ -150,6 +156,14 @@ public class Person {
 		this.addresses = addresses;
 	}
 	
+	public List<Incident> getIncidents() {
+		return incidents;
+	}
+
+	public void setIncidents(List<Incident> incidents) {
+		this.incidents = incidents;
+	}
+
 	public void addAddress(Address address) {
 		if (addresses == null) {
 			addresses = new ArrayList<>();
@@ -163,6 +177,23 @@ public class Person {
 		Address backup = address.clone();
 		if (addresses != null && addresses.contains(address)) {
 			addresses.remove(address);
+		}
+		return backup;
+	}
+	
+	public void addIncident(Incident incident) {
+		if (incidents == null) {
+			incidents = new ArrayList<>();
+		}
+		if (!incidents.contains(incident)) {
+			incidents.add(incident);
+		}
+	}
+
+	public Incident removeIncident(Incident incident) {
+		Incident backup = incident.clone();
+		if (incidents != null && incidents.contains(incident)) {
+			incidents.remove(incident);
 		}
 		return backup;
 	}
