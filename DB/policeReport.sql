@@ -212,11 +212,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `notes`
+-- Table `note`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `notes` ;
+DROP TABLE IF EXISTS `note` ;
 
-CREATE TABLE IF NOT EXISTS `notes` (
+CREATE TABLE IF NOT EXISTS `note` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `created` TIMESTAMP NULL,
   `updated` TIMESTAMP NULL,
@@ -244,7 +244,7 @@ CREATE TABLE IF NOT EXISTS `incident_note` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_incident_has_note_note1`
     FOREIGN KEY (`note_id`)
-    REFERENCES `notes` (`id`)
+    REFERENCES `note` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `case_file_note` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_case_has_note_note1`
     FOREIGN KEY (`note_id`)
-    REFERENCES `notes` (`id`)
+    REFERENCES `note` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -292,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `person_note` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_person_has_note_note1`
     FOREIGN KEY (`note_id`)
-    REFERENCES `notes` (`id`)
+    REFERENCES `note` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -400,7 +400,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `user` (`id`, `person_id`, `permission_level`, `username`, `password`, `active`) VALUES (1, 1, 'admin', 'admin', 'admin', 1);
+INSERT INTO `user` (`id`, `person_id`, `permission_level`, `username`, `password`, `active`) VALUES (1, 1, 'supervisor', 'policesupervisor', 'supervisor', 1);
+INSERT INTO `user` (`id`, `person_id`, `permission_level`, `username`, `password`, `active`) VALUES (2, 2, 'officer', 'policeofficer', 'officer', 1);
 
 COMMIT;
 
@@ -495,11 +496,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `notes`
+-- Data for table `note`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `notes` (`id`, `created`, `updated`, `content`, `user_id`) VALUES (1, NULL, NULL, 'CONTENT', 1);
+INSERT INTO `note` (`id`, `created`, `updated`, `content`, `user_id`) VALUES (1, NULL, NULL, 'CONTENT', 1);
 
 COMMIT;
 
