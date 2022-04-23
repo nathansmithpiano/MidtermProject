@@ -1,12 +1,17 @@
 package com.skilldistillery.eleireportingapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -17,13 +22,21 @@ public class Department {
 	private int id;
 
 	private String name;
-	
+
 	@OneToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
 
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "department_employee", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "officer_id"))
+	private List<Officer> officers;
+
 	public Department() {
 		super();
+	}
+
+	public Department clone() {
+		return this.clone();
 	}
 
 	public int getId() {
@@ -40,6 +53,23 @@ public class Department {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void addOfficer(Officer officer) {
+		if (officers == null) {
+			officers = new ArrayList<>();
+		}
+		if (!officers.contains(officer)) {
+			officers.add(officer);
+		}
+	}
+
+	public Officer removeOfficer(Officer officer) {
+		Officer backup = officer.clone();
+		if (officers != null && officers.contains(officer)) {
+			officers.remove(officer);
+		}
+		return backup;
 	}
 
 	@Override
@@ -65,6 +95,14 @@ public class Department {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public List<Officer> getOfficers() {
+		return officers;
+	}
+
+	public void setOfficers(List<Officer> officers) {
+		this.officers = officers;
 	}
 
 	@Override

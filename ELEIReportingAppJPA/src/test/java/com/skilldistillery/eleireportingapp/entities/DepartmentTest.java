@@ -74,5 +74,25 @@ class DepartmentTest {
 		
 		
 	}
+	
+	@Test
+	@DisplayName("Testing Department m:m Officer mapping")
+	void test6() {
+
+		assertNotNull(department);
+
+//		SELECT COUNT(*) FROM officer o JOIN department_employee de ON de.officer_id = o.id JOIN department d ON de.department_id =
+//				 d.id WHERE d.id = 1;
+//				+----------+
+//				| COUNT(*) |
+//				+----------+
+//				|        1 |
+//				+----------+
+		
+		assertTrue(department.getOfficers().size() > 0);
+		assertNotNull(department.getOfficers());
+		assertTrue(department.getOfficers().size() == 1);
+
+	}
 
 }
