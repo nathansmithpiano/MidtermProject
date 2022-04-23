@@ -477,10 +477,15 @@ COMMIT;
 START TRANSACTION;
 USE `eleidb`;
 INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (4, 1, 'Shoplift', 20, 25, NULL, 'Suspect of shoplifting power tools from Walmart');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (2, 1, 'Shoplift', 1, 50, NULL, NULL);
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (2, 1, '', 1, 50, NULL, NULL);
 INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (3, 2, 'Suspicious person', 1, 50, NULL, '');
 INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (6, 2, 'Suspicious person', 35, 45, NULL, 'person digging in trash');
 INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (4, 3, 'Shoplift', 20, 25, NULL, 'Suspect of shoplifting power tools');
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (8, 4, 'Stop Sign vioaltion', 30, 40, NULL, 'person ran a stop sign');
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (3, 4, NULL, 1, 50, NULL, NULL);
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (3, 3, NULL, 1, 50, NULL, NULL);
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (7, 5, 'Suspicous person', 25, 35, NULL, 'matched description of suspect');
+INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `notes`, `description`) VALUES (2, 5, NULL, 1, 50, NULL, NULL);
 
 COMMIT;
 
