@@ -59,5 +59,23 @@ class UserTest {
 		assertEquals("supervisor", user.getPassword());
 		assertEquals(true, user.isActive());
 	}
+	
+	@Test
+	@DisplayName("testing User m:1 Person mapping")
+	void test2 (){
+		
+		assertNotNull(user);
+		
+//		SELECT CONCAT(p.first_name, " ", p.last_name) FROM person p JOIN user u ON u.person_id = p.id WHERE u.id = 1;
+//		+----------------------------------------+
+//		| CONCAT(p.first_name, " ", p.last_name) |
+//		+----------------------------------------+
+//		| William  Padget                        |
+//		+----------------------------------------+
+		
+		assertEquals("William  Padget", user.getPerson().getFirstName() + " " + user.getPerson().getLastName());
+		
+		
+	}
 
 }

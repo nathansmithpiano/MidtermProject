@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
@@ -58,6 +59,9 @@ public class Person {
 	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "person_note", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "note_id"))
 	private List<Note> notes;
+
+	@OneToMany(mappedBy = "person")
+	private List<User> users;
 
 	public Person() {
 		super();
@@ -179,6 +183,14 @@ public class Person {
 		this.notes = notes;
 	}
 
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+
 	public void addAddress(Address address) {
 		if (addresses == null) {
 			addresses = new ArrayList<>();
@@ -226,6 +238,23 @@ public class Person {
 		Note backup = note.clone();
 		if (notes != null && notes.contains(note)) {
 			notes.remove(note);
+		}
+		return backup;
+	}
+
+	public void addUser(User user) {
+		if (users == null) {
+			users = new ArrayList<>();
+		}
+		if (!users.contains(user)) {
+			users.add(user);
+		}
+	}
+
+	public User removeUser(User user) {
+		User backup = user.clone();
+		if (users != null && users.contains(user)) {
+			users.remove(user);
 		}
 		return backup;
 	}

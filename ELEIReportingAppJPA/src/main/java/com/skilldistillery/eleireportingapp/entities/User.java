@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class User {
@@ -15,9 +17,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "person_id")
-	private int personId;
-
 	@Column(name = "permission_level")
 	private String permissionLevel;
 
@@ -25,8 +24,16 @@ public class User {
 	private String password;
 	private boolean active;
 
+	@ManyToOne
+	@JoinColumn(name = "person_id")
+	private Person person;
+
 	public User() {
 		super();
+	}
+
+	public User clone() {
+		return this.clone();
 	}
 
 	public int getId() {
@@ -35,14 +42,6 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public int getPersonId() {
-		return personId;
-	}
-
-	public void setPersonId(int personId) {
-		this.personId = personId;
 	}
 
 	public String getPermissionLevel() {
@@ -77,6 +76,14 @@ public class User {
 		this.active = active;
 	}
 
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -96,8 +103,8 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", personId=" + personId + ", permissionLevel=" + permissionLevel + ", username="
-				+ username + ", password=" + password + ", active=" + active + "]";
+		return "User [id=" + id + ", permissionLevel=" + permissionLevel + ", username=" + username + ", password="
+				+ password + ", active=" + active + ", person=" + person + "]";
 	}
 
 }

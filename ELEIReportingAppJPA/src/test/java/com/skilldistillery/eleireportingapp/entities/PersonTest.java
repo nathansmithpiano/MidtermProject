@@ -154,5 +154,27 @@ class PersonTest {
 		assertTrue(person.getNotes().size() == 1);
 
 	}
+	
+	@Test
+	@DisplayName("Testing Person 1:m User mapping")
+	void test6() {
+
+		person = null;
+		person = em.find(Person.class, 1); // // had to use id 1 for this test due to the current limited DB entries
+		
+		assertNotNull(person);
+
+//		SELECT COUNT(*) FROM user u JOIN person p ON u.person_id = p.id WHERE p.id = 1;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+
+		assertTrue(person.getUsers().size() > 0);
+		assertNotNull(person.getUsers());
+		assertTrue(person.getUsers().size() == 1);
+
+	}
 
 }
