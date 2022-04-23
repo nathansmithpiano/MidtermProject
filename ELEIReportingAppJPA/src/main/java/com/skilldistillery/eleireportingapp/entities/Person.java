@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -53,9 +55,9 @@ public class Person {
 	@JoinColumn(name = "ethnicity_id")
 	private Ethnicity ethnicity;
 
-//	@ManyToMany(cascade = CascadeType.PERSIST)
-//	@JoinTable(name = "person_note", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "note_id"))
-//	private List<Note> notes;
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "person_note", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "note_id"))
+	private List<Note> notes;
 
 	public Person() {
 		super();
@@ -169,6 +171,14 @@ public class Person {
 		this.ethnicity = ethnicity;
 	}
 
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
 	public void addAddress(Address address) {
 		if (addresses == null) {
 			addresses = new ArrayList<>();
@@ -199,6 +209,23 @@ public class Person {
 		Incident backup = incident.clone();
 		if (incidents != null && incidents.contains(incident)) {
 			incidents.remove(incident);
+		}
+		return backup;
+	}
+
+	public void addNote(Note note) {
+		if (notes == null) {
+			notes = new ArrayList<>();
+		}
+		if (!notes.contains(note)) {
+			notes.add(note);
+		}
+	}
+
+	public Note removeNote(Note note) {
+		Note backup = note.clone();
+		if (notes != null && notes.contains(note)) {
+			notes.remove(note);
 		}
 		return backup;
 	}

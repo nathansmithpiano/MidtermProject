@@ -38,6 +38,9 @@ public class Note implements Cloneable {
 	@ManyToMany(mappedBy = "notes")
 	private List<Incident> incidents;
 
+	@ManyToMany(mappedBy = "notes")
+	private List<Person> persons;
+
 	public Note() {
 		super();
 	}
@@ -102,6 +105,14 @@ public class Note implements Cloneable {
 		this.incidents = incidents;
 	}
 
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+
 	public void addCaseFile(CaseFile caseFile) {
 		if (caseFiles == null) {
 			caseFiles = new ArrayList<>();
@@ -134,6 +145,23 @@ public class Note implements Cloneable {
 		Incident backup = incident.clone();
 		if (incidents != null && incidents.contains(incident)) {
 			incidents.remove(incident);
+		}
+		return backup;
+	}
+
+	public void addPerson(Person person) {
+		if (persons == null) {
+			persons = new ArrayList<>();
+		}
+		if (!persons.contains(person)) {
+			persons.add(person);
+		}
+	}
+
+	public Person removePerson(Person person) {
+		Person backup = person.clone();
+		if (persons != null && persons.contains(person)) {
+			persons.remove(person);
 		}
 		return backup;
 	}

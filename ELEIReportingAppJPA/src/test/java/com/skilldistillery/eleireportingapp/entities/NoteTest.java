@@ -88,5 +88,24 @@ class NoteTest {
 		assertTrue(note.getIncidents().size() == 1);
 
 	}
+	
+	@Test
+	@DisplayName("Testing Note m:m Person mapping")
+	void test4() {
+
+		assertNotNull(note);
+
+//		SELECT COUNT(*) FROM person p JOIN person_note pn ON pn.person_id = p.id JOIN note n ON pn.note_id = n.id WHERE n.id = 1;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+
+		assertTrue(note.getPersons().size() > 0);
+		assertNotNull(note.getPersons());
+		assertTrue(note.getPersons().size() == 1);
+
+	}
 
 }
