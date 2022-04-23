@@ -33,6 +33,10 @@ public class Incident {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
+	
+	@ManyToOne
+	@JoinColumn(name = "case_id")
+	private CaseFile caseFile;
 
 	public Incident clone() {
 		return this.clone();
@@ -98,6 +102,14 @@ public class Incident {
 		this.address = address;
 	}
 
+	public CaseFile getCaseFile() {
+		return caseFile;
+	}
+
+	public void setCaseFile(CaseFile caseFile) {
+		this.caseFile = caseFile;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -119,7 +131,7 @@ public class Incident {
 	public String toString() {
 		return "Incident [id=" + id + ", reasonForContact=" + reasonForContact + ", location=" + location
 				+ ", description=" + description + ", flag=" + flag + ", incidentDate=" + incidentDate + ", address="
-				+ address + "]";
+				+ address + ", caseFile=" + caseFile + "]";
 	}
 
 }

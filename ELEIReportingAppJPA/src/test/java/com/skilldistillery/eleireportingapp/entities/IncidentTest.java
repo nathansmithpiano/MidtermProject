@@ -81,5 +81,23 @@ class IncidentTest {
 		
 	
 	}
+	
+	@Test
+	@DisplayName("Testing Incident m:1 CaseFile mapping")
+	void test3() {
+		
+		assertNotNull(incident);
+		
+//		SELECT cf.suspected_crime FROM case_file cf JOIN incident i ON i.case_id = cf.id WHERE i.id = 1;
+//		+-----------------+
+//		| suspected_crime |
+//		+-----------------+
+//		| Shoplifting     |
+//		+-----------------+		
+		
+		assertEquals("Shoplifting", incident.getCaseFile().getSuspectedCrime());
+		
+	
+	}
 
 }
