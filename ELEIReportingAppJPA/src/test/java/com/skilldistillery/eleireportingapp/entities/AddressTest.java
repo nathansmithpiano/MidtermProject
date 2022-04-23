@@ -87,4 +87,23 @@ class AddressTest {
 		
 	}
 	
+	@Test
+	@DisplayName("Testing Address m:m Person mapping")
+	void test3() {
+		
+		assertNotNull(address);
+		
+//		SELECT COUNT(*) FROM person p JOIN person_address pa ON p.id = pa.person_id JOIN address a ON a.id = pa.address_id WHERE a.id = 1;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+		
+		assertTrue(address.getPersons().size() > 0);
+		assertNotNull(address.getPersons());
+		assertTrue(address.getPersons().size() == 1);
+		
+	}
+	
 }

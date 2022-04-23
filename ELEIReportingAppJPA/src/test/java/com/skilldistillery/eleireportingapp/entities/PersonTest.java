@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -51,7 +50,7 @@ class PersonTest {
 	@Test
 	@DisplayName("test basic Person mappings")
 	void test1() {
-		
+
 //		+----+------------+-------------+-----------+-------+------------+--------+------------+------+-------------------+-------+--------------+
 //		| id | first_name | middle_name | last_name | title | birthdate  | gender | address_id | flag | description       | notes | ethnicity_id |
 //		+----+------------+-------------+-----------+-------+------------+--------+------------+------+-------------------+-------+--------------+
@@ -60,7 +59,7 @@ class PersonTest {
 //		|  3 | Steven     | Adam        | Burris    | NULL  | 1990-02-07 | Male   |          1 |    0 | Police Officer    | NULL  |            1 |
 //		|  4 | John       | Adams       | Parker    | NULL  | 1992-07-01 | Male   |          2 |    0 | Contacted Person  | NULL  |            1 |
 //		+----+------------+-------------+-----------+-------+------------+--------+------------+------+-------------------+-------+--------------+
-		
+
 		assertNotNull(person);
 		assertEquals("Steven", person.getFirstName());
 		assertEquals("Adam", person.getMiddleName());
@@ -71,6 +70,28 @@ class PersonTest {
 		assertFalse(person.isFlag());
 		assertEquals(person.getDescription(), "Police Officer");
 		assertNull(person.getNotes());
+	}
+
+	@Test
+	@DisplayName("Testing Person m:m Address mapping")
+	void test2() {
+
+		person = null;
+		person = em.find(Person.class, 1); // // had to use id 1 for this test due to the current limited DB entries
+		
+		assertNotNull(person);
+
+//		SELECT COUNT(*) FROM address a JOIN person_address pa ON a.id = pa.address_id JOIN person p ON p.id = pa.person_id WHERE p.id = 1;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+
+		assertTrue(person.getAddresses().size() > 0);
+		assertNotNull(person.getAddresses());
+		assertTrue(person.getAddresses().size() == 1);
+
 	}
 
 }

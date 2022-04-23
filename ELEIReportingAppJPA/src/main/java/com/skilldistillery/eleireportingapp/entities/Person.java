@@ -1,7 +1,8 @@
 package com.skilldistillery.eleireportingapp.entities;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 @Entity
 public class Person {
@@ -41,8 +43,15 @@ public class Person {
 
 	private String notes;
 	
+	@ManyToMany(mappedBy = "persons")
+	List<Address> addresses;
+	
 	public Person() {
 		super();
+	}
+	
+	public Person clone() {
+		return this.clone();
 	}
 
 	public int getId() {
@@ -131,6 +140,31 @@ public class Person {
 
 	public void setNotes(String notes) {
 		this.notes = notes;
+	}
+
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
+	}
+	
+	public void addAddress(Address address) {
+		if (addresses == null) {
+			addresses = new ArrayList<>();
+		}
+		if (!addresses.contains(address)) {
+			addresses.add(address);
+		}
+	}
+
+	public Address removeAddress(Address address) {
+		Address backup = address.clone();
+		if (addresses != null && addresses.contains(address)) {
+			addresses.remove(address);
+		}
+		return backup;
 	}
 
 	@Override
