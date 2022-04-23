@@ -68,5 +68,24 @@ class CaseFileTest {
 		assertEquals(1, file.getNotes().size());
 		assertEquals(1, file.getNotes().get(0).getId());
 	}
+	
+	@Test
+	@DisplayName("Testing CaseFile 1:m Incident mapping")
+	void test3() {
+		
+		assertNotNull(file);
+		
+//		SELECT COUNT(*) FROM incident i JOIN case_file cf ON i.case_id = cf.id WHERE cf.id = 1;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+		
+		assertTrue(file.getIncidents().size() > 0);
+		assertNotNull(file.getIncidents());
+		assertTrue(file.getIncidents().size() == 1);
+		
+	}
 
 }

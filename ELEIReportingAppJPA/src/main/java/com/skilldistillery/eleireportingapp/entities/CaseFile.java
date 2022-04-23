@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -37,6 +38,9 @@ public class CaseFile implements Cloneable{
 		joinColumns = @JoinColumn(name = "case_id"), 
 		inverseJoinColumns = @JoinColumn(name = "note_id"))
 	private List<Note> notes;
+	
+	@OneToMany(mappedBy = "caseFile")
+	private List<Incident> incidents;
 	
 	public CaseFile() {
 		super();
@@ -86,6 +90,14 @@ public class CaseFile implements Cloneable{
 		this.notes = notes;
 	}
 	
+	public List<Incident> getIncidents() {
+		return incidents;
+	}
+
+	public void setIncidents(List<Incident> incidents) {
+		this.incidents = incidents;
+	}
+
 	public void addNote(Note note) {
 		if (notes == null) {
 			notes = new ArrayList<>();
@@ -101,6 +113,23 @@ public class CaseFile implements Cloneable{
 		if (notes != null && notes.contains(note)) {
 			notes.remove(note);
 			note.removeCaseFile(this);
+		}
+		return backup;
+	}
+	
+	public void addIncident(Incident incident) {
+		if (incidents == null) {
+			incidents = new ArrayList<>();
+		}
+		if (!incidents.contains(incident)) {
+			incidents.add(incident);
+		}
+	}
+
+	public Incident removeIncident(Incident incident) {
+		Incident backup = incident.clone();
+		if (incidents != null && incidents.contains(incident)) {
+			incidents.remove(incident);
 		}
 		return backup;
 	}

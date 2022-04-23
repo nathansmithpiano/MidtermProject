@@ -86,5 +86,5 @@ class AddressTest {
 		assertTrue(address.getIncidents().size() == 1);
 		
 	}
-
+	
 }
