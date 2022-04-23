@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Person {
@@ -41,18 +43,24 @@ public class Person {
 
 	private String description;
 
-	private String notes;
-	
 	@ManyToMany(mappedBy = "persons")
-	List<Address> addresses;
-	
+	private List<Address> addresses;
+
 	@ManyToMany(mappedBy = "persons")
 	private List<Incident> incidents;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "ethnicity_id")
+	private Ethnicity ethnicity;
+
+//	@ManyToMany(cascade = CascadeType.PERSIST)
+//	@JoinTable(name = "person_note", joinColumns = @JoinColumn(name = "person_id"), inverseJoinColumns = @JoinColumn(name = "note_id"))
+//	private List<Note> notes;
+
 	public Person() {
 		super();
 	}
-	
+
 	public Person clone() {
 		return this.clone();
 	}
@@ -137,14 +145,6 @@ public class Person {
 		this.description = description;
 	}
 
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-
 	public List<Address> getAddresses() {
 		return addresses;
 	}
@@ -152,13 +152,21 @@ public class Person {
 	public void setAddresses(List<Address> addresses) {
 		this.addresses = addresses;
 	}
-	
+
 	public List<Incident> getIncidents() {
 		return incidents;
 	}
 
 	public void setIncidents(List<Incident> incidents) {
 		this.incidents = incidents;
+	}
+
+	public Ethnicity getEthnicity() {
+		return ethnicity;
+	}
+
+	public void setEthnicity(Ethnicity ethnicity) {
+		this.ethnicity = ethnicity;
 	}
 
 	public void addAddress(Address address) {
@@ -177,7 +185,7 @@ public class Person {
 		}
 		return backup;
 	}
-	
+
 	public void addIncident(Incident incident) {
 		if (incidents == null) {
 			incidents = new ArrayList<>();
@@ -216,7 +224,7 @@ public class Person {
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
 				+ ", title=" + title + ", birthDate=" + birthDate + ", gender=" + gender + ", address_id=" + address_id
-				+ ", flag=" + flag + ", description=" + description + ", notes=" + notes + "]";
+				+ ", flag=" + flag + ", description=" + description + ", ethnicity=" + ethnicity + "]";
 	}
 
 }

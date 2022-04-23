@@ -45,13 +45,19 @@ class UserTest {
 	@Test
 	@DisplayName("test basic User mappings")
 	void test1() {
-//		+----+-----------+------------------+----------+----------+--------+
-//		| id | person_id | permission_level | username | password | active |
-//		+----+-----------+------------------+----------+----------+--------+
-//		|  1 |         1 | admin            | admin    | admin    |      1 |
-//		+----+-----------+------------------+----------+----------+--------+
+		
+//		SELECT * FROM user u WHERE u.id = 1;
+//		+----+-----------+------------------+------------------+------------+--------+
+//		| id | person_id | permission_level | username         | password   | active |
+//		+----+-----------+------------------+------------------+------------+--------+
+//		|  1 |         1 | supervisor       | policesupervisor | supervisor |      1 |
+//		+----+-----------+------------------+------------------+------------+--------+		
+		
 		assertNotNull(user);
-		assertEquals("admin", user.getUsername());
+		assertEquals("supervisor", user.getPermissionLevel());
+		assertEquals("policesupervisor", user.getUsername());
+		assertEquals("supervisor", user.getPassword());
+		assertEquals(true, user.isActive());
 	}
 
 }

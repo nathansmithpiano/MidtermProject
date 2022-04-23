@@ -15,7 +15,7 @@ public class Ethnicity {
 	private int id;
 
 	private String name;
-	
+
 	public Ethnicity() {
 		super();
 	}

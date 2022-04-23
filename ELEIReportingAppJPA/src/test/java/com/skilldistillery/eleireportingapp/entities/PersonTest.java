@@ -69,7 +69,6 @@ class PersonTest {
 		assertEquals(person.getGender(), "Male");
 		assertFalse(person.isFlag());
 		assertEquals(person.getDescription(), "Police Officer");
-		assertNull(person.getNotes());
 	}
 
 	@Test
@@ -114,6 +113,24 @@ class PersonTest {
 		assertNotNull(person.getIncidents());
 		assertTrue(person.getIncidents().size() == 1);
 
+	}
+	
+	@Test
+	@DisplayName("Testing Person m:1 Ethnicity mapping")
+	void test4() {
+		
+		assertNotNull(person);
+		
+//		SELECT e.name FROM ethnicity e JOIN person p ON p.ethnicity_id = e.id WHERE p.id = 3;
+//		+-------+
+//		| name  |
+//		+-------+
+//		| White |
+//		+-------+	
+		
+		assertEquals("White", person.getEthnicity().getName());
+		
+	
 	}
 
 }

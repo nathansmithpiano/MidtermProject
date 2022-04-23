@@ -79,12 +79,12 @@ class CaseFileTest {
 //		+----------+
 //		| COUNT(*) |
 //		+----------+
-//		|        1 |
+//		|        2 |
 //		+----------+
 		
 		assertTrue(file.getIncidents().size() > 0);
 		assertNotNull(file.getIncidents());
-		assertTrue(file.getIncidents().size() == 1);
+		assertTrue(file.getIncidents().size() == 2);
 		
 	}
 
