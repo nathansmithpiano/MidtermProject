@@ -34,16 +34,16 @@ DROP TABLE IF EXISTS `person` ;
 
 CREATE TABLE IF NOT EXISTS `person` (
   `id` INT NOT NULL COMMENT 'User isA Person\\n',
+  `address_id` INT NULL,
+  `ethnicity_id` INT NOT NULL DEFAULT 7,
   `first_name` VARCHAR(45) NULL DEFAULT NULL,
   `middle_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
   `title` VARCHAR(45) NULL,
   `birthdate` DATE NULL,
   `gender` VARCHAR(45) NOT NULL,
-  `address_id` INT NULL,
   `flag` TINYINT NOT NULL DEFAULT 0,
   `description` TEXT NULL,
-  `ethnicity_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_person_ethnicity1_idx` (`ethnicity_id` ASC),
   CONSTRAINT `fk_person_ethnicity1`
@@ -140,13 +140,13 @@ DROP TABLE IF EXISTS `incident` ;
 
 CREATE TABLE IF NOT EXISTS `incident` (
   `id` INT NOT NULL,
-  `reason_for_contact` VARCHAR(45) NULL DEFAULT NULL,
-  `location` VARCHAR(45) NULL DEFAULT NULL,
   `address_id` INT NOT NULL,
   `case_id` INT NULL,
+  `reason_for_contact` VARCHAR(45) NULL DEFAULT NULL,
+  `location` VARCHAR(45) NULL DEFAULT NULL,
+  `incident_date` DATETIME NULL,
   `description` TEXT NULL,
   `flag` TINYINT NOT NULL DEFAULT 0,
-  `incident_date` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_incident_address1_idx` (`address_id` ASC),
   INDEX `fk_incident_case1_idx` (`case_id` ASC),
@@ -218,10 +218,10 @@ DROP TABLE IF EXISTS `note` ;
 
 CREATE TABLE IF NOT EXISTS `note` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
   `created` TIMESTAMP NULL,
   `updated` TIMESTAMP NULL,
   `content` TEXT NULL,
-  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -380,17 +380,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (1, 'William ', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 1, DEFAULT, 'Police Supervisor', 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (2, 'Omar ', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', 1, DEFAULT, 'Police Officer', 3);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (3, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 1, DEFAULT, 'Police Officer', 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (4, 'John', 'Adams', 'Terry', NULL, '1992-07-01', 'Male', 2, DEFAULT, 'Contacted Person', 2);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (5, 'Morty', NULL, 'Smith', NULL, '2000-09-12', 'Male', 4, DEFAULT, 'Contacted Person', 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (6, 'Rick', NULL, 'Sanchez', NULL, '1975-01-21', 'Male', 5, DEFAULT, 'Contacted Person', 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (7, 'Summer', NULL, 'Smith', NULL, '1995-03-22', 'Female', 4, DEFAULT, 'Contacted Person', 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (8, 'Tammy', NULL, 'Guetermann', NULL, '1982-02-01', 'Female', 7, DEFAULT, 'Contacted Person', 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (9, 'Toby ', NULL, 'Matthews', NULL, '1985-06-19', 'Male', 8, DEFAULT, 'Contacted Person', 1);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (10, 'Ruben', NULL, 'Ramirez', NULL, '1980-11-12', 'Male', 9, DEFAULT, 'Contacted Person', 3);
-INSERT INTO `person` (`id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `address_id`, `flag`, `description`, `ethnicity_id`) VALUES (11, 'Mark', NULL, 'Thronson', 'jr', '1990-09-10', 'Male', 12, DEFAULT, 'Contacted Person', 1);
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (1, 1, DEFAULT, 'William ', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', DEFAULT, 'Police Supervisor');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (2, 1, DEFAULT, 'Omar ', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', DEFAULT, 'Police Officer');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (3, 1, DEFAULT, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', DEFAULT, 'Police Officer');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (4, 2, DEFAULT, 'John', 'Adams', 'Terry', NULL, '1992-07-01', 'Male', DEFAULT, 'Contacted Person');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (5, 4, DEFAULT, 'Morty', NULL, 'Smith', NULL, '2000-09-12', 'Male', DEFAULT, 'Contacted Person');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (6, 5, DEFAULT, 'Rick', NULL, 'Sanchez', NULL, '1975-01-21', 'Male', DEFAULT, 'Contacted Person');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (7, 4, DEFAULT, 'Summer', NULL, 'Smith', NULL, '1995-03-22', 'Female', DEFAULT, 'Contacted Person');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (8, 7, DEFAULT, 'Tammy', NULL, 'Guetermann', NULL, '1982-02-01', 'Female', DEFAULT, 'Contacted Person');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (9, 8, DEFAULT, 'Toby ', NULL, 'Matthews', NULL, '1985-06-19', 'Male', DEFAULT, 'Contacted Person');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (10, 9, DEFAULT, 'Ruben', NULL, 'Ramirez', NULL, '1980-11-12', 'Male', DEFAULT, 'Contacted Person');
+INSERT INTO `person` (`id`, `address_id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `flag`, `description`) VALUES (11, 12, DEFAULT, 'Mark', NULL, 'Thronson', 'jr', '1990-09-10', 'Male', DEFAULT, 'Contacted Person');
 
 COMMIT;
 
@@ -462,11 +462,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `incident` (`id`, `reason_for_contact`, `location`, `address_id`, `case_id`, `description`, `flag`, `incident_date`) VALUES (1, 'Dispatched call for service', 'Walmart', 3, 1, 'Shoplift', DEFAULT, '2022-04-22');
-INSERT INTO `incident` (`id`, `reason_for_contact`, `location`, `address_id`, `case_id`, `description`, `flag`, `incident_date`) VALUES (2, 'Suspicious person diggin through trash', 'Home Depot', 6, NULL, 'Illegal dumping', DEFAULT, '2022-04-20');
-INSERT INTO `incident` (`id`, `reason_for_contact`, `location`, `address_id`, `case_id`, `description`, `flag`, `incident_date`) VALUES (3, 'Dispatched call for service', 'Home Depot ', 6, 1, 'Shoplift', DEFAULT, '2022-04-19');
-INSERT INTO `incident` (`id`, `reason_for_contact`, `location`, `address_id`, `case_id`, `description`, `flag`, `incident_date`) VALUES (4, 'Ran a stop sign ', 'Intersection', 22, NULL, 'Stop Sign violation', DEFAULT, '2022-04-19');
-INSERT INTO `incident` (`id`, `reason_for_contact`, `location`, `address_id`, `case_id`, `description`, `flag`, `incident_date`) VALUES (5, 'Matched description of suspect', 'Residence', 20, NULL, 'Suspicious person ', DEFAULT, '2022-04-20');
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (1, 3, 1, 'Dispatched call for service', 'Walmart', '2022-04-22', 'Shoplift', DEFAULT);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (2, 6, NULL, 'Suspicious person diggin through trash', 'Home Depot', '2022-04-20', 'Illegal dumping', DEFAULT);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (3, 6, 1, 'Dispatched call for service', 'Home Depot ', '2022-04-19', 'Shoplift', DEFAULT);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (4, 22, NULL, 'Ran a stop sign ', 'Intersection', '2022-04-19', 'Stop Sign violation', DEFAULT);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (5, 20, NULL, 'Matched description of suspect', 'Residence', '2022-04-20', 'Suspicious person ', DEFAULT);
 
 COMMIT;
 
@@ -505,7 +505,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `note` (`id`, `created`, `updated`, `content`, `user_id`) VALUES (1, NULL, NULL, 'CONTENT', 1);
+INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, NULL, NULL, 'CONTENT');
 
 COMMIT;
 
