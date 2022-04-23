@@ -2,6 +2,7 @@ package com.skilldistillery.eleireportingapp.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -60,6 +61,25 @@ class EthnicityTest {
 		
 		assertNotNull(ethnicity);
 		assertEquals(ethnicity.getName(), "White");
+	}
+	
+	@Test
+	@DisplayName("Testing Ethnicity 1:m Person mapping")
+	void test2() {
+		
+		assertNotNull(ethnicity);
+		
+//		SELECT COUNT(*) FROM person p JOIN ethnicity e ON e.id = p.ethnicity_id WHERE e.id = 1;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        8 |
+//		+----------+
+		
+		assertTrue(ethnicity.getPersons().size() > 0);
+		assertNotNull(ethnicity.getPersons());
+		assertTrue(ethnicity.getPersons().size() == 8);
+		
 	}
 
 }

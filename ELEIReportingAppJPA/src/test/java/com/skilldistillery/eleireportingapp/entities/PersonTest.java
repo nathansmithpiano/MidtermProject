@@ -106,12 +106,12 @@ class PersonTest {
 //		+----------+
 //		| COUNT(*) |
 //		+----------+
-//		|        1 |
+//		|        2 |
 //		+----------+
 
 		assertTrue(person.getIncidents().size() > 0);
 		assertNotNull(person.getIncidents());
-		assertTrue(person.getIncidents().size() == 1);
+		assertTrue(person.getIncidents().size() == 2);
 
 	}
 	

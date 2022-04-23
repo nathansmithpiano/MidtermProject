@@ -1,11 +1,14 @@
 package com.skilldistillery.eleireportingapp.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Ethnicity {
@@ -15,6 +18,9 @@ public class Ethnicity {
 	private int id;
 
 	private String name;
+
+	@OneToMany(mappedBy = "ethnicity")
+	private List<Person> persons;
 
 	public Ethnicity() {
 		super();
@@ -34,6 +40,31 @@ public class Ethnicity {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public List<Person> getPersons() {
+		return persons;
+	}
+
+	public void setPersons(List<Person> persons) {
+		this.persons = persons;
+	}
+
+	public void addPerson(Person person) {
+		if (persons == null) {
+			persons = new ArrayList<>();
+		}
+		if (!persons.contains(person)) {
+			persons.add(person);
+		}
+	}
+
+	public Person removePerson(Person person) {
+		Person backup = person.clone();
+		if (persons != null && persons.contains(person)) {
+			persons.remove(person);
+		}
+		return backup;
 	}
 
 	@Override
