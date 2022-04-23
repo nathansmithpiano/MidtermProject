@@ -30,17 +30,18 @@ public class Note implements Cloneable {
 
 	@Column(name = "user_id")
 	private int userId;
-	
+
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "case_file_note", 
-		joinColumns = @JoinColumn(name = "case_id"), 
-		inverseJoinColumns = @JoinColumn(name = "note_id"))
+	@JoinTable(name = "case_file_note", joinColumns = @JoinColumn(name = "case_id"), inverseJoinColumns = @JoinColumn(name = "note_id"))
 	private List<CaseFile> caseFiles;
-	
+
+	@ManyToMany(mappedBy = "notes")
+	private List<Incident> incidents;
+
 	public Note() {
 		super();
 	}
-	
+
 	public Note clone() {
 		return this.clone();
 	}
@@ -84,7 +85,7 @@ public class Note implements Cloneable {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	
+
 	public List<CaseFile> getCaseFiles() {
 		return caseFiles;
 	}
@@ -92,7 +93,15 @@ public class Note implements Cloneable {
 	public void setCaseFiles(List<CaseFile> caseFiles) {
 		this.caseFiles = caseFiles;
 	}
-	
+
+	public List<Incident> getIncidents() {
+		return incidents;
+	}
+
+	public void setIncidents(List<Incident> incidents) {
+		this.incidents = incidents;
+	}
+
 	public void addCaseFile(CaseFile caseFile) {
 		if (caseFiles == null) {
 			caseFiles = new ArrayList<>();
@@ -108,6 +117,23 @@ public class Note implements Cloneable {
 		if (caseFiles != null && caseFiles.contains(caseFile)) {
 			caseFiles.remove(caseFile);
 			caseFile.removeNote(this);
+		}
+		return backup;
+	}
+
+	public void addIncident(Incident incident) {
+		if (incidents == null) {
+			incidents = new ArrayList<>();
+		}
+		if (!incidents.contains(incident)) {
+			incidents.add(incident);
+		}
+	}
+
+	public Incident removeIncident(Incident incident) {
+		Incident backup = incident.clone();
+		if (incidents != null && incidents.contains(incident)) {
+			incidents.remove(incident);
 		}
 		return backup;
 	}

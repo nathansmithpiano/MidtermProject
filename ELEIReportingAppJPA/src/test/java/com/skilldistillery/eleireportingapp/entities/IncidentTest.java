@@ -120,5 +120,24 @@ class IncidentTest {
 		assertTrue(incident.getPersons().size() == 2);
 		
 	}
+	
+	@Test
+	@DisplayName("Testing Incident m:m Note mapping")
+	void test5() {
+		
+		assertNotNull(incident);
+		
+//		SELECT COUNT(*) FROM note n JOIN incident_note inc ON inc.note_id = n.id JOIN incident i ON inc.incident_id = i.id WHERE i.id = 1;
+//		+----------+
+//		| COUNT(*) |
+//		+----------+
+//		|        1 |
+//		+----------+
+		
+		assertTrue(incident.getNotes().size() > 0);
+		assertNotNull(incident.getNotes());
+		assertTrue(incident.getNotes().size() == 1);
+		
+	}
 
 }

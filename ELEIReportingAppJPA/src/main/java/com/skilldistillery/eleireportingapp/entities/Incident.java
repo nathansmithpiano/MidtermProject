@@ -38,16 +38,18 @@ public class Incident {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "case_id")
 	private CaseFile caseFile;
-	
+
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "incident_with_person", 
-		joinColumns = @JoinColumn(name = "incident_id"), 
-		inverseJoinColumns = @JoinColumn(name = "person_id"))
+	@JoinTable(name = "incident_with_person", joinColumns = @JoinColumn(name = "incident_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
 	private List<Person> persons;
+
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "incident_note", joinColumns = @JoinColumn(name = "incident_id"), inverseJoinColumns = @JoinColumn(name = "note_id"))
+	private List<Note> notes;
 
 	public Incident clone() {
 		return this.clone();
@@ -128,7 +130,15 @@ public class Incident {
 	public void setPersons(List<Person> persons) {
 		this.persons = persons;
 	}
-	
+
+	public List<Note> getNotes() {
+		return notes;
+	}
+
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
+	}
+
 	public void addPerson(Person person) {
 		if (persons == null) {
 			persons = new ArrayList<>();
@@ -142,6 +152,23 @@ public class Incident {
 		Person backup = person.clone();
 		if (persons != null && persons.contains(person)) {
 			persons.remove(person);
+		}
+		return backup;
+	}
+
+	public void addNote(Note note) {
+		if (notes == null) {
+			notes = new ArrayList<>();
+		}
+		if (!notes.contains(note)) {
+			notes.add(note);
+		}
+	}
+
+	public Note removeNote(Note note) {
+		Note backup = note.clone();
+		if (notes != null && notes.contains(note)) {
+			notes.remove(note);
 		}
 		return backup;
 	}
