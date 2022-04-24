@@ -22,7 +22,7 @@ class EthnicityDAOTest {
 	}
 	
 	@Test
-	@DisplayName("Testing DAO find")
+	@DisplayName("Testing DAO find id 1")
 	void test2() {
 		assertNotNull(dao);
 		assertNotNull(dao.findById(1));
