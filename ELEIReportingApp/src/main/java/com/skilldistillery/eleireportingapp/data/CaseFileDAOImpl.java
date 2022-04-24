@@ -19,6 +19,18 @@ public class CaseFileDAOImpl implements CaseFileDAO {
 	}
 
 	@Override
+	public CaseFile findByCaseNumber(int caseNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<CaseFile> findByCaseNumberRange(int start, int end) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public List<CaseFile> findBySuspectedCrimeContains(String suspectedCrime) {
 		// TODO Auto-generated method stub
 		return null;
@@ -53,5 +65,5 @@ public class CaseFileDAOImpl implements CaseFileDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 }
