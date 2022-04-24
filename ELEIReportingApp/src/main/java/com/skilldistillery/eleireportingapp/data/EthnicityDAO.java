@@ -11,6 +11,6 @@ public interface EthnicityDAO {
 	public Ethnicity findByName(String name);
 	public Ethnicity create(Ethnicity ethnicity);
 	public Ethnicity update(int id, Ethnicity ethnicity);
-	public Ethnicity archive(int id);
+	public Ethnicity delete(int id);
 	
 }

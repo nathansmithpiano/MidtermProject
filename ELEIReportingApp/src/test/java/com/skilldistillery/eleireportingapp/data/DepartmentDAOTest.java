@@ -13,16 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.skilldistillery.eleireportingapp.entities.Ethnicity;
+import com.skilldistillery.eleireportingapp.entities.Department;
 
 @SpringBootTest
 @EntityScan(basePackages = { "com.skilldistillery.eleireportingapp" })
-class EthnicityDAOTest {
+class DepartmentDAOTest {
 	
 	@Autowired
-	private EthnicityDAOImpl dao;
+	private DepartmentDAOImpl dao;
 	
-	private Ethnicity entity;
+	private Department entity;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -44,7 +44,7 @@ class EthnicityDAOTest {
 	@DisplayName("Testing DAO find id 1")
 	void test2() {
 		
-//		SELECT * FROM ethnicity WHERE id=1;
+//		SELECT * FROM Department WHERE id=1;
 //		+----+-------+
 //		| id | name  |
 //		+----+-------+
@@ -59,15 +59,15 @@ class EthnicityDAOTest {
 	@DisplayName("Testing DAO create and delete")
 	void test3() {
 		//create
-		Ethnicity newEntity = new Ethnicity();
+		Department newEntity = new Department();
 		newEntity.setName("Name");
-		Ethnicity createdEntity = dao.create(newEntity);
+		Department createdEntity = dao.create(newEntity);
 		assertNotNull(dao.findById(createdEntity.getId()));
 		assertEquals("Name", createdEntity.getName());
 		
 		//delete
 		int size = dao.findAll().size();
-		Ethnicity backup = dao.delete(createdEntity.getId());
+		Department backup = dao.delete(createdEntity.getId());
 		assertNotNull(backup);
 		assertNull(dao.findById(createdEntity.getId()));
 		assertEquals(size - 1, dao.findAll().size());
@@ -78,7 +78,7 @@ class EthnicityDAOTest {
 	void test4() {
 		String oldName = entity.getName();
 		entity.setName("Updated");
-		Ethnicity updated = dao.update(1, entity);
+		Department updated = dao.update(1, entity);
 		assertNotNull(updated);
 		assertEquals(1, updated.getId());
 		assertEquals("Updated", updated.getName());
@@ -88,5 +88,7 @@ class EthnicityDAOTest {
 		assertEquals(1, updated.getId());
 		assertEquals(oldName, updated.getName());
 	}
+	
+	//TODO: address test
 	
 }
