@@ -65,10 +65,6 @@ public class Person {
 		super();
 	}
 
-	public Person clone() {
-		return this.clone();
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -190,12 +186,11 @@ public class Person {
 		}
 	}
 
-	public Address removeAddress(Address address) {
-		Address backup = address.clone();
+	public boolean removeAddress(Address address) {
 		if (addresses != null && addresses.contains(address)) {
 			addresses.remove(address);
 		}
-		return backup;
+		return !addresses.contains(address);
 	}
 
 	public void addIncident(Incident incident) {
@@ -207,12 +202,11 @@ public class Person {
 		}
 	}
 
-	public Incident removeIncident(Incident incident) {
-		Incident backup = incident.clone();
+	public boolean removeIncident(Incident incident) {
 		if (incidents != null && incidents.contains(incident)) {
 			incidents.remove(incident);
 		}
-		return backup;
+		return !incidents.contains(incident);
 	}
 
 	public void addNote(Note note) {
@@ -224,12 +218,11 @@ public class Person {
 		}
 	}
 
-	public Note removeNote(Note note) {
-		Note backup = note.clone();
+	public boolean removeNote(Note note) {
 		if (notes != null && notes.contains(note)) {
 			notes.remove(note);
 		}
-		return backup;
+		return !notes.contains(note);
 	}
 
 	public void addUser(User user) {
@@ -241,12 +234,11 @@ public class Person {
 		}
 	}
 
-	public User removeUser(User user) {
-		User backup = user.clone();
+	public boolean removeUser(User user) {
 		if (users != null && users.contains(user)) {
 			users.remove(user);
 		}
-		return backup;
+		return !users.contains(user);
 	}
 
 	@Override

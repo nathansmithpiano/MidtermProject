@@ -40,8 +40,6 @@ public class Address {
 
 	private boolean flag;
 	
-	private boolean archived;
-	
 	@OneToMany(mappedBy = "address")
 	private List<Incident> incidents;
 	
@@ -51,20 +49,13 @@ public class Address {
 		inverseJoinColumns = @JoinColumn(name = "person_id"))
 	private List<Person> persons;
 	
-	@ManyToOne(cascade= {CascadeType.ALL})
+	@ManyToOne(cascade= {CascadeType.PERSIST})
 	@JoinColumn(name="record_id")
 	private Address mainRecord;
 	
-	@OneToMany(mappedBy = "mainRecord")
-	private List<Address> archives;
-
 	public Address() {
 	}
-
-	public Address clone() {
-		return this.clone();
-	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -129,14 +120,6 @@ public class Address {
 		this.flag = flag;
 	}
 	
-	public boolean isArchived() {
-		return archived;
-	}
-
-	public void setArchived(boolean archived) {
-		this.archived = archived;
-	}
-
 	public List<Incident> getIncidents() {
 		return incidents;
 	}
@@ -154,12 +137,11 @@ public class Address {
 		}
 	}
 
-	public Incident removeIncident(Incident incident) {
-		Incident backup = incident.clone();
+	public boolean removeIncident(Incident incident) {
 		if (incidents != null && incidents.contains(incident)) {
 			incidents.remove(incident);
 		}
-		return backup;
+		return !incidents.contains(incident);
 	}
 
 	public List<Person> getPersons() {
@@ -180,21 +162,12 @@ public class Address {
 		}
 	}
 
-	public Person removePerson(Person person) {
-		Person backup = person.clone();
+	public boolean removePerson(Person person) {
 		if (persons != null && persons.contains(person)) {
 			persons.remove(person);
 			person.removeAddress(this);
 		}
-		return backup;
-	}
-	
-	public List<Address> getArchives() {
-		return archives;
-	}
-
-	public void setArchives(List<Address> archives) {
-		this.archives = archives;
+		return !persons.contains(person);
 	}
 	
 	public Address getMainRecord() {

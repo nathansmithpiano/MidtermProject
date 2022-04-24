@@ -2,9 +2,20 @@ package com.skilldistillery.eleireportingapp.data;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
 import com.skilldistillery.eleireportingapp.entities.Ethnicity;
 
+@Service
+@Transactional
 public class EthnicityDAOImpl implements EthnicityDAO {
+	
+	@PersistenceContext
+	private EntityManager em;
 
 	@Override
 	public List<Ethnicity> findAll() {

@@ -35,10 +35,6 @@ public class Department {
 		super();
 	}
 
-	public Department clone() {
-		return this.clone();
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -64,12 +60,11 @@ public class Department {
 		}
 	}
 
-	public Officer removeOfficer(Officer officer) {
-		Officer backup = officer.clone();
+	public boolean removeOfficer(Officer officer) {
 		if (officers != null && officers.contains(officer)) {
 			officers.remove(officer);
 		}
-		return backup;
+		return officers.contains(officer);
 	}
 
 	@Override

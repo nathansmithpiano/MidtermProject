@@ -48,10 +48,6 @@ public class Officer {
 		super();
 	}
 
-	public Officer clone() {
-		return this.clone();
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -117,12 +113,11 @@ public class Officer {
 		}
 	}
 
-	public Department removeDepartment(Department department) {
-		Department backup = department.clone();
+	public boolean removeDepartment(Department department) {
 		if (departments != null && departments.contains(department)) {
 			departments.remove(department);
 		}
-		return backup;
+		return !departments.contains(department);
 	}
 
 	@Override

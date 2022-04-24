@@ -59,12 +59,11 @@ public class Ethnicity {
 		}
 	}
 
-	public Person removePerson(Person person) {
-		Person backup = person.clone();
+	public boolean removePerson(Person person) {
 		if (persons != null && persons.contains(person)) {
 			persons.remove(person);
 		}
-		return backup;
+		return !persons.contains(person);
 	}
 
 	@Override
