@@ -51,10 +51,6 @@ public class Incident {
 	@JoinTable(name = "incident_note", joinColumns = @JoinColumn(name = "incident_id"), inverseJoinColumns = @JoinColumn(name = "note_id"))
 	private List<Note> notes;
 
-	public Incident clone() {
-		return this.clone();
-	}
-
 	public Incident() {
 		super();
 	}
@@ -148,12 +144,11 @@ public class Incident {
 		}
 	}
 
-	public Person removePerson(Person person) {
-		Person backup = person.clone();
+	public boolean removePerson(Person person) {
 		if (persons != null && persons.contains(person)) {
 			persons.remove(person);
 		}
-		return backup;
+		return !persons.contains(person);
 	}
 
 	public void addNote(Note note) {
@@ -165,12 +160,11 @@ public class Incident {
 		}
 	}
 
-	public Note removeNote(Note note) {
-		Note backup = note.clone();
+	public boolean removeNote(Note note) {
 		if (notes != null && notes.contains(note)) {
 			notes.remove(note);
 		}
-		return backup;
+		return !notes.contains(note);
 	}
 
 	@Override

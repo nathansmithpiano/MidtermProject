@@ -46,10 +46,6 @@ public class CaseFile implements Cloneable{
 		super();
 	}
 	
-	public CaseFile clone() {
-		return this.clone();
-	}
-
 	public int getId() {
 		return id;
 	}
@@ -108,13 +104,12 @@ public class CaseFile implements Cloneable{
 		}
 	}
 
-	public Note removeNote(Note note) {
-		Note backup = (Note) note.clone();
+	public boolean removeNote(Note note) {
 		if (notes != null && notes.contains(note)) {
 			notes.remove(note);
 			note.removeCaseFile(this);
 		}
-		return backup;
+		return !notes.contains(note);
 	}
 	
 	public void addIncident(Incident incident) {
@@ -126,12 +121,11 @@ public class CaseFile implements Cloneable{
 		}
 	}
 
-	public Incident removeIncident(Incident incident) {
-		Incident backup = incident.clone();
+	public boolean removeIncident(Incident incident) {
 		if (incidents != null && incidents.contains(incident)) {
 			incidents.remove(incident);
 		}
-		return backup;
+		return !incidents.contains(incident);
 	}
 
 	@Override

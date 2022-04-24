@@ -16,7 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Note implements Cloneable {
+public class Note {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,10 +43,6 @@ public class Note implements Cloneable {
 
 	public Note() {
 		super();
-	}
-
-	public Note clone() {
-		return this.clone();
 	}
 
 	public int getId() {
@@ -123,13 +119,12 @@ public class Note implements Cloneable {
 		}
 	}
 
-	public CaseFile removeCaseFile(CaseFile caseFile) {
-		CaseFile backup = caseFile.clone();
+	public boolean removeCaseFile(CaseFile caseFile) {
 		if (caseFiles != null && caseFiles.contains(caseFile)) {
 			caseFiles.remove(caseFile);
 			caseFile.removeNote(this);
 		}
-		return backup;
+		return !caseFiles.contains(caseFile);
 	}
 
 	public void addIncident(Incident incident) {
@@ -141,12 +136,11 @@ public class Note implements Cloneable {
 		}
 	}
 
-	public Incident removeIncident(Incident incident) {
-		Incident backup = incident.clone();
+	public boolean removeIncident(Incident incident) {
 		if (incidents != null && incidents.contains(incident)) {
 			incidents.remove(incident);
 		}
-		return backup;
+		return !incidents.contains(incident);
 	}
 
 	public void addPerson(Person person) {
@@ -158,12 +152,11 @@ public class Note implements Cloneable {
 		}
 	}
 
-	public Person removePerson(Person person) {
-		Person backup = person.clone();
+	public boolean removePerson(Person person) {
 		if (persons != null && persons.contains(person)) {
 			persons.remove(person);
 		}
-		return backup;
+		return persons.contains(person);
 	}
 
 	@Override

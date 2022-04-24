@@ -32,10 +32,6 @@ public class User {
 		super();
 	}
 
-	public User clone() {
-		return this.clone();
-	}
-
 	public int getId() {
 		return id;
 	}
