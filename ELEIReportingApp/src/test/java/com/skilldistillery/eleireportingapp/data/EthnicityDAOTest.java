@@ -17,8 +17,16 @@ class EthnicityDAOTest {
 
 	@Test
 	@DisplayName("Testing DAO was autowired")
-	void test_CategoryDAOImpl_null() {
+	void test1() {
 		assertNotNull(dao);
+	}
+	
+	@Test
+	@DisplayName("Testing DAO find")
+	void test2() {
+		assertNotNull(dao);
+		assertNotNull(dao.findById(1));
+		
 	}
 
 }
