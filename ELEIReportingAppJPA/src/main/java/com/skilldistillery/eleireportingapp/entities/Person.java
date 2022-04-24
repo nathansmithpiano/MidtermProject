@@ -40,8 +40,6 @@ public class Person {
 
 	private String gender;
 
-	private Integer address_id;
-
 	private boolean flag;
 
 	private String description;
@@ -125,14 +123,6 @@ public class Person {
 
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-
-	public Integer getAddress_id() {
-		return address_id;
-	}
-
-	public void setAddress_id(Integer address_id) {
-		this.address_id = address_id;
 	}
 
 	public boolean isFlag() {
@@ -279,8 +269,8 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
-				+ ", title=" + title + ", birthDate=" + birthDate + ", gender=" + gender + ", address_id=" + address_id
-				+ ", flag=" + flag + ", description=" + description + ", ethnicity=" + ethnicity + "]";
+				+ ", title=" + title + ", birthDate=" + birthDate + ", gender=" + gender + ", flag=" + flag
+				+ ", description=" + description + ", incidents=" + incidents + ", ethnicity=" + ethnicity + "]";
 	}
 
 }

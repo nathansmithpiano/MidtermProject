@@ -59,7 +59,6 @@ class IncidentWithPersonTest {
 		assertEquals("Shoplift", incidentWithPerson.getSuspectedCrime());
 		assertEquals(20, incidentWithPerson.getAgeMinimum());
 		assertEquals(25, incidentWithPerson.getAgeMaximum());
-		assertEquals(null, incidentWithPerson.getNotes());
 		assertEquals("Suspect of shoplifting power tools from Walmart", incidentWithPerson.getDescription());
 		
 	}
