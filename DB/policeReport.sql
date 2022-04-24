@@ -33,7 +33,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `person` ;
 
 CREATE TABLE IF NOT EXISTS `person` (
-  `id` INT NOT NULL COMMENT 'User isA Person\\n',
+  `id` INT NOT NULL AUTO_INCREMENT COMMENT 'User isA Person\\n',
   `record_id` INT NULL,
   `ethnicity_id` INT NOT NULL DEFAULT 7,
   `first_name` VARCHAR(45) NULL DEFAULT NULL,
@@ -67,7 +67,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `user` ;
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `person_id` INT NOT NULL,
   `permission_level` VARCHAR(45) NULL DEFAULT NULL,
   `username` VARCHAR(45) NOT NULL,
@@ -90,7 +90,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `address` ;
 
 CREATE TABLE IF NOT EXISTS `address` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `record_id` INT NULL,
   `description` VARCHAR(45) NULL DEFAULT NULL,
   `street1` VARCHAR(255) NULL DEFAULT NULL,
@@ -140,7 +140,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `case_file` ;
 
 CREATE TABLE IF NOT EXISTS `case_file` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `record_id` INT NULL,
   `suspected_crime` VARCHAR(45) NULL,
   `description` TEXT NULL,
@@ -162,7 +162,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `incident` ;
 
 CREATE TABLE IF NOT EXISTS `incident` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `record_id` INT NULL,
   `address_id` INT NOT NULL,
   `case_id` INT NULL,
@@ -200,7 +200,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `incident_with_person` ;
 
 CREATE TABLE IF NOT EXISTS `incident_with_person` (
-  `person_id` INT NOT NULL,
+  `person_id` INT NOT NULL AUTO_INCREMENT,
   `incident_id` INT NOT NULL,
   `record_id_person_id` INT NULL,
   `record_id_incident_id` INT NULL,
@@ -513,7 +513,8 @@ INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (20 , NULL, 'Residence', '1201 W Thornotn Pkwy', NULL, 'Thornton', 'CO', 80260, DEFAULT, DEFAULT);
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (21, NULL, 'Business', '750 E 104th Ave', NULL, 'Thornton', 'CO', 80233, DEFAULT, DEFAULT);
 INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (22, NULL, 'Street', '700 block of Eppinger Blvd', NULL, 'Thornton', 'CO', 80229, DEFAULT, DEFAULT);
-INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (23, 1, 'Employer', 'ARCHIVED ST', '', 'Thornton', 'CO', 80229, DEFAULT, DEFAULT);
+INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (23, 1, 'ARCHIVE', 'ARCHIVED ST', '', 'ARCHIVE', 'CO', 80229, DEFAULT, DEFAULT);
+INSERT INTO `address` (`id`, `record_id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`, `archived`) VALUES (24, 1, 'ARCHIVE', 'ARCHIVE', NULL, 'ARCHIVE', 'CO', 80229, DEFAULT, DEFAULT);
 
 COMMIT;
 
