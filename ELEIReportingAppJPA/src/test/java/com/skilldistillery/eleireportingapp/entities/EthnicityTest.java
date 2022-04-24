@@ -34,7 +34,7 @@ class EthnicityTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		ethnicity = em.find(Ethnicity.class, 1);
+		ethnicity = em.find(Ethnicity.class, 7);
 	}
 
 	@AfterEach
@@ -60,7 +60,7 @@ class EthnicityTest {
 //		+----+------------------+
 		
 		assertNotNull(ethnicity);
-		assertEquals(ethnicity.getName(), "White");
+		assertEquals(ethnicity.getName(), "Other");
 	}
 	
 	@Test
@@ -69,16 +69,16 @@ class EthnicityTest {
 		
 		assertNotNull(ethnicity);
 		
-//		SELECT COUNT(*) FROM person p JOIN ethnicity e ON e.id = p.ethnicity_id WHERE e.id = 1;
+//		SELECT COUNT(*) FROM person p JOIN ethnicity e ON e.id = p.ethnicity_id WHERE e.id = 7;
 //		+----------+
 //		| COUNT(*) |
 //		+----------+
-//		|        8 |
+//		|       11 |
 //		+----------+
 		
 		assertTrue(ethnicity.getPersons().size() > 0);
 		assertNotNull(ethnicity.getPersons());
-		assertTrue(ethnicity.getPersons().size() == 8);
+		assertTrue(ethnicity.getPersons().size() == 11);
 		
 	}
 

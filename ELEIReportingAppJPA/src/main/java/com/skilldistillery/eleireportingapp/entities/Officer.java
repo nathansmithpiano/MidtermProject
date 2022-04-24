@@ -37,7 +37,6 @@ public class Officer {
 	@ManyToMany(mappedBy = "officers")
 	private List<Department> departments;
 	
-	
 	@ManyToOne(cascade= {CascadeType.ALL})
 	@JoinColumn(name="supervisor_id")
 	private Officer supervisor;
@@ -100,7 +99,6 @@ public class Officer {
 	public void setSupervisor(Officer supervisor) {
 		this.supervisor = supervisor;
 	}
-
 
 	public List<Officer> getSubordinates() {
 		return subordinates;

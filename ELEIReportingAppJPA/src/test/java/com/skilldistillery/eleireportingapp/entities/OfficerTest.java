@@ -112,6 +112,5 @@ class OfficerTest {
 		
 		assertNotNull(officer);
 		assertEquals("2201",officer.getSupervisor().getBadge());
-
 	}
 }

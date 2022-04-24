@@ -23,8 +23,6 @@ public class IncidentWithPerson {
 	@Column(name = "age_maximum")
 	private int ageMaximum;
 
-	private String notes;
-
 	private String description;
 
 	public IncidentWithPerson() {
@@ -63,14 +61,6 @@ public class IncidentWithPerson {
 		this.ageMaximum = ageMaximum;
 	}
 
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -99,7 +89,7 @@ public class IncidentWithPerson {
 	@Override
 	public String toString() {
 		return "IncidentWithPerson [suspectedCrime=" + suspectedCrime + ", ageMinimum=" + ageMinimum + ", ageMaximum="
-				+ ageMaximum + ", notes=" + notes + ", description=" + description + "]";
+				+ ageMaximum + ", description=" + description + "]";
 	}
 
 }
