@@ -23,7 +23,8 @@ DROP TABLE IF EXISTS `ethnicity` ;
 CREATE TABLE IF NOT EXISTS `ethnicity` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
 
 
@@ -537,7 +538,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, NULL, NULL, 'CONTENT');
+INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, NULL, NULL, 'CONTENT1');
+INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (2, 2, NULL, NULL, 'CONTENT2');
+INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (3, 3, NULL, NULL, 'CONTENT3');
 
 COMMIT;
 
@@ -567,7 +570,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (1, 1);
+INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (1, 2);
 
 COMMIT;
 
@@ -590,6 +593,18 @@ COMMIT;
 START TRANSACTION;
 USE `eleidb`;
 INSERT INTO `department_employee` (`officer_id`, `department_id`) VALUES (1, 1);
+INSERT INTO `department_employee` (`officer_id`, `department_id`) VALUES (2, 1);
+INSERT INTO `department_employee` (`officer_id`, `department_id`) VALUES (3, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `incident_with_person_has_note`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `eleidb`;
+INSERT INTO `incident_with_person_has_note` (`incident_with_person_person_id`, `incident_with_person_incident_id`, `note_id`) VALUES (4, 1, 3);
 
 COMMIT;
 
