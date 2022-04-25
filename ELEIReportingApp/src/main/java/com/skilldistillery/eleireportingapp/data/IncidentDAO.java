@@ -1,12 +1,12 @@
 package com.skilldistillery.eleireportingapp.data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.skilldistillery.eleireportingapp.entities.Address;
+import com.skilldistillery.eleireportingapp.entities.CaseFile;
 import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Person;
-import com.skilldistillery.eleireportingapp.entities.CaseFile;
 
 public interface IncidentDAO {
 	
@@ -14,8 +14,8 @@ public interface IncidentDAO {
 	public List<Incident> findByAddress(Address address);
 	public List<Incident> findByPerson(Person person);
 	public Incident findByCase(CaseFile caseFile);
-	public List<Incident> findByIncidentDate(LocalDateTime incidentDate);
-	public List<Incident> findByIncidentDateRange(LocalDateTime start, LocalDateTime end);
+	public List<Incident> findByIncidentDate(Timestamp incidentDate);
+	public List<Incident> findByIncidentDateRange(Timestamp start, Timestamp end);
 	public List<Incident> findByStatus(boolean flag);
 	public List<Incident> findAll();
 	public Incident create(Incident incident);

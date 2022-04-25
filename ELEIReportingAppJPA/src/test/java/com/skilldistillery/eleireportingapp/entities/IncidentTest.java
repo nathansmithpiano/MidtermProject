@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -61,7 +61,7 @@ class IncidentTest {
 		assertEquals("Walmart", incident.getLocation());
 		assertEquals("Shoplift", incident.getDescription());
 		assertFalse(incident.isFlag());
-		assertEquals(LocalDateTime.parse("2022-04-22T00:00"), incident.getIncidentDate());
+		assertEquals(Timestamp.valueOf("2022-04-22 00:00:00"), incident.getIncidentDate());
 	}
 	
 	@Test

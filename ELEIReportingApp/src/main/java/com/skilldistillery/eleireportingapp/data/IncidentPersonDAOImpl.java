@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
+import com.skilldistillery.eleireportingapp.entities.IncidentPersonId;
 import com.skilldistillery.eleireportingapp.entities.Person;
 
 @Service
@@ -20,32 +21,18 @@ public class IncidentPersonDAOImpl implements IncidentPersonDAO {
 	private EntityManager em;
 
 	@Override
-	public IncidentPerson findById(int id) {
+	public IncidentPerson findById(IncidentPersonId id) {
 		return em.find(IncidentPerson.class, id);
 	}
 
 	@Override
-	public List<IncidentPerson> findByPerson(Person person) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<IncidentPerson> findByIncident(Incident incident) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<IncidentPerson> findByAge(int age) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public List<IncidentPerson> findByAgeRange(int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT ip FROM IncidentPerson ip WHERE ip.ageMinimum >= :start AND ip.ageMaximum <= :end";
+		List<IncidentPerson> results = em.createQuery(query, IncidentPerson.class)
+				.setParameter("start", start)
+				.setParameter("end", end)
+				.getResultList();
+		return results;
 	}
 
 	@Override
@@ -68,7 +55,7 @@ public class IncidentPersonDAOImpl implements IncidentPersonDAO {
 	}
 
 	@Override
-	public IncidentPerson update(int id, IncidentPerson IncidentPerson) {
+	public IncidentPerson update(IncidentPersonId id, IncidentPerson IncidentPerson) {
 		if (em.find(IncidentPerson.class, id) == null) {
 			System.err.println("EntityDAOImpl update() error: id " + id + " not found in db");
 			return null;
@@ -80,7 +67,7 @@ public class IncidentPersonDAOImpl implements IncidentPersonDAO {
 	}
 
 	@Override
-	public IncidentPerson delete(int id) {
+	public IncidentPerson delete(IncidentPersonId id) {
 		IncidentPerson backup = em.find(IncidentPerson.class, id);
 		if (backup == null) {
 			System.err.println("EntityDAOImpl delete() error: id " + id + " not found in db");

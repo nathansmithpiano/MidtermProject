@@ -4,18 +4,16 @@ import java.util.List;
 
 import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
+import com.skilldistillery.eleireportingapp.entities.IncidentPersonId;
 import com.skilldistillery.eleireportingapp.entities.Person;
 
 public interface IncidentPersonDAO {
 
-	public IncidentPerson findById(int id);
-	public List<IncidentPerson> findByPerson(Person person);
-	public List<IncidentPerson> findByIncident(Incident incident);
-	public List<IncidentPerson> findByAge(int age);
+	public IncidentPerson findById(IncidentPersonId id);
 	public List<IncidentPerson> findByAgeRange(int start, int end);
 	public List<IncidentPerson> findAll();
 	public IncidentPerson create(IncidentPerson IncidentPerson);
-	public IncidentPerson update(int id, IncidentPerson IncidentPerson);
-	public IncidentPerson delete(int id);
+	public IncidentPerson update(IncidentPersonId id, IncidentPerson IncidentPerson);
+	public IncidentPerson delete(IncidentPersonId id);
 	
 }

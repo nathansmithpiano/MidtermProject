@@ -1,6 +1,6 @@
 package com.skilldistillery.eleireportingapp.data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -54,8 +54,8 @@ public class IncidentDAOImpl implements IncidentDAO {
 	}
 
 	@Override
-	public List<Incident> findByIncidentDate(LocalDateTime incidentDate) {
-		String query = "SELECT incident FROM Incident incident WHERE incident.incident_date = :date";
+	public List<Incident> findByIncidentDate(Timestamp incidentDate) {
+		String query = "SELECT incident FROM Incident incident WHERE incident.incidentDate = :date";
 		List<Incident> results = em.createQuery(query, Incident.class)
 				.setParameter("date", incidentDate)
 				.getResultList();
@@ -63,8 +63,8 @@ public class IncidentDAOImpl implements IncidentDAO {
 	}
 
 	@Override
-	public List<Incident> findByIncidentDateRange(LocalDateTime start, LocalDateTime end) {
-		String query = "SELECT incident FROM Incident incident WHERE incident.incident_date >= :start AND incident.incident_date <= :end";
+	public List<Incident> findByIncidentDateRange(Timestamp start, Timestamp end) {
+		String query = "SELECT incident FROM Incident incident WHERE incident.incidentDate BETWEEN :start AND :end";
 		List<Incident> results = em.createQuery(query, Incident.class)
 				.setParameter("start", start)
 				.setParameter("end", end)

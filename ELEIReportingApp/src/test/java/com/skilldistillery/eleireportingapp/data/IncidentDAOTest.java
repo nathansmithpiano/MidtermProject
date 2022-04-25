@@ -3,7 +3,9 @@ package com.skilldistillery.eleireportingapp.data;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.sql.Timestamp;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Incident;
 
 @SpringBootTest
@@ -84,5 +85,51 @@ class IncidentDAOTest {
 		assertNull(dao.findById(createdEntity.getId()));
 		assertEquals(size - 1, dao.findAll().size());
 	}
-
+	
+	@Test
+	@DisplayName("Testing DAO update and restore")
+	void test4() {
+		String oldReasonForContact = entity.getReasonForContact();
+		entity.setReasonForContact("Updated");
+		Incident updated = dao.update(1, entity);
+		assertNotNull(updated);
+		assertEquals(1, updated.getId());
+		assertEquals("Updated", updated.getReasonForContact());
+		entity.setReasonForContact(oldReasonForContact);
+		updated = dao.update(1, entity);
+		assertNotNull(updated);
+		assertEquals(1, updated.getId());
+		assertEquals(oldReasonForContact, updated.getReasonForContact());
+	}
+	
+	@Test
+	@DisplayName("Testing DAO findByIncidentDate")
+	void test5() {
+		assertNotNull(dao.findByIncidentDate(entity.getIncidentDate()));
+		assertTrue(dao.findByIncidentDate(entity.getIncidentDate()).size() > 0);
+		assertEquals(entity.getIncidentDate(), dao.findByIncidentDate(entity.getIncidentDate()).get(0).getIncidentDate());
+	}
+	
+	@Test
+	@DisplayName("Testing DAO findByIncidentDateRange")
+	void test6() {
+		Timestamp start = Timestamp.valueOf("1990-01-01 00:00:00");
+		Timestamp end = Timestamp.valueOf("2100-01-01 00:00:00");
+		assertNotNull(dao.findByIncidentDateRange(start, end));
+		assertTrue(dao.findByIncidentDateRange(start, end).size() > 0);
+	}
+	
+	@Test
+	@DisplayName("Testing DAO findByStatus")
+	void test7() {
+		assertNotNull(dao.findByStatus(false));
+		assertTrue(dao.findByStatus(false).size() > 0);
+	}
+	
+	@Test
+	@DisplayName("Testing DAO findAll")
+	void test8() {
+		assertNotNull(dao.findAll());
+		assertTrue(dao.findAll().size() > 0);
+	}
 }
