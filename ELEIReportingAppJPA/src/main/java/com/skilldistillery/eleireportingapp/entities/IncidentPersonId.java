@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @Embeddable
-public class IncidentWithPersonId implements Serializable {
+public class IncidentPersonId implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -18,11 +18,11 @@ public class IncidentWithPersonId implements Serializable {
 	@Column(name = "incident_id")
 	private int incidentId;
 
-	public IncidentWithPersonId() {
+	public IncidentPersonId() {
 		super();
 	}
 
-	public IncidentWithPersonId(int personId, int incidentId) {
+	public IncidentPersonId(int personId, int incidentId) {
 		this.personId = personId;
 		this.incidentId = incidentId;
 	}
@@ -56,13 +56,13 @@ public class IncidentWithPersonId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		IncidentWithPersonId other = (IncidentWithPersonId) obj;
+		IncidentPersonId other = (IncidentPersonId) obj;
 		return incidentId == other.incidentId && personId == other.personId;
 	}
 
 	@Override
 	public String toString() {
-		return "IncidentWithPersonId [personId=" + personId + ", incidentId=" + incidentId + "]";
+		return "IncidentPersonId [personId=" + personId + ", incidentId=" + incidentId + "]";
 	}
 
 }

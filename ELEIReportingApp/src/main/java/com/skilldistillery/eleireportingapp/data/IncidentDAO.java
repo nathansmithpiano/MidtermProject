@@ -18,8 +18,8 @@ public interface IncidentDAO {
 	public List<Incident> findByIncidentDateRange(LocalDateTime start, LocalDateTime end);
 	public List<Incident> findByStatus(boolean flag);
 	public List<Incident> findAll();
-	public Incident create(IncidentDAO caseFile);
-	public Incident update(int id, IncidentDAO caseFile);
+	public Incident create(Incident incident);
+	public Incident update(int id, Incident incident);
 	public Incident delete(int id);
 
 }

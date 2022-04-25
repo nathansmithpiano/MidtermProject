@@ -8,11 +8,11 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "incident_with_person")
-public class IncidentWithPerson {
+@Table(name = "incident_person")
+public class IncidentPerson {
 
 	@EmbeddedId
-	private IncidentWithPersonId incidentWithPersonId;
+	private IncidentPersonId IncidentPersonId;
 
 	@Column(name = "suspected_crime")
 	private String suspectedCrime;
@@ -25,16 +25,16 @@ public class IncidentWithPerson {
 
 	private String description;
 
-	public IncidentWithPerson() {
+	public IncidentPerson() {
 		super();
 	}
 
-	public IncidentWithPersonId getIncidentWithPersonId() {
-		return incidentWithPersonId;
+	public IncidentPersonId getIncidentPersonId() {
+		return IncidentPersonId;
 	}
 
-	public void setIncidentWithPersonId(IncidentWithPersonId incidentWithPersonId) {
-		this.incidentWithPersonId = incidentWithPersonId;
+	public void setIncidentPersonId(IncidentPersonId IncidentPersonId) {
+		this.IncidentPersonId = IncidentPersonId;
 	}
 
 	public String getSuspectedCrime() {
@@ -71,7 +71,7 @@ public class IncidentWithPerson {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(incidentWithPersonId);
+		return Objects.hash(IncidentPersonId);
 	}
 
 	@Override
@@ -82,13 +82,13 @@ public class IncidentWithPerson {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		IncidentWithPerson other = (IncidentWithPerson) obj;
-		return Objects.equals(incidentWithPersonId, other.incidentWithPersonId);
+		IncidentPerson other = (IncidentPerson) obj;
+		return Objects.equals(IncidentPersonId, other.IncidentPersonId);
 	}
 
 	@Override
 	public String toString() {
-		return "IncidentWithPerson [suspectedCrime=" + suspectedCrime + ", ageMinimum=" + ageMinimum + ", ageMaximum="
+		return "IncidentPerson [suspectedCrime=" + suspectedCrime + ", ageMinimum=" + ageMinimum + ", ageMaximum="
 				+ ageMaximum + ", description=" + description + "]";
 	}
 

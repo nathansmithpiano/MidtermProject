@@ -44,7 +44,7 @@ public class Incident {
 	private CaseFile caseFile;
 
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "incident_with_person", joinColumns = @JoinColumn(name = "incident_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
+	@JoinTable(name = "incident_person", joinColumns = @JoinColumn(name = "incident_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
 	private List<Person> persons;
 
 	@ManyToMany(cascade = CascadeType.PERSIST)
