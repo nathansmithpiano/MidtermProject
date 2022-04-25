@@ -1,5 +1,6 @@
 package com.skilldistillery.eleireportingapp.entities;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class Incident {
 	private boolean flag;
 
 	@Column(name = "incident_date")
-	private LocalDateTime incidentDate;
+	private Timestamp incidentDate;
 
 	@ManyToOne
 	@JoinColumn(name = "address_id")
@@ -44,7 +45,7 @@ public class Incident {
 	private CaseFile caseFile;
 
 	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name = "incident_with_person", joinColumns = @JoinColumn(name = "incident_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
+	@JoinTable(name = "incident_person", joinColumns = @JoinColumn(name = "incident_id"), inverseJoinColumns = @JoinColumn(name = "person_id"))
 	private List<Person> persons;
 
 	@ManyToMany(cascade = CascadeType.PERSIST)
@@ -95,11 +96,11 @@ public class Incident {
 		this.flag = flag;
 	}
 
-	public LocalDateTime getIncidentDate() {
+	public Timestamp getIncidentDate() {
 		return incidentDate;
 	}
 
-	public void setIncidentDate(LocalDateTime incidentDate) {
+	public void setIncidentDate(Timestamp incidentDate) {
 		this.incidentDate = incidentDate;
 	}
 

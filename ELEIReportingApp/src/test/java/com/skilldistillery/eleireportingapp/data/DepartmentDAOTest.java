@@ -13,16 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.skilldistillery.eleireportingapp.entities.Ethnicity;
+import com.skilldistillery.eleireportingapp.entities.Department;
 
 @SpringBootTest
 @EntityScan(basePackages = { "com.skilldistillery.eleireportingapp" })
-class EthnicityDAOTest {
+class DepartmentDAOTest {
 	
 	@Autowired
-	private EthnicityDAOImpl dao;
+	private DepartmentDAOImpl dao;
 	
-	private Ethnicity entity;
+	private Department entity;
 	
 	@BeforeEach
 	void setUp() throws Exception {
@@ -44,30 +44,33 @@ class EthnicityDAOTest {
 	@DisplayName("Testing DAO find id 1")
 	void test2() {
 		
-//		SELECT * FROM ethnicity WHERE id=1;
-//		+----+-------+
-//		| id | name  |
-//		+----+-------+
-//		|  1 | White |
-//		+----+-------+
+//		SELECT * FROM Department WHERE id=1;
+//		+----+------------+---------------------+
+//		| id | address_id | name                |
+//		+----+------------+---------------------+
+//		|  1 |          1 | SKILL DISTILLERY PD |
+//		+----+------------+---------------------+
 		
 		assertNotNull(entity);
-		assertEquals("White", entity.getName());
+		assertEquals("SKILL DISTILLERY PD", entity.getName());
 	}
 	
 	@Test
 	@DisplayName("Testing DAO create and delete")
 	void test3() {
 		//create
-		Ethnicity newEntity = new Ethnicity();
+		Department newEntity = new Department();
 		newEntity.setName("Name");
-		Ethnicity createdEntity = dao.create(newEntity);
+		newEntity.setAddress(entity.getAddress());
+		Department createdEntity = dao.create(newEntity);
 		assertNotNull(dao.findById(createdEntity.getId()));
 		assertEquals("Name", createdEntity.getName());
+		assertNotNull(dao.findById(createdEntity.getId()).getAddress());
+		assertEquals("9551 Civic Center Dr", dao.findById(createdEntity.getId()).getAddress().getStreetOne());
 		
 		//delete
 		int size = dao.findAll().size();
-		Ethnicity backup = dao.delete(createdEntity.getId());
+		Department backup = dao.delete(createdEntity.getId());
 		assertNotNull(backup);
 		assertNull(dao.findById(createdEntity.getId()));
 		assertEquals(size - 1, dao.findAll().size());
@@ -78,7 +81,7 @@ class EthnicityDAOTest {
 	void test4() {
 		String oldName = entity.getName();
 		entity.setName("Updated");
-		Ethnicity updated = dao.update(1, entity);
+		Department updated = dao.update(1, entity);
 		assertNotNull(updated);
 		assertEquals(1, updated.getId());
 		assertEquals("Updated", updated.getName());
@@ -90,10 +93,16 @@ class EthnicityDAOTest {
 	}
 	
 	@Test
-	@DisplayName("Testing DAO Person stuff")
+	@DisplayName("Testing DAO findByName")
 	void test5() {
-//		assertTrue(entity.getPersons().size() > 0);
-//		assertNotNull(entity.getPersons());
+		Department test = dao.findByName("SKILL DISTILLERY PD");
+		assertNotNull(test);
+		assertEquals(1, test.getId());
+		assertEquals("SKILL DISTILLERY PD", test.getName());
+//		assertNotNull(test.getAddress());
+//		assertTrue(test.getOfficers().size() > 0);
+//		assertNotNull(test.getOfficers());
+//		assertEquals("123", test.getOfficers().get(1).getBadge());
 	}
 	
 }

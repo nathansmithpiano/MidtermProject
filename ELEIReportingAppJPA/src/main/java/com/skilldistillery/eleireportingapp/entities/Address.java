@@ -49,10 +49,6 @@ public class Address {
 		inverseJoinColumns = @JoinColumn(name = "person_id"))
 	private List<Person> persons;
 	
-	@ManyToOne(cascade= {CascadeType.PERSIST})
-	@JoinColumn(name="record_id")
-	private Address mainRecord;
-	
 	public Address() {
 	}
 	
@@ -168,14 +164,6 @@ public class Address {
 			person.removeAddress(this);
 		}
 		return !persons.contains(person);
-	}
-	
-	public Address getMainRecord() {
-		return mainRecord;
-	}
-
-	public void setMainRecord(Address mainRecord) {
-		this.mainRecord = mainRecord;
 	}
 	
 	@Override

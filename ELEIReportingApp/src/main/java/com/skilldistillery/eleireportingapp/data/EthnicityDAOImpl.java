@@ -13,44 +13,66 @@ import com.skilldistillery.eleireportingapp.entities.Ethnicity;
 @Service
 @Transactional
 public class EthnicityDAOImpl implements EthnicityDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
 
 	@Override
-	public List<Ethnicity> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Ethnicity findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return em.find(Ethnicity.class, id);
 	}
 
 	@Override
 	public Ethnicity findByName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT entity FROM Ethnicity entity WHERE entity.name LIKE :name";
+		Ethnicity result = em.createQuery(query, Ethnicity.class).setParameter("name", name).getSingleResult();
+		return result;
+	}
+	
+	@Override
+	public List<Ethnicity> findAll() {
+		String query = "SELECT entity FROM Ethnicity entity";
+		List<Ethnicity> results = em.createQuery(query, Ethnicity.class).getResultList();
+		return results;
 	}
 
 	@Override
 	public Ethnicity create(Ethnicity ethnicity) {
-		// TODO Auto-generated method stub
-		return null;
+		em.persist(ethnicity);
+
+		if (!em.contains(ethnicity)) {
+			System.err.println("EntityDAOImpl create() error: id " + ethnicity.getId() + " not found in db");
+			return null;
+		} else {
+			return em.find(Ethnicity.class, ethnicity.getId());
+		}
 	}
 
 	@Override
 	public Ethnicity update(int id, Ethnicity ethnicity) {
-		// TODO Auto-generated method stub
-		return null;
+		if (em.find(Ethnicity.class, id) == null) {
+			System.err.println("EntityDAOImpl update() error: id " + id + " not found in db");
+			return null;
+		} else {
+			Ethnicity managed = em.find(Ethnicity.class, id);
+			em.merge(ethnicity);
+			return managed;
+		}
 	}
 
 	@Override
-	public Ethnicity archive(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Ethnicity delete(int id) {
+		Ethnicity backup = em.find(Ethnicity.class, id);
+		if (backup == null) {
+			System.err.println("EntityDAOImpl delete() error: id " + id + " not found in db");
+			return null;
+		} else {
+			em.remove(em.find(Ethnicity.class, id));
+			if (em.contains(backup)) {
+				System.err.println("EntityDAOImpl delete() error: id " + id + " still exists in db");
+			}
+			return backup;
+		}
 	}
 
 }

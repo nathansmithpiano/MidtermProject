@@ -50,6 +50,7 @@ public class Person {
 	@ManyToMany(mappedBy = "persons")
 	private List<Incident> incidents;
 
+//	@ManyToOne(fetch = FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "ethnicity_id")
 	private Ethnicity ethnicity;
@@ -95,6 +96,27 @@ public class Person {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getFullName() {
+		StringBuilder sb = new StringBuilder();
+		if (firstName != null) {
+			sb.append(firstName);
+		}
+		if (sb.length() > 0) {
+			sb.append(" ");
+		}
+		if (middleName != null) {
+			sb.append(middleName);
+		}
+		if (sb.length() > 0 && middleName != null) {
+			sb.append(" ");
+		}
+		if (lastName != null ) {
+			sb.append(lastName);
+		}
+		
+		return sb.toString();
 	}
 
 	public String getTitle() {

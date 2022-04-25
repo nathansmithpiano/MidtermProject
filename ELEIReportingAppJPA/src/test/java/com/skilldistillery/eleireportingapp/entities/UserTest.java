@@ -73,7 +73,7 @@ class UserTest {
 //		| William  Padget                        |
 //		+----------------------------------------+
 		
-		assertEquals("William  Padget", user.getPerson().getFirstName() + " " + user.getPerson().getLastName());
+		assertEquals("William Padget", user.getPerson().getFirstName() + " " + user.getPerson().getLastName());
 		
 		
 	}

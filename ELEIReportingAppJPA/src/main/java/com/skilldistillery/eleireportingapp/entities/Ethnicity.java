@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,6 +20,7 @@ public class Ethnicity {
 
 	private String name;
 
+//	@OneToMany(mappedBy = "ethnicity", fetch = FetchType.EAGER)
 	@OneToMany(mappedBy = "ethnicity")
 	private List<Person> persons;
 
