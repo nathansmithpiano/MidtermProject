@@ -1,6 +1,6 @@
 package com.skilldistillery.eleireportingapp.data;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -24,33 +24,32 @@ public class NoteDAOImpl implements NoteDAO {
 	}
 
 	@Override
-	public List<Note> findByCreated(LocalDateTime created) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Note> findByCreatedRange(Timestamp start, Timestamp end) {
+		String query = "SELECT n FROM Note n WHERE n.created BETWEEN :start AND :end";
+		List<Note> results = em.createQuery(query, Note.class)
+				.setParameter("start", start)
+				.setParameter("end", end)
+				.getResultList();
+		return results;
 	}
 
 	@Override
-	public List<Note> findByCreatedRange(LocalDateTime start, LocalDateTime end) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Note> findByUpdated(LocalDateTime updated) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Note> findByUpdatedRange(LocalDateTime start, LocalDateTime end) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Note> findByUpdatedRange(Timestamp start, Timestamp end) {
+		String query = "SELECT n FROM Note n WHERE n.updated BETWEEN :start AND :end";
+		List<Note> results = em.createQuery(query, Note.class)
+				.setParameter("start", start)
+				.setParameter("end", end)
+				.getResultList();
+		return results;
 	}
 
 	@Override
 	public List<Note> findByUserId(int userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT entity FROM Note entity JOIN User table ON entity.userId = table.id WHERE table.id = :userId";
+		List<Note> results = em.createQuery(query, Note.class)
+				.setParameter("userId", userId)
+				.getResultList();
+		return results;
 	}
 
 	@Override
