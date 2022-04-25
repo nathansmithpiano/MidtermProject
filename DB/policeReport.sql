@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `last_name` VARCHAR(45) NULL,
   `title` VARCHAR(45) NULL,
   `birthdate` DATE NULL,
-  `gender` VARCHAR(45) NOT NULL,
+  `gender` VARCHAR(45) NOT NULL DEFAULT 'UNKOWN',
   `description` TEXT NULL,
   `flag` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
@@ -126,6 +126,7 @@ DROP TABLE IF EXISTS `case_file` ;
 
 CREATE TABLE IF NOT EXISTS `case_file` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `case_number` INT NOT NULL DEFAULT 0,
   `suspected_crime` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `flag` TINYINT NOT NULL DEFAULT 0,
@@ -460,7 +461,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `case_file` (`id`, `suspected_crime`, `description`, `flag`) VALUES (1, 'Shoplifting', 'Shoplifing', 0);
+INSERT INTO `case_file` (`id`, `case_number`, `suspected_crime`, `description`, `flag`) VALUES (1, DEFAULT, 'Shoplifting', 'Shoplifing', 0);
 
 COMMIT;
 
