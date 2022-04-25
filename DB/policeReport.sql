@@ -540,7 +540,7 @@ START TRANSACTION;
 USE `eleidb`;
 INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, NULL, NULL, 'CONTENT1');
 INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (2, 2, NULL, NULL, 'CONTENT2');
-INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (3, 3, NULL, NULL, 'CONTENT3');
+INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (3, 2, NULL, NULL, 'CONTENT3');
 
 COMMIT;
 
@@ -570,7 +570,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (1, 2);
+INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (4, 1);
+INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (1, 1);
+INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (2, 1);
 
 COMMIT;
 
@@ -604,7 +606,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `incident_with_person_has_note` (`incident_with_person_person_id`, `incident_with_person_incident_id`, `note_id`) VALUES (4, 1, 3);
+INSERT INTO `incident_with_person_has_note` (`incident_with_person_person_id`, `incident_with_person_incident_id`, `note_id`) VALUES (4, 1, 1);
 
 COMMIT;
 
