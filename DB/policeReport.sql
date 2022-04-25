@@ -379,17 +379,17 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (1, 1, 'William', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 'Police Supervisor', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (2, 3, 'Omar', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', 'Police Officer', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (3, 1, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 'Police Officer', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (4, 2, 'John', NULL, 'Terry', NULL, '1992-07-01', 'Male', 'Contacted Person', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (5, 1, 'Morty', NULL, 'Smith', NULL, '2000-09-12', 'Male', 'Contacted Person', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (6, 1, 'Rick', NULL, 'Sanchez', NULL, '1975-01-21', 'Male', 'Contacted Person', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (7, 1, 'Summer', NULL, 'Smith', NULL, '1995-03-22', 'Female', 'Contacted Person', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (8, 1, 'Tammy', NULL, 'Guetermann', NULL, '1982-02-01', 'Female', 'Contacted Person', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (9, 1, 'Toby', NULL, 'Matthews', NULL, '1985-06-19', 'Male', 'Contacted Person', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (10, 3, 'Ruben', NULL, 'Ramirez', NULL, '1980-11-12', 'Male', 'Contacted Person', DEFAULT);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (11, 1, 'Mark', NULL, 'Thronson', 'jr', '1990-09-10', 'Male', 'Contacted Person', DEFAULT);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (1, 1, 'William', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 'Police Supervisor', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (2, 3, 'Omar', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', 'Police Officer', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (3, 1, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 'Police Officer', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (4, 2, 'John', NULL, 'Terry', NULL, '1992-07-01', 'Male', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (5, 1, 'Morty', NULL, 'Smith', NULL, '2000-09-12', 'Male', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (6, 1, 'Rick', NULL, 'Sanchez', NULL, '1975-01-21', 'Male', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (7, 1, 'Summer', NULL, 'Smith', NULL, '1995-03-22', 'Female', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (8, 1, 'Tammy', NULL, 'Guetermann', NULL, '1982-02-01', 'Female', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (9, 1, 'Toby', NULL, 'Matthews', NULL, '1985-06-19', 'Male', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (10, 3, 'Ruben', NULL, 'Ramirez', NULL, '1980-11-12', 'Male', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (11, 1, 'Mark', NULL, 'Thronson', 'jr', '1990-09-10', 'Male', 'Contacted Person', 0);
 
 COMMIT;
 
@@ -410,28 +410,28 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (1, 'Employer', '9551 Civic Center Dr', NULL, 'Thornton', 'CO', 80229, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (2, 'Residence', '9025 W Jefferson Ave', NULL, 'Denver', 'CO', 80235, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (3, 'Business', '9901 Grant St', NULL, 'Thornton', 'CO', 80229, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (4, 'Residence', '9656 Lane St', NULL, 'Denver', 'CO', 80260, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (5, 'Residence', '9967 Clayton St', NULL, 'Denver', 'CO', 80229, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (6, 'Business', '10003 Grant St', NULL, 'Thornton', 'CO', 80229, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (7, 'Residence', '8873 Colorado Ave', '207', 'Denver', 'CO', 80229, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (8, 'Residence', '9220 Wigham St', NULL, 'Denver', 'CO', 80229, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (9, 'Residence', '5041 Decatur St', NULL, 'Denver', 'CO', 80221, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (10, 'Business', '771 Thornton Pwky', NULL, 'Thornton', 'CO', 80229, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (11, 'Residence', '9811 E Jewell Ave', NULL, 'Denver', 'CO', 80210, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (12 , 'Residence ', '8091 W 9th Ave', NULL, 'Denver', 'CO', 80214, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (13, 'Residence', '7351 E Warren Ave', NULL, 'Denver', 'CO', 80231, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (14, 'Residence', '5537 Yost Ct', NULL, 'Denver', 'CO', 80239, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (15 , 'Residence', '43 S Ogden St', NULL, 'Denver', 'CO', 80209, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (16, 'Residence', '3855 S Monaco Pkwy', NULL, 'Denver', 'CO', 80237, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (17, 'Residence', '1771 W 72nd Ave', NULL, 'Denver', 'CO', 80221, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (18, 'Residence', '13692 W Utah Cir', NULL, 'Denver', 'CO', 80228, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (19, 'Residence', '1585 Kipling St', NULL, 'Denver', 'CO', 80215, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (20 , 'Residence', '1201 W Thornotn Pkwy', NULL, 'Thornton', 'CO', 80260, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (21, 'Business', '750 E 104th Ave', NULL, 'Thornton', 'CO', 80233, DEFAULT);
-INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (22, 'Street', '700 block of Eppinger Blvd', NULL, 'Thornton', 'CO', 80229, DEFAULT);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (1, 'Employer', '9551 Civic Center Dr', NULL, 'Thornton', 'CO', 80229, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (2, 'Residence', '9025 W Jefferson Ave', NULL, 'Denver', 'CO', 80235, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (3, 'Business', '9901 Grant St', NULL, 'Thornton', 'CO', 80229, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (4, 'Residence', '9656 Lane St', NULL, 'Denver', 'CO', 80260, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (5, 'Residence', '9967 Clayton St', NULL, 'Denver', 'CO', 80229, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (6, 'Business', '10003 Grant St', NULL, 'Thornton', 'CO', 80229, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (7, 'Residence', '8873 Colorado Ave', '207', 'Denver', 'CO', 80229, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (8, 'Residence', '9220 Wigham St', NULL, 'Denver', 'CO', 80229, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (9, 'Residence', '5041 Decatur St', NULL, 'Denver', 'CO', 80221, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (10, 'Business', '771 Thornton Pwky', NULL, 'Thornton', 'CO', 80229, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (11, 'Residence', '9811 E Jewell Ave', NULL, 'Denver', 'CO', 80210, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (12 , 'Residence ', '8091 W 9th Ave', NULL, 'Denver', 'CO', 80214, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (13, 'Residence', '7351 E Warren Ave', NULL, 'Denver', 'CO', 80231, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (14, 'Residence', '5537 Yost Ct', NULL, 'Denver', 'CO', 80239, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (15 , 'Residence', '43 S Ogden St', NULL, 'Denver', 'CO', 80209, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (16, 'Residence', '3855 S Monaco Pkwy', NULL, 'Denver', 'CO', 80237, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (17, 'Residence', '1771 W 72nd Ave', NULL, 'Denver', 'CO', 80221, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (18, 'Residence', '13692 W Utah Cir', NULL, 'Denver', 'CO', 80228, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (19, 'Residence', '1585 Kipling St', NULL, 'Denver', 'CO', 80215, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (20 , 'Residence', '1201 W Thornotn Pkwy', NULL, 'Thornton', 'CO', 80260, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (21, 'Business', '750 E 104th Ave', NULL, 'Thornton', 'CO', 80233, 0);
+INSERT INTO `address` (`id`, `description`, `street1`, `street2`, `city`, `state_code`, `zip`, `flag`) VALUES (22, 'Street', '700 block of Eppinger Blvd', NULL, 'Thornton', 'CO', 80229, 0);
 
 COMMIT;
 
@@ -460,7 +460,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `case_file` (`id`, `suspected_crime`, `description`, `flag`) VALUES (1, 'Shoplifting', 'Shoplifing', DEFAULT);
+INSERT INTO `case_file` (`id`, `suspected_crime`, `description`, `flag`) VALUES (1, 'Shoplifting', 'Shoplifing', 0);
 
 COMMIT;
 
@@ -470,11 +470,11 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (1, 3, 1, 'Dispatched call for service', 'Walmart', '2022-04-22', 'Shoplift', DEFAULT);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (2, 6, NULL, 'Suspicious person diggin through trash', 'Home Depot', '2022-04-20', 'Illegal dumping', DEFAULT);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (3, 6, 1, 'Dispatched call for service', 'Home Depot', '2022-04-19', 'Shoplift', DEFAULT);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (4, 22, NULL, 'Ran a stop sign ', 'Intersection', '2022-04-19', 'Stop Sign violation', DEFAULT);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (5, 20, NULL, 'Matched description of suspect', 'Residence', '2022-04-20', 'Suspicious person ', DEFAULT);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (1, 3, 1, 'Dispatched call for service', 'Walmart', '2022-04-22', 'Shoplift', 0);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (2, 6, NULL, 'Suspicious person diggin through trash', 'Home Depot', '2022-04-20', 'Illegal dumping', 0);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (3, 6, 1, 'Dispatched call for service', 'Home Depot', '2022-04-19', 'Shoplift', 0);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (4, 22, NULL, 'Ran a stop sign ', 'Intersection', '2022-04-19', 'Stop Sign violation', 0);
+INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (5, 20, NULL, 'Matched description of suspect', 'Residence', '2022-04-20', 'Suspicious person ', 0);
 
 COMMIT;
 
