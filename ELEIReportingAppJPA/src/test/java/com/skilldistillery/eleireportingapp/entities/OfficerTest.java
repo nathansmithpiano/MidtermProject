@@ -74,7 +74,7 @@ class OfficerTest {
 //				| William  Padget                        |
 //				+----------------------------------------+
 
-		assertEquals("William  Padget", officer.getPerson().getFirstName() + " " + officer.getPerson().getLastName());
+		assertEquals("William Padget", officer.getPerson().getFirstName() + " " + officer.getPerson().getLastName());
 
 	}
 
