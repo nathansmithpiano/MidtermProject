@@ -24,20 +24,27 @@ public class CaseFileDAOImpl implements CaseFileDAO {
 
 	@Override
 	public CaseFile findByCaseNumber(int caseNumber) {
-		// TODO Auto-generated method stub
+		String query = "SELECT entity FROM CaseFile entity WHERE entity.caseNumber IS :caseNumber";
 		return null;
 	}
 
 	@Override
 	public List<CaseFile> findByCaseNumberRange(int start, int end) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT c FROM CaseFile c WHERE c.id BETWEEN :start AND :end";
+		List<CaseFile> results = em.createQuery(query, CaseFile.class)
+				.setParameter("start", start)
+				.setParameter("end", end)
+				.getResultList();
+		return results;		
 	}
 
 	@Override
 	public List<CaseFile> findByStatus(boolean flag) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT entity FROM CaseFile entity WHERE entity.flag = :flag";
+		List<CaseFile> results = em.createQuery(query, CaseFile.class)
+				.setParameter("flag", flag)
+				.getResultList();
+		return results;
 	}
 	
 	@Override

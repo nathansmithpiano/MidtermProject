@@ -1,6 +1,6 @@
 package com.skilldistillery.eleireportingapp.entities;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
 public class Note {
 
@@ -22,9 +25,13 @@ public class Note {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private LocalDateTime created;
+	@Column(name = "created")
+	@CreationTimestamp
+	private Timestamp created;
 
-	private LocalDateTime updated;
+	@Column(name = "updated")
+	@UpdateTimestamp
+	private Timestamp updated;
 
 	private String content;
 
@@ -53,19 +60,19 @@ public class Note {
 		this.id = id;
 	}
 
-	public LocalDateTime getCreated() {
+	public Timestamp getCreated() {
 		return created;
 	}
 
-	public void setCreated(LocalDateTime created) {
+	public void setCreated(Timestamp created) {
 		this.created = created;
 	}
 
-	public LocalDateTime getUpdated() {
+	public Timestamp getUpdated() {
 		return updated;
 	}
 
-	public void setUpdated(LocalDateTime updated) {
+	public void setUpdated(Timestamp updated) {
 		this.updated = updated;
 	}
 
