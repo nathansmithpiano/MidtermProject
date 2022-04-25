@@ -164,11 +164,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `incident_with_person`
+-- Table `incident_person`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `incident_with_person` ;
+DROP TABLE IF EXISTS `incident_person` ;
 
-CREATE TABLE IF NOT EXISTS `incident_with_person` (
+CREATE TABLE IF NOT EXISTS `incident_person` (
   `person_id` INT NOT NULL AUTO_INCREMENT,
   `incident_id` INT NOT NULL,
   `suspected_crime` VARCHAR(45) NULL,
@@ -347,31 +347,6 @@ CREATE TABLE IF NOT EXISTS `department_employee` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `incident_with_person_has_note`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `incident_with_person_has_note` ;
-
-CREATE TABLE IF NOT EXISTS `incident_with_person_has_note` (
-  `incident_with_person_person_id` INT NOT NULL,
-  `incident_with_person_incident_id` INT NOT NULL,
-  `note_id` INT NOT NULL,
-  PRIMARY KEY (`incident_with_person_person_id`, `incident_with_person_incident_id`, `note_id`),
-  INDEX `fk_incident_with_person_has_note_note1_idx` (`note_id` ASC),
-  INDEX `fk_incident_with_person_has_note_incident_with_person1_idx` (`incident_with_person_person_id` ASC, `incident_with_person_incident_id` ASC),
-  CONSTRAINT `fk_incident_with_person_has_note_incident_with_person1`
-    FOREIGN KEY (`incident_with_person_person_id` , `incident_with_person_incident_id`)
-    REFERENCES `incident_with_person` (`person_id` , `incident_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_incident_with_person_has_note_note1`
-    FOREIGN KEY (`note_id`)
-    REFERENCES `note` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 SET SQL_MODE = '';
 DROP USER IF EXISTS officeruser@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -505,20 +480,20 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `incident_with_person`
+-- Data for table `incident_person`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (4, 1, 'Shoplift', 20, 25, 'Suspect of shoplifting power tools from Walmart');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 1, '', 1, 50, NULL);
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (3, 2, 'Suspicious person', 1, 50, '');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (6, 2, 'Suspicious person', 35, 45, 'person digging in trash');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (4, 3, 'Shoplift', 20, 25, 'Suspect of shoplifting power tools');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (8, 4, 'Stop Sign vioaltion', 30, 40, 'person ran a stop sign');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (3, 4, NULL, 1, 50, NULL);
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (3, 3, NULL, 1, 50, NULL);
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (7, 5, 'Suspicous person', 25, 35, 'matched description of suspect');
-INSERT INTO `incident_with_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 5, NULL, 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (4, 1, 'Shoplift', 20, 25, 'Suspect of shoplifting power tools from Walmart');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 1, '', 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (3, 2, 'Suspicious person', 1, 50, '');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (6, 2, 'Suspicious person', 35, 45, 'person digging in trash');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (4, 3, 'Shoplift', 20, 25, 'Suspect of shoplifting power tools');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (8, 4, 'Stop Sign vioaltion', 30, 40, 'person ran a stop sign');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (3, 4, NULL, 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (3, 3, NULL, 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (7, 5, 'Suspicous person', 25, 35, 'matched description of suspect');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 5, NULL, 1, 50, NULL);
 
 COMMIT;
 
@@ -597,16 +572,6 @@ USE `eleidb`;
 INSERT INTO `department_employee` (`officer_id`, `department_id`) VALUES (1, 1);
 INSERT INTO `department_employee` (`officer_id`, `department_id`) VALUES (2, 1);
 INSERT INTO `department_employee` (`officer_id`, `department_id`) VALUES (3, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `incident_with_person_has_note`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `eleidb`;
-INSERT INTO `incident_with_person_has_note` (`incident_with_person_person_id`, `incident_with_person_incident_id`, `note_id`) VALUES (4, 1, 1);
 
 COMMIT;
 
