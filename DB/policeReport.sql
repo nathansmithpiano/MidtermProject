@@ -513,7 +513,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, '2022-04-22 12:00:01', '2022-04-22 12:27', 'CONTENT1');
+INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, '2022-04-22 12:00:01', '2022-04-22 12:27:00', 'CONTENT1');
 INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (2, 2, NULL, NULL, 'CONTENT2');
 INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (3, 2, NULL, NULL, 'CONTENT3');
 
