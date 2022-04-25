@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.eleireportingapp.entities.User;
-import com.skilldistillery.eleireportingapp.entities.User;
 
 @Service
 @Transactional
@@ -23,30 +22,36 @@ public class UserDAOImpl implements UserDAO {
 		return em.find(User.class, id);
 	}
 
-	@Override
-	public User findByPersonId(int personId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public User findByPersonId(int personId) {
+//		return null;
+//	}
 
 	@Override
 	public List<User> findByPermissionLevel(String level) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String query = "SELECT u FROM User u WHERE u.permissionLevel IS :level";
+		List<User> results = em.createQuery(query, User.class).setParameter("level", level).getResultList();
+		return results;
 	}
 
 	@Override
 	public List<User> findByStatus(boolean active) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String query = "SELECT entity FROM User entity WHERE entity.active = :active";
+		List<User> results = em.createQuery(query, User.class).setParameter("active", active).getResultList();
+		return results;
+
 	}
 
 	@Override
 	public User findByUserName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String query = "SELECT u FROM User u WHERE u.username IS :userName";
+		User results = em.createQuery(query, User.class).setParameter("userName", userName).getSingleResult();
+		return results;
 	}
-	
+
 	@Override
 	public List<User> findAll() {
 		String query = "SELECT entity FROM User entity";

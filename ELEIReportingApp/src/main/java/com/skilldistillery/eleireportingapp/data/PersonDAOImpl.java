@@ -1,6 +1,6 @@
 package com.skilldistillery.eleireportingapp.data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,8 +9,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.eleireportingapp.entities.Address;
-import com.skilldistillery.eleireportingapp.entities.Ethnicity;
 import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Person;
 
@@ -28,68 +26,75 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@Override
 	public List<Person> findByIncident(Incident incident) {
+		// TODO probably don't need this method
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Person> findByFirstName(String firstName) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String query = "SELECT p FROM Person p WHERE p.firstName IS :firstName";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("firstName", firstName).getResultList();
+		return results;
 	}
 
 	@Override
 	public List<Person> findByMiddleName(String middleName) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT p FROM Person p WHERE p.middleName IS :middleName";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("middleName", middleName)
+				.getResultList();
+		return results;
 	}
 
 	@Override
 	public List<Person> findByLastName(String lastName) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT p FROM Person p WHERE p.lastName IS :lastName";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("lastName", lastName).getResultList();
+		return results;
 	}
 
 	@Override
 	public List<Person> findByTitle(String title) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT p FROM Person p WHERE p.title IS :title";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("title", title).getResultList();
+		return results;
 	}
 
 	@Override
-	public List<Person> findByBirthdate(LocalDateTime birthDate) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Person> findByBirthdate(LocalDate birthDate) {
+		String query = "SELECT p FROM Person p WHERE p.birthDate IS :birthDate";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("birthDate", birthDate).getResultList();
+		return results;
 	}
 
 	@Override
-	public List<Person> findByBirthdateRange(LocalDateTime start, LocalDateTime end) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Person> findByBirthdateRange(LocalDate start, LocalDate end) {
+		String query = "SELECT p FROM Person p WHERE p.birthDate BETWEEN :start AND :end";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("start", start).setParameter("end", end)
+				.getResultList();
+		return results;
 	}
 
 	@Override
 	public List<Person> findByGender(String gender) {
-		// TODO Auto-generated method stub
-		return null;
+		String query = "SELECT p FROM Person p WHERE p.gender IS :gender";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("gender", gender).getResultList();
+		return results;
 	}
 
-	@Override
-	public List<Person> findByAddress(Address address) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Person> findByEthnicity(Ethnicity ethnicity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+// TODO should be done in the Ethnicity class
+//	@Override
+//	public List<Person> findByEthnicity(Ethnicity ethnicity) {
+//		
+//	}
 
 	@Override
 	public List<Person> findByFlag(boolean flag) {
-		// TODO Auto-generated method stub
-		return null;
+
+		String query = "SELECT p FROM Person p WHERE p.flag IS :flag";
+		List<Person> results = em.createQuery(query, Person.class).setParameter("flag", flag).getResultList();
+		return results;
 	}
 
 	@Override
