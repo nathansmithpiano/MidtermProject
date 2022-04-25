@@ -125,11 +125,10 @@ class PersonTest {
 //		+-------+
 //		| name  |
 //		+-------+
-//		| Other |
+//		| White |
 //		+-------+
 		
-		assertEquals("Other", person.getEthnicity().getName());
-		
+		assertEquals("White", person.getEthnicity().getName());
 	
 	}
 	

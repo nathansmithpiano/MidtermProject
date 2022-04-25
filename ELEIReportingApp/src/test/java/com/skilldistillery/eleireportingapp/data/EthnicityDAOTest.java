@@ -89,4 +89,11 @@ class EthnicityDAOTest {
 		assertEquals(oldName, updated.getName());
 	}
 	
+	@Test
+	@DisplayName("Testing DAO Person stuff")
+	void test5() {
+//		assertTrue(entity.getPersons().size() > 0);
+//		assertNotNull(entity.getPersons());
+	}
+	
 }

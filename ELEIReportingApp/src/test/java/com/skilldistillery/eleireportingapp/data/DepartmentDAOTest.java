@@ -45,14 +45,14 @@ class DepartmentDAOTest {
 	void test2() {
 		
 //		SELECT * FROM Department WHERE id=1;
-//		+----+-------+
-//		| id | name  |
-//		+----+-------+
-//		|  1 | White |
-//		+----+-------+
+//		+----+------------+---------------------+
+//		| id | address_id | name                |
+//		+----+------------+---------------------+
+//		|  1 |          1 | SKILL DISTILLERY PD |
+//		+----+------------+---------------------+
 		
 		assertNotNull(entity);
-		assertEquals("White", entity.getName());
+		assertEquals("SKILL DISTILLERY PD", entity.getName());
 	}
 	
 	@Test
@@ -61,9 +61,12 @@ class DepartmentDAOTest {
 		//create
 		Department newEntity = new Department();
 		newEntity.setName("Name");
+		newEntity.setAddress(entity.getAddress());
 		Department createdEntity = dao.create(newEntity);
 		assertNotNull(dao.findById(createdEntity.getId()));
 		assertEquals("Name", createdEntity.getName());
+		assertNotNull(dao.findById(createdEntity.getId()).getAddress());
+		assertEquals("9551 Civic Center Dr", dao.findById(createdEntity.getId()).getAddress().getStreetOne());
 		
 		//delete
 		int size = dao.findAll().size();
@@ -89,6 +92,17 @@ class DepartmentDAOTest {
 		assertEquals(oldName, updated.getName());
 	}
 	
-	//TODO: address test
+	@Test
+	@DisplayName("Testing DAO findByName")
+	void test5() {
+		Department test = dao.findByName("SKILL DISTILLERY PD");
+		assertNotNull(test);
+		assertEquals(1, test.getId());
+		assertEquals("SKILL DISTILLERY PD", test.getName());
+//		assertNotNull(test.getAddress());
+//		assertTrue(test.getOfficers().size() > 0);
+//		assertNotNull(test.getOfficers());
+//		assertEquals("123", test.getOfficers().get(1).getBadge());
+	}
 	
 }

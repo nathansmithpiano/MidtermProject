@@ -8,6 +8,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -50,6 +51,7 @@ public class Person {
 	@ManyToMany(mappedBy = "persons")
 	private List<Incident> incidents;
 
+//	@ManyToOne(fetch = FetchType.EAGER)
 	@ManyToOne
 	@JoinColumn(name = "ethnicity_id")
 	private Ethnicity ethnicity;

@@ -13,16 +13,9 @@ import com.skilldistillery.eleireportingapp.entities.Ethnicity;
 @Service
 @Transactional
 public class EthnicityDAOImpl implements EthnicityDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
-
-	@Override
-	public List<Ethnicity> findAll() {
-		String query = "SELECT entity FROM Ethnicity entity";
-		List<Ethnicity> results = em.createQuery(query, Ethnicity.class).getResultList();
-		return results;
-	}
 
 	@Override
 	public Ethnicity findById(int id) {
@@ -32,16 +25,21 @@ public class EthnicityDAOImpl implements EthnicityDAO {
 	@Override
 	public Ethnicity findByName(String name) {
 		String query = "SELECT entity FROM Ethnicity entity WHERE entity.name LIKE :name";
-		Ethnicity result = em.createQuery(query, Ethnicity.class)
-				.setParameter("name", name)
-				.getSingleResult();
+		Ethnicity result = em.createQuery(query, Ethnicity.class).setParameter("name", name).getSingleResult();
 		return result;
+	}
+	
+	@Override
+	public List<Ethnicity> findAll() {
+		String query = "SELECT entity FROM Ethnicity entity";
+		List<Ethnicity> results = em.createQuery(query, Ethnicity.class).getResultList();
+		return results;
 	}
 
 	@Override
 	public Ethnicity create(Ethnicity ethnicity) {
 		em.persist(ethnicity);
-		
+
 		if (!em.contains(ethnicity)) {
 			System.err.println("EntityDAOImpl create() error: id " + ethnicity.getId() + " not found in db");
 			return null;

@@ -19,13 +19,6 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	private EntityManager em;
 
 	@Override
-	public List<Department> findAll() {
-		String query = "SELECT entity FROM Department entity";
-		List<Department> results = em.createQuery(query, Department.class).getResultList();
-		return results;
-	}
-
-	@Override
 	public Department findById(int id) {
 		return em.find(Department.class, id);
 	}
@@ -41,11 +34,18 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 
 	@Override
 	public Department findByName(String name) {
-		String query = "SELECT entity FROM Department entity WHERE entity.name LIKE :name";
+		String query = "SELECT entity FROM Department entity WHERE entity.name IS :name";
 		Department result = em.createQuery(query, Department.class)
 				.setParameter("name", name)
 				.getSingleResult();
 		return result;
+	}
+	
+	@Override
+	public List<Department> findAll() {
+		String query = "SELECT entity FROM Department entity";
+		List<Department> results = em.createQuery(query, Department.class).getResultList();
+		return results;
 	}
 	
 	@Override
