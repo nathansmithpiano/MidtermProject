@@ -570,7 +570,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (1, 2);
+INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (4, 2);
 
 COMMIT;
 
