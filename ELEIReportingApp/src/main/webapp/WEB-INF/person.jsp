@@ -28,22 +28,22 @@
 	
 	<h3>ADDRESS STUFF</h3>
 	<c:set var="addressList" scope="request" value="${person.addresses }" />
-	<jsp:include page="addresses_table.jsp" />
+	<jsp:include page="tables/addresses_table.jsp" />
 	<hr/>
 	
 	<h3>USER STUFF</h3>
 	<c:set var="userList" scope="request" value="${person.users }" />
-	<jsp:include page="users_table.jsp" />
+	<jsp:include page="tables/users_table.jsp" />
 	<hr/>
 	
 	<h3>INCIDENT STUFF</h3>
 	<c:set var="incidentList" scope="request" value="${person.incidents }" />
-	<jsp:include page="incidents_table.jsp" />
+	<jsp:include page="tables/incidents_table.jsp" />
 	<hr/>
 	
 	<h3>NOTE STUFF</h3>
 	<c:set var="noteList" scope="request" value="${person.notes }" />
-	<jsp:include page="notes_table.jsp" />
+	<jsp:include page="tables/notes_table.jsp" />
 	<hr/>
 
 </body>
