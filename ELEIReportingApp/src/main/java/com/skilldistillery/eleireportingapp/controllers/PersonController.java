@@ -19,10 +19,10 @@ public class PersonController {
 	public String person(Model model, @RequestParam("id") int id) {
 		Person person = personDao.findById(id);
 		model.addAttribute("person", person);
-		model.addAttribute("addressList", person.getAddresses());
-		model.addAttribute("userList", person.getUsers());
-		model.addAttribute("incidentList", person.getIncidents());
-		model.addAttribute("noteList", person.getNotes());
+//		model.addAttribute("addressList", person.getAddresses());
+//		model.addAttribute("userList", person.getUsers());
+//		model.addAttribute("incidentList", person.getIncidents());
+//		model.addAttribute("noteList", person.getNotes());
 		return "person";
 	}
 
