@@ -48,16 +48,16 @@ class NoteTest {
 	@DisplayName("test basic Note mappings")
 	void test1() {
 
-//		FROM Note WHERE id=1;
-//		+----+---------+---------+---------+----------+
-//		| id | user_id | created | updated | content  |
-//		+----+---------+---------+---------+----------+
-//		|  1 |       1 | NULL    | NULL    | CONTENT1 |
-//		+----+---------+---------+---------+----------+
+//		SELECT * FROM Note WHERE id=1;
+//		+----+---------+---------------------+---------------------+----------+
+//		| id | user_id | created             | updated             | content  |
+//		+----+---------+---------------------+---------------------+----------+
+//		|  1 |       1 | 2022-04-22 12:00:01 | 2022-04-22 12:27:00 | CONTENT1 |
+//		+----+---------+---------------------+---------------------+----------+
 
 		assertNotNull(note);
-		assertNull(note.getCreated());
-		assertNull(note.getUpdated());
+		assertEquals("2022-04-22 12:00:01.0", note.getCreated().toString());
+		assertEquals("2022-04-22 12:27:00.0", note.getUpdated().toString());
 		assertEquals("CONTENT1", note.getContent());
 		assertEquals(1, note.getUserId());
 	}
