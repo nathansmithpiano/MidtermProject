@@ -1,6 +1,9 @@
 package com.skilldistillery.eleireportingapp.data;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -21,11 +24,39 @@ public class UserDAOImpl implements UserDAO {
 	public User findById(int id) {
 		return em.find(User.class, id);
 	}
-
-//	@Override
-//	public User findByPersonId(int personId) {
-//		return null;
+	
+//	private Map<Integer, User> users;
+	
+	
+	
+//	public UserDAOImpl () {
+//    users = new LinkedHashMap<>();
+//    
+//    users.put(1, new User(1, "policesupervisor", "supervisor"));
+//    users.put(2, new User(2, "policeofficer", "officer"));
+//	
 //	}
+//    
+//    // Passwords below are hashed with MD5 algorithm
+//    // id: testuser, cleartext password: password
+//    users.put(3, new User(3, "testuser", "5f4dcc3b5aa765d61d8327deb882cf99", "Ronald", "McD"));
+//    // id: topper, cleartext password: topgun
+//    users.put(4, new User(4, "topper", "46a46b0a267201c0c742cee54685d62c", "Topper", "Harley"));
+//  }
+//  
+//  @Override
+//  public User getUserByUserNameAndPassword(String userName, String password) {
+//    User u = null;
+//    Set<Integer> keys = users.keySet();
+//    for (Integer key : keys) {
+//      User user = users.get(key);
+//      if(user.getUserName().equals(userName) && user.getPassword().equals(password)) {
+//        u = user;
+//        break;
+//      }
+//    }
+//    return u;
+//  }
 
 	@Override
 	public List<User> findByPermissionLevel(String level) {
@@ -96,6 +127,17 @@ public class UserDAOImpl implements UserDAO {
 			}
 			return backup;
 		}
+	}
+
+	@Override
+	public User validateLogin(User userLoggingIn) {
+		String query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password";
+		User loggedInUser = em.createQuery(query, User.class)
+				.setParameter("username", userLoggingIn.getUsername())
+				.setParameter("password", userLoggingIn.getPassword())
+				.getSingleResult();
+		
+		return loggedInUser;
 	}
 
 }
