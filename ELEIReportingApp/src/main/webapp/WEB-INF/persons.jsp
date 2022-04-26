@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Users</title>
+<title>Persons</title>
 </head>
 <body>
 
-	<h3>Users</h3>
-	<jsp:include page="tables/users_table.jsp" />
+	<h3>Persons</h3>
+	<jsp:include page="tables/persons_table.jsp" />
 
 </body>
 </html>

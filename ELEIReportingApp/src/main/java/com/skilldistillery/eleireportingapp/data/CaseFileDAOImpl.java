@@ -21,16 +21,26 @@ public class CaseFileDAOImpl implements CaseFileDAO {
 	public CaseFile findById(int id) {
 		return em.find(CaseFile.class, id);
 	}
+	
+	@Override
+	public int findMaxCaseNumber() {
+		String query = "SELECT MAX(entity.caseNumber) FROM CaseFile entity";
+		Integer maxNum = em.createQuery(query, Integer.class).getSingleResult();
+		return ((int) maxNum);
+	}
 
 	@Override
 	public CaseFile findByCaseNumber(int caseNumber) {
-		String query = "SELECT entity FROM CaseFile entity WHERE entity.caseNumber IS :caseNumber";
-		return null;
+		String query = "SELECT entity FROM CaseFile entity WHERE entity.caseNumber = :caseNumber";
+		CaseFile result = em.createQuery(query, CaseFile.class)
+				.setParameter("caseNumber", caseNumber)
+				.getSingleResult();
+		return result;
 	}
 
 	@Override
 	public List<CaseFile> findByCaseNumberRange(int start, int end) {
-		String query = "SELECT c FROM CaseFile c WHERE c.id BETWEEN :start AND :end";
+		String query = "SELECT c FROM CaseFile c WHERE c.caseNumber BETWEEN :start AND :end";
 		List<CaseFile> results = em.createQuery(query, CaseFile.class)
 				.setParameter("start", start)
 				.setParameter("end", end)
@@ -56,6 +66,9 @@ public class CaseFileDAOImpl implements CaseFileDAO {
 
 	@Override
 	public CaseFile create(CaseFile CaseFile) {
+		if (CaseFile.getCaseNumber() == 0) {
+			CaseFile.setCaseNumber(this.findMaxCaseNumber() + 1);
+		}
 		em.persist(CaseFile);
 
 		if (!em.contains(CaseFile)) {

@@ -16,8 +16,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "case_file")
 public class CaseFile implements Cloneable{
@@ -25,7 +23,10 @@ public class CaseFile implements Cloneable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
+	
+	@Column(name = "case_number")
+	private int caseNumber;
+	
 	@Column(name = "suspected_crime")
 	private String suspectedCrime;
 
@@ -52,6 +53,14 @@ public class CaseFile implements Cloneable{
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public int getCaseNumber() {
+		return caseNumber;
+	}
+
+	public void setCaseNumber(int caseNumber) {
+		this.caseNumber = caseNumber;
 	}
 
 	public String getSuspectedCrime() {
@@ -147,8 +156,8 @@ public class CaseFile implements Cloneable{
 
 	@Override
 	public String toString() {
-		return "CaseFile [id=" + id + ", suspectedCrime=" + suspectedCrime + ", description=" + description + ", flag="
-				+ flag + "]";
+		return "CaseFile [id=" + id + ", caseNumber=" + caseNumber + ", suspectedCrime=" + suspectedCrime
+				+ ", description=" + description + ", flag=" + flag + "]";
 	}
 
 }

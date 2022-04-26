@@ -11,26 +11,43 @@
 	<c:otherwise>
 	
 		<table>
+		
 			<thead>
 				<th>Incident ID</th>
 				<th>Address</th>
-				<th>Case ID</th>
+				<th>Case #</th>
 				<th>Reason For Contact</th>
 				<th>Description</th>
 				<th>Flag</th>
 			</thead>
+			
 			<tbody>
+			
 				<c:forEach var="incident" items="${incidentList }">
 					<tr>
-						<td>${incident.id }</td>
-						<td>${incident.address }</td>
-						<td>${incident.caseId }</td>
+						<td>
+							<a href="incident.do?id=${incident.id }">
+								${incident.id }
+							</a>
+						</td>
+						<td>
+							<a href="address.do?id=${incident.address.id }">
+								${incident.address.getFormattedAddress() }
+							</a>
+						</td>
+						<td>
+							<a href="casefile.do?id=${incident.caseFile.id }">
+								${incident.caseFile.caseNumber }
+							</a>
+						</td>
 						<td>${incident.reasonForContact }</td>
 						<td>${incident.description }</td>
 						<td>${incident.flag }</td>
 					</tr>
 				</c:forEach>
+				
 			</tbody>
+			
 		</table>
 		
 	</c:otherwise>

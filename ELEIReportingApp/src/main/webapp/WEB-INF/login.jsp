@@ -5,12 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Users</title>
+<title>Login</title>
 </head>
 <body>
 
-	<h3>Users</h3>
-	<jsp:include page="tables/users_table.jsp" />
+	<h1>Login</h1>
+	
+	<form action="login.do" method="post">
+		<label for="username">Username</label>
+		<input type="text" name="username">
+	</form>
 
 </body>
 </html>

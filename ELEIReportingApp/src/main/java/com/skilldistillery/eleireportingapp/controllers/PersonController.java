@@ -15,14 +15,16 @@ public class PersonController {
 	@Autowired
 	private PersonDAO personDao;
 	
+	@RequestMapping(path = {"persons.do" } )
+	public String users(Model model) {
+		model.addAttribute("personList", personDao.findAll());
+		return "persons";
+	}
+	
 	@RequestMapping(path = {"person.do" })
 	public String person(Model model, @RequestParam("id") int id) {
 		Person person = personDao.findById(id);
 		model.addAttribute("person", person);
-//		model.addAttribute("addressList", person.getAddresses());
-//		model.addAttribute("userList", person.getUsers());
-//		model.addAttribute("incidentList", person.getIncidents());
-//		model.addAttribute("noteList", person.getNotes());
 		return "person";
 	}
 
