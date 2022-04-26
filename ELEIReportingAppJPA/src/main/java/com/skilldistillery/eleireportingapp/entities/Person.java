@@ -284,7 +284,7 @@ public class Person {
 	public String toString() {
 		return "Person [id=" + id + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName=" + lastName
 				+ ", title=" + title + ", birthDate=" + birthDate + ", gender=" + gender + ", flag=" + flag
-				+ ", description=" + description + ", incidents=" + incidents + ", ethnicity=" + ethnicity + "]";
+				+ ", description=" + description + ", ethnicity=" + ethnicity + "]";
 	}
 
 }

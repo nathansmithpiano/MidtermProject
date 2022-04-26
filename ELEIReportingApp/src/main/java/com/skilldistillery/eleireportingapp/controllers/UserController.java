@@ -14,9 +14,14 @@ public class UserController {
 	private UserDAO userDao;
 	
 	@RequestMapping(path = {"users.do" } )
-	public String users(Model model) {
+	public String allUsers(Model model) {
 		model.addAttribute("userList", userDao.findAll());
 		return "users";
+	}
+	
+	@RequestMapping(path = {"user.do" } )
+	public String singleUser(Model model) {
+		return "user";
 	}
 	
 }

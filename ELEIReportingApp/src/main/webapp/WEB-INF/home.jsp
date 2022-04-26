@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +28,13 @@
 		<li><a href = "goToAddNewIncident.do">Add New Incident</a></li>
 		<li><a href = "goToAddNewCaseFile.do">Add New Case File</a></li>
 	</ul>
+	
+	<hr />
+	<h3>
+		<a href="thome.do">
+			Template Home
+		</a>
+	</h3>
 
 
 </body>
