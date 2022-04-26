@@ -23,12 +23,55 @@ public class EthnicityDAOImpl implements EthnicityDAO {
 	}
 
 	@Override
+	public Ethnicity convertToEthnicity(String ethnicity) {
+
+		int ethnicityID = 7;
+
+		switch (ethnicity) {
+
+		case "White":
+			ethnicityID = 1;
+			break;
+
+		case "Black":
+			ethnicityID = 2;
+			break;
+
+		case "Hispanic":
+			ethnicityID = 3;
+			break;
+
+		case "Asian":
+			ethnicityID = 4;
+			break;
+
+		case "American Indian":
+			ethnicityID = 5;
+			break;
+
+		case "Pacific Islander":
+			ethnicityID = 6;
+			break;
+
+		case "Other":
+		default:
+			ethnicityID = 7;
+			break;
+
+		}
+		
+		Ethnicity ethnicityType = findById(ethnicityID);
+
+		return ethnicityType;
+	}
+
+	@Override
 	public Ethnicity findByName(String name) {
 		String query = "SELECT entity FROM Ethnicity entity WHERE entity.name LIKE :name";
 		Ethnicity result = em.createQuery(query, Ethnicity.class).setParameter("name", name).getSingleResult();
 		return result;
 	}
-	
+
 	@Override
 	public List<Ethnicity> findAll() {
 		String query = "SELECT entity FROM Ethnicity entity";

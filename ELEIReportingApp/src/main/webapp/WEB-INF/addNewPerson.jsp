@@ -26,7 +26,7 @@
 		<br>
 		<label for="title">Title:</label>
 		<select id="title" name="title">
-  			<option value=""></option>
+  			<option value="" selected></option>
   			<option value="jr">Jr.</option>
   			<option value="sr">Sr.</option>
   			<option value="i">I.</option>
@@ -41,16 +41,17 @@
  	 
  	 <br>
  	 
- 	 		<label for="ethnicityId">Title:</label>
-		<select id="ethnicityId" name="ethnicityId">
-  			<option type="number" value=1>White</option>
-  			<option type="number" value=2>Black</option>
-  			<option type="number" value=3>Hispanic</option>
-  			<option type="number" value=4>Asian</option>
-  			<option type="number" value=5>American Indian</option>
-  			<option type="number" value=6>Pacific Islander</option>
-  			<option type="number" value=7>Other</option>
-		</select>
+ 	 		<label for="ethnicity">Ethnicity:</label>
+ 	 		<input list="ethnicity" name="ethnicity">
+		<datalist id="ethnicity">
+  			<option value="White"/>
+  			<option value="Black"/>
+  			<option value="Hispanic"/>
+  			<option value="Asian"/>
+  			<option value="American Indian"/>
+  			<option value="Pacific Islander"/>
+  			<option value="Other"/>
+		</datalist>
 		
 		<br>
  	 
@@ -58,7 +59,8 @@
 		<input type="text" name="gender" required>
 		<br>
  	 		<label for="description">Description:</label>
-		<input type="text" name="description">
+		<textarea name="description" rows="10" cols="30">
+</textarea>
 		
 		<br>
 		<input type="submit" value="Submit">
