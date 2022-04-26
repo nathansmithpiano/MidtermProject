@@ -8,7 +8,7 @@ import com.skilldistillery.eleireportingapp.entities.Person;
 public interface OfficerDAO {
 	
 	public Officer findById(int id);
-	public List<Officer> findByPerson(Person person);
+	public Officer findByPerson(Person person);
 	public List<Officer> findBySupervisor(Officer officer);
 	public Officer findByBadge(String badge);
 	public List<Officer> findByImageUrl(String url);

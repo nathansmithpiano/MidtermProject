@@ -25,7 +25,7 @@
 				<p class="login-box-msg">You must login to access this resource</p>
 				
 				<!-- Login Form -->
-				<form action="login.do" method="post">
+				<form action="tlogin.do" method="post">
 				
 					<!-- Username -->
 					<div class="input-group mb-3">
