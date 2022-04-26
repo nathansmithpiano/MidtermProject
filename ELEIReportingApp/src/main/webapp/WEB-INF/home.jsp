@@ -23,6 +23,13 @@
 		<li><a href = "casefiles">Case Files</a></li>
 		<li><a href = "notes">Notes</a></li>
 	</ul>
+	
+	<hr />
+	<h3>
+		<a href="thome.do">
+			Template Home
+		</a>
+	</h3>
 
 
 </body>
