@@ -27,23 +27,23 @@
 		<label for="title">Title:</label>
 		<select id="title" name="title">
   			<option value="" selected></option>
-  			<option value="Jr">Jr.</option>
-  			<option value="Sr">Sr.</option>
-  			<option value="I">I.</option>
-  			<option value="II">II.</option>
-  			<option value="III">III.</option>
+  			<option value="jr">Jr.</option>
+  			<option value="sr">Sr.</option>
+  			<option value="i">I.</option>
+  			<option value="ii">II.</option>
+  			<option value="iii">III.</option>
 		</select>
 		
 		<br>
 		
-  	<label for="birth">Birth Date:</label>
- 	 <input type="date" id="birth" name="birth">
+  	<label for="birthDate">Birth Date:</label>
+ 	 <input type="date" id="birthDate" name="birthDate">
  	 
  	 <br>
  	 
-  	 		<label for="ethnicityName">Ethnicity:</label>
- 	 		<input list="ethnicityName" name="ethnicityName">
-		<datalist id="ethnicityName">
+ 	 		<label for="ethnicity">Ethnicity:</label>
+ 	 		<input list="ethnicity" name="ethnicity">
+		<datalist id="ethnicity">
   			<option value="White"/>
   			<option value="Black"/>
   			<option value="Hispanic"/>

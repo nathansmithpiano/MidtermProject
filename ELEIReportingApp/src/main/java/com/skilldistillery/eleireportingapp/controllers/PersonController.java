@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.EthnicityDAO;
@@ -39,52 +40,19 @@ public class PersonController {
 		return "addNewPerson";
 	}
 
-	@RequestMapping(path = { "addNewPerson.do" })
-	public String addNewPerson(String firstName, String middleName, String lastName, String title, String birthDate,
-			String ethnicity, String gender, String description, Model model) {
+	@RequestMapping(path = { "addNewPerson.do" }, method = RequestMethod.POST)
+	public String addNewPerson(Person person, @RequestParam("ethnicityName") String ethnicityName,
+			@RequestParam("birth") String birth, Model model) {
 
-		Person person = new Person();
-
-		if (!firstName.isEmpty() && firstName != null) {
-			person.setFirstName(firstName);
-		} else {
-			person.setFirstName(null);
-		}
-		if (!middleName.isEmpty() && middleName != null) {
-			person.setMiddleName(middleName);
-		} else {
-			person.setMiddleName(null);
-
-		}
-		if (!lastName.isEmpty() && lastName != null) {
-			person.setLastName(lastName);
-		} else {
-			person.setLastName(null);
-		}
-		if (!title.isEmpty() && title != null) {
-			person.setTitle(title);
-		} else {
-			person.setTitle(null);
-		}
-		if (!birthDate.isEmpty() && birthDate != null) {
-			person.setBirthDate(LocalDate.parse(birthDate));
+		if (!birth.isEmpty() && birth != null) {
+			person.setBirthDate(LocalDate.parse(birth));
 		} else {
 			person.setBirthDate(null);
 		}
-		if (!ethnicity.isEmpty() && ethnicity != null) {
-			person.setEthnicity(ethnicityDao.convertToEthnicity(ethnicity));
+		if (!ethnicityName.isEmpty() && ethnicityName != null) {
+			person.setEthnicity(ethnicityDao.convertToEthnicity(ethnicityName));
 		} else {
 			person.setEthnicity(ethnicityDao.findByName("Other"));
-		}
-
-		if (!gender.isEmpty() && gender != null) {
-			person.setGender(gender);
-		}
-
-		if (!description.isEmpty() && description != null) {
-			person.setDescription(description);
-		} else {
-			person.setDescription(null);
 		}
 
 		personDao.create(person);

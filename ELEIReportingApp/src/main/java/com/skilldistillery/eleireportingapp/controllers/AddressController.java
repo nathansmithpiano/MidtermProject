@@ -11,21 +11,32 @@ import com.skilldistillery.eleireportingapp.entities.Address;
 
 @Controller
 public class AddressController {
-	
+
 	@Autowired
 	private AddressDAO addressDao;
-	
-	@RequestMapping(path = {"addresses.do" } )
+
+	@RequestMapping(path = { "addresses.do" })
 	public String addresses(Model model) {
 		model.addAttribute("addressList", addressDao.findAll());
 		return "addresses";
 	}
-	
-	@RequestMapping(path = {"address.do" })
+
+	@RequestMapping(path = { "address.do" })
 	public String address(Model model, @RequestParam("id") int id) {
 		Address address = addressDao.findById(id);
 		model.addAttribute("address", address);
 		return "address";
 	}
+
+	@RequestMapping(path = { "goToAddNewAddress.do" })
+	public String goToAddNewAddress(Model model) {
+		return "addNewAddress";
+	}
+
+//	@RequestMapping(path = { "addNewAddress.do" })
+//	public String addNewAddress(Model model) {
+//		
+//		
+//	}
 
 }
