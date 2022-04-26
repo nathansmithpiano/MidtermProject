@@ -22,6 +22,7 @@
 		<li><a href = "incidents">Incidents</a></li>
 		<li><a href = "casefiles">Case Files</a></li>
 		<li><a href = "notes">Notes</a></li>
+		<li><a href = "goToAddNewPerson.do">Add New Person</a></li>
 	</ul>
 
 

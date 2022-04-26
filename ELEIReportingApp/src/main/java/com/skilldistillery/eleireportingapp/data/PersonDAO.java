@@ -8,6 +8,7 @@ import com.skilldistillery.eleireportingapp.entities.Person;
 
 public interface PersonDAO {
 	
+	public Person findByPerson(Person person);
 	public Person findById(int id);
 	public List<Person> findByIncident(Incident incident);
 	public List<Person> findByFirstName(String firstName);
