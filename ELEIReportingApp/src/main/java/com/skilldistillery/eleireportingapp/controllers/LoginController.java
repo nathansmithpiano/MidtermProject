@@ -20,8 +20,10 @@ public class LoginController {
 	@RequestMapping("login.do")
 	public ModelAndView displayLogin(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
-		if (session.getAttribute("user") != null) {
-			mv.setViewName("redirect:home.do");
+		User loggedInUser = (User) session.getAttribute("loggedInUser");
+		if (loggedInUser != null) {
+			mv.addObject("loggedInUser", loggedInUser);
+			mv.setViewName("TestUserLogin");
 		} else {
 			mv.setViewName("login");
 		}
@@ -34,15 +36,16 @@ public class LoginController {
 		if (u == null) {
 			return "redirect:login.do";
 		} else {
-		session.setAttribute("loggedInUser", u);
+			session.setAttribute("loggedInUser", u);
 		}
 		return "TestUserLogin";
 	}
+	
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loggedInUser");
 		
-		return "redirect:home.do";
+		return "home.do";
 	}
 	
 //	@RequestMapping("beginLogin.do")
