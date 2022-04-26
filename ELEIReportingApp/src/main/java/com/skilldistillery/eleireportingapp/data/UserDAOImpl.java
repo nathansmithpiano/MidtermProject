@@ -132,12 +132,15 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public User validateLogin(User userLoggingIn) {
 		String query = "SELECT u FROM User u WHERE u.username = :username AND u.password = :password";
-		User loggedInUser = em.createQuery(query, User.class)
+		List<User> results = em.createQuery(query, User.class)
 				.setParameter("username", userLoggingIn.getUsername())
 				.setParameter("password", userLoggingIn.getPassword())
-				.getSingleResult();
-		
-		return loggedInUser;
+				.getResultList();
+		if (results.size() > 0) {
+			return results.get(0);
+		} else {
+			return null;
+		}
 	}
 
 }

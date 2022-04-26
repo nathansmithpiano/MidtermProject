@@ -70,7 +70,6 @@
 			</div>
 		</li> <!-- end Notifications Dropdown Menu -->
 		
-		
 	</ul> <!-- end Right navbar links -->
 	
 </nav>

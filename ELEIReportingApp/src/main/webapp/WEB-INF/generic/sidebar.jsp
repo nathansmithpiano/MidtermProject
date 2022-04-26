@@ -20,7 +20,7 @@
 			</div>
 			<div class="info">
 				<a href="officer.do?id=${sessionScope.userOfficer.id }" class="d-block">
-					${sessionScope.loggedInUser.username }
+					${sessionScope.userOfficer.person.fullName }
 				</a>
 			</div>
 		</div> <!-- end Sidebar user panel (optional) -->
@@ -237,7 +237,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="officer.do?id=TODO" class="nav-link">
+							<a href="tofficer.do?id=${sessionScope.userOfficer.id }" class="nav-link">
 								<i class="far fa-solid fa-address-card nav-icon"></i>
 								<p>
 									Officer Profile
@@ -275,6 +275,14 @@
 						<p>
 							Officer Profile
 							<i class="right fa-solid fa-person-military-pointing"></i>
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="tlogout.do" class="nav-link">
+						<i class="far fa-solid fa-right-from-bracket nav-icon"></i>
+						<p>
+							Logout
 						</p>
 					</a>
 				</li> <!-- end Quick Links -->
