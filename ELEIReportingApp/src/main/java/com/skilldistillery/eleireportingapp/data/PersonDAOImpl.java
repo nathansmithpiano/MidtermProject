@@ -18,6 +18,11 @@ public class PersonDAOImpl implements PersonDAO {
 
 	@PersistenceContext
 	private EntityManager em;
+	
+	@Override
+	public Person findByPerson(Person person) {
+		return em.find(Person.class, person);
+	}
 
 	@Override
 	public Person findById(int id) {

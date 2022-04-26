@@ -57,7 +57,7 @@ class CaseFileTest {
 		assertNotNull(file);
 		assertEquals(file.getSuspectedCrime(), "Shoplifting");
 		assertEquals(file.getDescription(), "Shoplifing");
-		assertFalse(file.isFlag());
+		assertTrue(file.isFlag());
 	}
 	
 	@Test
