@@ -14,7 +14,7 @@
 	<c:choose>
 		<c:when test="${not empty department }">
 			<h3>${department.officers.size() } officers at ${department.name }</h3>
-			<c:set var="officerList" scope="request" items="${department.officers }" />
+			<c:set var="officerList" scope="request" value="${department.officers }" />
 		</c:when>
 	</c:choose>
 	
