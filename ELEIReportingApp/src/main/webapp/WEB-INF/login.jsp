@@ -11,9 +11,11 @@
 
 	<h1>Login</h1>
 	
-	<form action="login.do" method="post">
+	<form action="login.do" method="POST">
 		<label for="username">Username</label>
 		<input type="text" name="username">
+		<input type="password" name="password">
+		<input type="submit" value="Log In">
 	</form>
 
 </body>
