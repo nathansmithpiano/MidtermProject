@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
+import com.skilldistillery.eleireportingapp.data.PersonDAO;
 import com.skilldistillery.eleireportingapp.entities.Address;
 
 @Controller
@@ -14,7 +15,7 @@ public class AddressController {
 
 	@Autowired
 	private AddressDAO addressDao;
-
+	
 	@RequestMapping(path = { "addresses.do" })
 	public String addresses(Model model) {
 		model.addAttribute("addressList", addressDao.findAll());
@@ -33,10 +34,13 @@ public class AddressController {
 		return "addNewAddress";
 	}
 
-//	@RequestMapping(path = { "addNewAddress.do" })
-//	public String addNewAddress(Model model) {
-//		
-//		
-//	}
+	@RequestMapping(path = { "addNewAddress.do" })
+	public String addNewAddress(Address address, Model model) {
+		
+		addressDao.create(address);
+		
+		return "address";
+//		return "goToAddNewincident";
+	}
 
 }

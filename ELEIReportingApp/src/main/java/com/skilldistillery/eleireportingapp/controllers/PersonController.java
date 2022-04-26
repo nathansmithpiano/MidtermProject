@@ -57,8 +57,6 @@ public class PersonController {
 
 		personDao.create(person);
 
-		model.addAttribute(person);
-
 		return "person";
 	}
 

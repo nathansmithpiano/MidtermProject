@@ -17,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 @Entity
 public class Incident {
 
@@ -34,6 +36,7 @@ public class Incident {
 	private boolean flag;
 
 	@Column(name = "incident_date")
+	@CreationTimestamp
 	private Timestamp incidentDate;
 
 	@ManyToOne

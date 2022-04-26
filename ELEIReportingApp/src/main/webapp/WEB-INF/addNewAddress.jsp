@@ -5,63 +5,37 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Add New Person</title>
+<title>Add New Address</title>
 </head>
 <body>
 
-	<h1>Add New Person</h1>
+	<h1>Add New Address</h1>
 	
-	<form action="addNewPerson.do" method="post">
+	<form action="addNewAddress.do" method="post">
 	
-		<label for="firstName">First Name:</label>
-		<input type="text" name="firstName">
+		<label for="streetOne">Street 1:</label>
+		<input type="text" name="streetOne">
 		<br>
-		<label for="middleName">Middle Name:</label>
-		<input type="text" name="middleName">
+		<label for="streetTwo">Street 2:</label>
+		<input type="text" name="streetTwo">
 		
 		<br>
-		<label for="lastName">Last Name:</label>
-		<input type="text" name="lastName">
+		<label for="city">City:</label>
+		<input type="text" name="city">
 		
 		<br>
-		<label for="title">Title:</label>
-		<select id="title" name="title">
-  			<option value="" selected></option>
-  			<option value="jr">Jr.</option>
-  			<option value="sr">Sr.</option>
-  			<option value="i">I.</option>
-  			<option value="ii">II.</option>
-  			<option value="iii">III.</option>
-		</select>
+		<label for="stateCode">State Code:</label>
+		<input type="text" name="stateCode" maxlength="2">
 		
 		<br>
+		<label for="zip">ZIP:</label>
+		<input type="number" name="zip" min="0" max="99999">
 		
-  	<label for="birthDate">Birth Date:</label>
- 	 <input type="date" id="birthDate" name="birthDate">
- 	 
- 	 <br>
- 	 
- 	 		<label for="ethnicity">Ethnicity:</label>
- 	 		<input list="ethnicity" name="ethnicity">
-		<datalist id="ethnicity">
-  			<option value="White"/>
-  			<option value="Black"/>
-  			<option value="Hispanic"/>
-  			<option value="Asian"/>
-  			<option value="American Indian"/>
-  			<option value="Pacific Islander"/>
-  			<option value="Other"/>
-		</datalist>
-		
-		<br>
- 	 
- 	 		<label for="gender">Gender:</label>
-		<input type="text" name="gender" required>
-		<br>
+
  	 		<label for="description">Description:</label>
 		<textarea name="description" rows="10" cols="30">
 </textarea>
-		
+
 		<br>
 		<input type="submit" value="Submit">
 		
