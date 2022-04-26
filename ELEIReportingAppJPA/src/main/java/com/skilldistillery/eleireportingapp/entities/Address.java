@@ -166,6 +166,19 @@ public class Address {
 		return !persons.contains(person);
 	}
 	
+	public String getFormattedAddress() {
+		if (streetOne == null) {
+			return "No street for id " + id;
+		}
+		
+		if (streetOne != null && streetTwo == null) {
+			return streetOne;
+		} else {
+			return streetOne + " " + streetTwo;
+		}
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

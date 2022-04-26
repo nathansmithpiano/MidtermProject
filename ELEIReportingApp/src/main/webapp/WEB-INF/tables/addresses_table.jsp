@@ -11,6 +11,7 @@
 	<c:otherwise>
 	
 		<table>
+		
 			<thead>
 				<th>Address ID</th>
 				<th>Description</th>
@@ -21,10 +22,16 @@
 				<th>Zip</th>
 				<th>Flag</th>
 			</thead>
+			
 			<tbody>
+			
 				<c:forEach var="address" items="${addressList }">
 					<tr>
-						<td>${address.id }</td>
+						<td>
+							<a href="address.do?id=${address.id }">
+								${address.id }
+							</a>
+						</td>
 						<td>${address.description }</td>
 						<td>${address.streetOne }</td>
 						<td>${address.streetTwo }</td>
@@ -34,7 +41,9 @@
 						<td>${address.flag }</td>
 					</tr>
 				</c:forEach>
+				
 			</tbody>
+			
 		</table>
 
 	</c:otherwise>

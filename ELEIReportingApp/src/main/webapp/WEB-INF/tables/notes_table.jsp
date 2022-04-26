@@ -11,6 +11,7 @@
 	<c:otherwise>
 	
 		<table>
+		
 			<thead>
 				<th>Note ID</th>
 				<th>User ID</th>
@@ -18,7 +19,9 @@
 				<th>Updated</th>
 				<th>Content</th>
 			</thead>
+			
 			<tbody>
+			
 				<c:forEach var="note" items="${noteList }">
 					<tr>
 						<td>${note.id }</td>
@@ -28,7 +31,9 @@
 						<td>${note.content }</td>
 					</tr>
 				</c:forEach>
+				
 			</tbody>
+			
 		</table>
 		
 	</c:otherwise>

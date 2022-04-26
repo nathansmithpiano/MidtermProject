@@ -25,12 +25,14 @@ public class OfficerDAOImpl implements OfficerDAO {
 	}
 	
 	@Override
-	public List<Officer> findByPerson(Person person) {
-		String query = "SELECT entity FROM Officer entity JOIN Person table ON entity.person_id = table.id WHERE table.id = :id";
-		List<Officer> results = em.createQuery(query, Officer.class)
+	public Officer findByPerson(Person person) {
+		System.out.println("***OfficerDAOImpl.findByPerson " + person.getId());
+		String query = "SELECT officer FROM Officer officer JOIN Person person ON officer.person.id = person.id WHERE person.id = :id";
+		Officer result = em.createQuery(query, Officer.class)
 				.setParameter("id", person.getId())
-				.getResultList();
-		return results;
+				.getResultList()
+				.get(0);
+		return result;
 	}
 
 	@Override
@@ -62,7 +64,7 @@ public class OfficerDAOImpl implements OfficerDAO {
 	
 	@Override
 	public List<Officer> findAll() {
-		String query = "SELECT entity FROM Officer entity";
+		String query = "SELECT officer FROM Officer officer";
 		List<Officer> results = em.createQuery(query, Officer.class).getResultList();
 		return results;
 	}

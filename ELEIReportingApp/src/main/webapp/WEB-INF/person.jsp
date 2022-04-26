@@ -9,7 +9,7 @@
 </head>
 <body>
 
-	<h3>PERSON STUFF</h3>
+	<h3>${person.fullName } (id ${person.id })</h3>
 	<ul>
 		<li>ID: ${person.id}</li>
 		<li>First Name: ${person.firstName}</li>
@@ -21,7 +21,7 @@
 		<li>Description: ${person.description}</li>
 		<li>Flag: ${person.flag}</li>
 		<li>Ethnicity ID: ${person.ethnicity.id }</li>
-		<li>Ethnicity: ${person.ethnicity.name }"</li>
+		<li>Ethnicity: ${person.ethnicity.name }</li>
 	</ul>
 	
 	<hr/>

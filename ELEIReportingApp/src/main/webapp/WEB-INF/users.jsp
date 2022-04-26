@@ -8,7 +8,9 @@
 <title>Users</title>
 </head>
 <body>
-<jsp:include page="tables/users_table.jsp" />
+
+	<h3>Users</h3>
+	<jsp:include page="tables/users_table.jsp" />
 
 </body>
 </html>

@@ -7,6 +7,7 @@ import com.skilldistillery.eleireportingapp.entities.Ethnicity;
 public interface EthnicityDAO {
 	
 	public Ethnicity findById(int id);
+	public Ethnicity convertToEthnicity(String ethnicity);
 	public Ethnicity findByName(String name);
 	public List<Ethnicity> findAll();
 	public Ethnicity create(Ethnicity ethnicity);

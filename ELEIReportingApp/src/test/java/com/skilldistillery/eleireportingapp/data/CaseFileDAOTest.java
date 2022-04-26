@@ -18,7 +18,6 @@ import com.skilldistillery.eleireportingapp.entities.CaseFile;
 @EntityScan(basePackages = {"com.skilldistillery.eleireportingapp"})
 class CaseFileDAOTest {
 
-	
 	@Autowired
 	private CaseFileDAOImpl dao;
 	
@@ -59,16 +58,15 @@ class CaseFileDAOTest {
 	@DisplayName("test case_file find case by case number range")
 	void test3() {
 		
-//		SELECT * FROM case_file WHERE case_file.id BETWEEN 0 AND 2;
-//		+----+-----------------+-------------+------+
-//		| id | suspected_crime | description | flag |
-//		+----+-----------------+-------------+------+
-//		|  1 | Shoplifting     | Shoplifing  |    0 |
-//		+----+-----------------+-------------+------+
-		
+//		SELECT * FROM case_file WHERE case_file.case_number BETWEEN 0 AND 9999999;
+//		+----+-------------+-----------------+-------------+------+
+//		| id | case_number | suspected_crime | description | flag |
+//		+----+-------------+-----------------+-------------+------+
+//		|  1 |     2022001 | Shoplifting     | Shoplifing  |    1 |
+//		+----+-------------+-----------------+-------------+------+
+
 		assertNotNull(dao);
-		assertTrue(dao.findByCaseNumberRange(0, 2).size() > 0);
-		
+		assertTrue(dao.findByCaseNumberRange(0, 9999999).size() > 0);
 	}
 
 }
