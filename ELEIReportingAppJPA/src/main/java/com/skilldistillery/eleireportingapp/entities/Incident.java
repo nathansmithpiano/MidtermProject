@@ -25,6 +25,14 @@ public class Incident {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name= "officer_id")
+	private Officer officer;
+	
+	@ManyToOne
+	@JoinColumn(name= "department_id")
+	private Department department;
 
 	@Column(name = "reason_for_contact")
 	private String reasonForContact;
@@ -89,6 +97,22 @@ public class Incident {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Officer getOfficer() {
+		return officer;
+	}
+
+	public void setOfficer(Officer officer) {
+		this.officer = officer;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public boolean isFlag() {
@@ -190,9 +214,10 @@ public class Incident {
 
 	@Override
 	public String toString() {
-		return "Incident [id=" + id + ", reasonForContact=" + reasonForContact + ", location=" + location
-				+ ", description=" + description + ", flag=" + flag + ", incidentDate=" + incidentDate + ", address="
-				+ address + ", caseFile=" + caseFile + "]";
+		return "Incident [id=" + id + ", officer=" + officer + ", department=" + department + ", reasonForContact="
+				+ reasonForContact + ", location=" + location + ", description=" + description + ", flag=" + flag
+				+ ", incidentDate=" + incidentDate + ", address=" + address + ", caseFile=" + caseFile + ", persons="
+				+ persons + ", notes=" + notes + "]";
 	}
 
 }
