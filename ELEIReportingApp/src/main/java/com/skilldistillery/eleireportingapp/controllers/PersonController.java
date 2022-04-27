@@ -54,9 +54,9 @@ public class PersonController {
 		return "person_add";
 	}
 
-	@RequestMapping(path = { "goToAddNewPerson.do" })
+	@RequestMapping(path = { "addPerson.do" })
 	public String goToAddNewPerson(Model model) {
-		return "addNewPerson";
+		return "addNewPerson1";
 	}
 
 	@RequestMapping(path = { "addNewPerson.do" }, method = RequestMethod.POST)

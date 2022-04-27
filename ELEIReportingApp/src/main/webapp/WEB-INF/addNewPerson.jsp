@@ -4,11 +4,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Add New Person</title>
+<jsp:include page="generic/head.jsp" />
+<title>Add a Person</title>
 </head>
 <body>
-
+	
 	<h1>Add New Person</h1>
 	
 	<form action="addNewPerson.do" method="post">
