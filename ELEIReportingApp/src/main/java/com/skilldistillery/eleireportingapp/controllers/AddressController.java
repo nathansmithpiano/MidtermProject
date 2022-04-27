@@ -1,5 +1,7 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,18 @@ public class AddressController {
 
 	@Autowired
 	private AddressDAO addressDao;
+	
+	@RequestMapping(path = "officerAddresses.do")
+	public String officerAddresses(Model model, HttpSession session) {
+		model.addAttribute("level", 1);
+		return "addresses";
+	}
+	
+	@RequestMapping(path = "allAddresses.do")
+	public String allAddresses(Model model, HttpSession session) {
+		model.addAttribute("level", 2);
+		return "addresses";
+	}
 	
 	@RequestMapping(path = { "addresses.do" })
 	public String addresses(Model model) {

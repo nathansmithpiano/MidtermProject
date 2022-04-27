@@ -32,7 +32,7 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">Left Title Goes Here</h1>
+							<h1 class="m-0">incidents.jsp</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
@@ -67,7 +67,7 @@
 	    							<h3>Card Body Goes Here</h3>
 	
 	    						</div> <!-- end card-body -->
-	    						
+								
 	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
@@ -78,6 +78,18 @@
 		
 		<jsp:include page="generic/footer.jsp" />
 	</div> <!-- end main div wrapper -->
+	
+	<!-- Changing sidebar active page -->
+	<script>
+		document.getElementById("nav-incidents").className = "nav-item menu-open";
+		if(${level} == 1) {
+			document.getElementById("nav-incidents-my").className = "nav-link active";
+		}
+		if(${level} == 2) {
+			document.getElementById("nav-incidents-all").className = "nav-link active";
+		}
+		
+	</script>
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
