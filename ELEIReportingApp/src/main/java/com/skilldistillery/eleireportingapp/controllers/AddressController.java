@@ -1,6 +1,5 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -13,12 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
 import com.skilldistillery.eleireportingapp.data.DepartmentDAO;
-import com.skilldistillery.eleireportingapp.data.PersonDAO;
 import com.skilldistillery.eleireportingapp.entities.Address;
-import com.skilldistillery.eleireportingapp.entities.Department;
-import com.skilldistillery.eleireportingapp.entities.Officer;
-import com.skilldistillery.eleireportingapp.entities.Person;
-import com.skilldistillery.eleireportingapp.entities.User;
 
 @Controller
 public class AddressController {
@@ -31,14 +25,31 @@ public class AddressController {
 	
 	// USING
 	
+	//verify loggedInUser in session, redirect if not
+	private boolean notLoggedIn(HttpSession session) {
+		if (session.getAttribute("loggedInUser") == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@RequestMapping(path = "officerAddresses.do")
 	public String officerAddresses(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		model.addAttribute("level", 1);
 		return "addresses";
 	}
 	
 	@RequestMapping(path = "departmentAddresses.do")
-	public String departmentAddresses(Model model) {
+	public String departmentAddresses(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		List<Address> addressList = addressDao.findAll();
 		model.addAttribute("addressList", addressList);
 		model.addAttribute("level", 2);
@@ -46,7 +57,11 @@ public class AddressController {
 	}
 	
 	@RequestMapping(path = { "address.do" })
-	public String person(Model model, @RequestParam("id") int id) {
+	public String person(Model model, HttpSession session, @RequestParam("id") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		Address address = addressDao.findById(id);
 		model.addAttribute("address", address);
 		model.addAttribute("level", 1);
@@ -56,7 +71,11 @@ public class AddressController {
 	// NOT USING
 	
 	@RequestMapping(path = { "addresses.do" })
-	public String addresses(Model model) {
+	public String addresses(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		model.addAttribute("addressList", addressDao.findAll());
 		return "addresses";
 	}

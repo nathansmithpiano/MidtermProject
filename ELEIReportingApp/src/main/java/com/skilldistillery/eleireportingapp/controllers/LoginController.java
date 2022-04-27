@@ -17,6 +17,8 @@ public class LoginController {
 	@Autowired
 	UserDAO dao;
 	
+	//USING
+	
 	@RequestMapping("login.do")
 	public ModelAndView displayLogin(HttpSession session) {
 		ModelAndView mv = new ModelAndView();
@@ -47,6 +49,8 @@ public class LoginController {
 		
 		return "home.do";
 	}
+	
+	//NOT USING
 	
 //	@RequestMapping("beginLogin.do")
 //	public ModelAndView displayLogin(HttpSession session) {

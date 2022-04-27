@@ -71,54 +71,55 @@
 								<!-- end Card header -->
 
 								<div class="card-body">
-
+								
 									<form action="createIncident.do" method="post">
-										<label for="reasonForContact">Reason for contact:</label> <input
-											type="text" name="reasonForContact"> <br> <label
-											for="location">Location:</label> <input type="text"
-											name="location"> <br> <label for="description">Description:</label>
+									
+										<label for="departmentId">Department:</label>
+										<select id="departmentId" name="departmentId" required>
+											<c:forEach var="department" items="${sessionScope.userOfficer.departments }">
+												<option value="${department.id }">${department.name }</option>
+											</c:forEach>
+										</select>
+										<br>
+										<label for="reasonForContact">Reason for contact:</label> 
+										<input type="text" name="reasonForContact">
+										<br> 
+										<label for="location">Location:</label>
+										<input type="text" name="location">
+										<br>
+										<label for="description">Description:</label>
+										<br>
 										<textarea name="description" rows="10" cols="30">
 										</textarea>
-										<br> <br> <input type="submit" value="Submit">
+										<br>
+										<input class="btn btn-primary" type="hidden" id="selectedAddress">
+										<input type="hidden" id="addressId" name="addressId">
+										<br>
+										<input type="submit" value="Submit">
 									</form>
 
-									<a href="goToAddNewAddress.do"><button>Add Address</button></a>
-
-									<a href="addPerson.do"><button>Add Person</button></a>
-
 								</div>
 								<!-- end card-body -->
 
-								<!-- Card header -->
+								<!-- ADDRESS -->
 								<div class="card-header">
-									<h3 class="card-title">Add Person to Incident</h3>
-
+									<h3 class="card-title">Select address to attach to incident</h3>
 								</div>
-								<!-- end Card header -->
 								
 								<div class="card-body">
-
-									<h3>Insert table to allow user to add a created person to
-										the incident</h3>
-
+									<jsp:include page="tables/incident_add_address_table.jsp" />
 								</div>
-								<!-- end card-body -->
-
-								<!-- Card header -->
+								<!-- end ADDRESS -->
+								
+								<!-- PERSON -->
 								<div class="card-header">
-									<h3 class="card-title">Add Address to Incident</h3>
-
+									<h3 class="card-title">Select persons to add to incident</h3>
 								</div>
-								<!-- end Card header -->
-
+								
 								<div class="card-body">
-
-									<h3>Insert table to allow user to add a created address to
-										the incident</h3>
-
+									<jsp:include page="tables/incident_add_person_table.jsp" />
 								</div>
-								<!-- end card-body -->
-
+								<!-- end ADDRESS -->
 
 							</div>
 							<!-- end Card -->
@@ -146,5 +147,97 @@
 
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
+	
+	<!-- TABLE SCRIPTS -->
+	<jsp:include page="tables/table_scripts.jsp" />
+	
+	<!-- SPECIFIC TABLE FEATURES -->
+	<script>
+		$(function () {
+			$("#addressesTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+			
+		});
+	</script>
+	
+	<script>
+	<!-- ADDRESS SELECTION STUFF -->
+		function addAddressRowHandlers() {
+		    var table = document.getElementById("addressesTable");
+		    var rows = table.getElementsByTagName("tr");
+		    for (i = 0; i < rows.length; i++) {
+		        var currentRow = table.rows[i];
+		        var createClickHandler = 
+		            function(row) 
+		            {
+		                return function() { 
+		                                        var cell = row.getElementsByTagName("td")[0];
+		                                        var id = cell.innerHTML;
+		                                        
+		                                        var addressTextField = document.getElementById('selectedAddress');
+		                                        /* put something into selectedAddress button */
+		                                        addressTextField.value = row.getElementsByTagName("td")[2].innerHTML;
+		                                        
+		                                        /* hide/show toggle */
+		                                        var inputType = addressTextField.type;
+		                                        
+	                                        	if (inputType == 'hidden') {
+		                                        	addressTextField.type = 'button';
+		                                        }
+	                                        	
+	                                        	//set addressId to addressId in form
+	                                        	document.getElementById('addressId').value = id;
+		                                        
+		                                 };
+		            };
+		
+		        currentRow.onclick = createClickHandler(currentRow);
+		    }
+		}
+	<!-- PERSON SELECTION STUFF -->
+		function addPersonRowHandlers() {
+		    var table = document.getElementById("personsTable");
+		    var rows = table.getElementsByTagName("tr");
+		    for (i = 0; i < rows.length; i++) {
+		        var currentRow = table.rows[i];
+		        var createClickHandler = 
+		            function(row) 
+		            {
+		                return function() { 
+		                                        /* var cell = row.getElementsByTagName("td")[0];
+		                                        var id = cell.innerHTML;
+		                                        
+		                                        var addressTextField = document.getElementById('selectedAddress');
+		                                        put something into selectedAddress button
+		                                        addressTextField.value = row.getElementsByTagName("td")[2].innerHTML;
+		                                        
+		                                        hide/show toggle
+		                                        var inputType = addressTextField.type;
+		                                        
+	                                        	if (inputType == 'hidden') {
+		                                        	addressTextField.type = 'button';
+		                                        }
+	                                        	
+	                                        	set addressId to addressId in form
+	                                        	document.getElementById('addressId').value = id; */
+		                                        
+		                                 };
+		            };
+		
+		        currentRow.onclick = createClickHandler(currentRow);
+		    }
+		}
+		window.onload = addAddressRowHandlers();
+		window.onload = addPersonRowHandlers();
+	</script>
+	
 </body>
 </html>

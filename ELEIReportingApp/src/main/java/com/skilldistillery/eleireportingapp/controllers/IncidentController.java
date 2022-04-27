@@ -9,8 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
+import com.skilldistillery.eleireportingapp.data.DepartmentDAO;
 import com.skilldistillery.eleireportingapp.data.IncidentDAO;
+import com.skilldistillery.eleireportingapp.data.OfficerDAO;
+import com.skilldistillery.eleireportingapp.data.PersonDAO;
 import com.skilldistillery.eleireportingapp.entities.Incident;
+import com.skilldistillery.eleireportingapp.entities.Officer;
 
 @Controller
 public class IncidentController {
@@ -20,6 +24,15 @@ public class IncidentController {
 	
 	@Autowired
 	private AddressDAO addressDao;
+	
+	@Autowired
+	private PersonDAO personDao;
+	
+	@Autowired
+	private OfficerDAO officerDao;
+	
+	@Autowired
+	private DepartmentDAO departmentDao;
 	
 	
 	//USING
@@ -50,6 +63,32 @@ public class IncidentController {
 		return "incidents";
 	}
 	
+	@RequestMapping(path = { "addIncident.do" })
+	public String addIncident(Model model) {
+		model.addAttribute("addressList", addressDao.findAll());
+		model.addAttribute("personList", personDao.findAll());
+		return "incident_add";
+	}
+	
+	@RequestMapping(path = { "createIncident.do" })
+	public String createIncident(Incident incident, Model model, HttpSession session, 
+					@RequestParam("departmentId") int departmentId,
+					@RequestParam("addressId") int addressId) {
+		incident.setDepartment(departmentDao.findById(departmentId));
+		incident.setAddress(addressDao.findById(addressId));
+		Officer userOfficer = (Officer) session.getAttribute("userOfficer");
+		
+		if (userOfficer == null) {
+			System.err.println("IncidentController createIncident - userOfficer is null");
+		}
+		
+		incident.setOfficer(officerDao.findById(userOfficer.getId()));
+		
+		incidentDao.create(incident);
+
+		return "incident";
+	}
+	
 	//NOT USING
 	
 	@RequestMapping(path = { "goToIncident.do" })
@@ -72,19 +111,4 @@ public class IncidentController {
 		return "incident";
 	}
 	
-	@RequestMapping(path = { "addIncident.do" })
-	public String addIncident(Model model) {
-		return "incident_add";
-	}
-	
-	@RequestMapping(path = { "createIncident.do" })
-	public String createIncident(Incident incident, Model model) {
-
-		//TODO Pass in a legitimate address
-		incident.setAddress(addressDao.findById(1));
-		incidentDao.create(incident);
-
-		return "incident";
-	}
-
 }
