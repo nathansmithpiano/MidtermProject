@@ -38,6 +38,11 @@ public class IncidentController {
 		return "incident";
 	}
 	
+	@RequestMapping(path = { "incidents.do" })
+	public String goToIncidents(Model model) {
+		return "incidents";
+	}
+	
 	@RequestMapping(path = { "addIncident.do" })
 	public String addIncident(Model model) {
 		return "incident_add";

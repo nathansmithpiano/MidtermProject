@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Add Incident</title>
+<title>Title Goes Here</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -32,14 +32,14 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">Add Incident</h1>
+							<h1 class="m-0">Left Title Goes Here</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Incidents</a></li>
-								<li class="breadcrumb-item active">Add Incident</li>
+								<li class="breadcrumb-item"><a href="#">Root</a></li>
+								<li class="breadcrumb-item active">Child</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -57,27 +57,14 @@
 		    					<!-- Card header -->
 		    					<div class="card-header">
 		    						<h3 class="card-title">
-		    							Add New Incident
+		    							Card Header Goes Here
 		    						</h3>
     						
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
-	    							<form action="createIncident.do" method="post">
-										<label for="reasonForContact">Reason for contact:</label>
-										<input type="text" name="reasonForContact">
-										<br>
-										<label for="location">Location:</label>
-										<input type="text" name="location">
-										<br>
-							 	 		<label for="description">Description:</label>
-										<textarea name="description" rows="10" cols="30">
-										</textarea>
-										<br>
-										<br>
-										<input type="submit" value="Submit">
-									</form>
+	    							<h3>Card Body Goes Here</h3>
 	
 	    						</div> <!-- end card-body -->
 	    						
@@ -86,7 +73,6 @@
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->
     		</section>
-			
 			
 		</div> <!-- end Content Wrapper. Contains page content -->
 		
