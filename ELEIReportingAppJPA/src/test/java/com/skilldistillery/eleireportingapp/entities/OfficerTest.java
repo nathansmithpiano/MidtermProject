@@ -113,13 +113,4 @@ class OfficerTest {
 		assertNotNull(officer);
 		assertEquals("2201",officer.getSupervisor().getBadge());
 	}
-	
-	@Test
-	@DisplayName("Testing Officer m:1 Incident mapping")
-	void test5() {
-		assertNotNull(officer);
-		assertNotNull(officer.getIncidents());
-		assertTrue(officer.getIncidents().size() > 0);
-	}
-	
 }

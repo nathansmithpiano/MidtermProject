@@ -94,14 +94,5 @@ class DepartmentTest {
 //		assertTrue(department.getOfficers().size() == 1);
 
 	}
-	
-	@Test
-	@DisplayName("Testing Department m:1 Incident mapping")
-	void test7() {
-		
-		assertNotNull(department);
-		assertNotNull(department.getIncidents());
-		assertTrue(department.getIncidents().size() > 0);
-	}
 
 }

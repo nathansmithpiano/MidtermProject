@@ -42,14 +42,6 @@ public class Incident {
 	@ManyToOne
 	@JoinColumn(name = "address_id")
 	private Address address;
-	
-	@ManyToOne
-	@JoinColumn(name = "department_id")
-	private Department department;
-	
-	@ManyToOne
-	@JoinColumn(name = "officer_id")
-	private Officer officer;
 
 	@ManyToOne
 	@JoinColumn(name = "case_id")
@@ -121,22 +113,6 @@ public class Incident {
 
 	public void setAddress(Address address) {
 		this.address = address;
-	}
-	
-	public Department getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(Department department) {
-		this.department = department;
-	}
-	
-	public Officer getOfficer() {
-		return officer;
-	}
-
-	public void setOfficer(Officer officer) {
-		this.officer = officer;
 	}
 
 	public CaseFile getCaseFile() {
@@ -216,7 +192,7 @@ public class Incident {
 	public String toString() {
 		return "Incident [id=" + id + ", reasonForContact=" + reasonForContact + ", location=" + location
 				+ ", description=" + description + ", flag=" + flag + ", incidentDate=" + incidentDate + ", address="
-				+ address + ", department=" + department + ", officer=" + officer + ", caseFile=" + caseFile + "]";
+				+ address + ", caseFile=" + caseFile + "]";
 	}
-	
+
 }
