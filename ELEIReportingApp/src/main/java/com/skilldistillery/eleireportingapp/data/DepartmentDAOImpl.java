@@ -42,6 +42,15 @@ public class DepartmentDAOImpl implements DepartmentDAO {
 	}
 	
 	@Override
+	public List<Department> findByOfficerId(int id) {
+		String query = "SELECT department FROM Department department JOIN department.officers officer WHERE officer.id = :id";
+		List<Department> results = em.createQuery(query, Department.class)
+				.setParameter("id", id)
+				.getResultList();
+		return results;
+	}
+	
+	@Override
 	public List<Department> findAll() {
 		String query = "SELECT entity FROM Department entity";
 		List<Department> results = em.createQuery(query, Department.class).getResultList();

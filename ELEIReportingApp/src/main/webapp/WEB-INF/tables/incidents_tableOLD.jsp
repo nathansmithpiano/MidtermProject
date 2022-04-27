@@ -9,18 +9,18 @@
 	</c:when>
 	
 	<c:otherwise>
-
-		<table id="incidentTable" class="table table-bordered table-striped">
+	
+		<table>
+		
 			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Address</th>
-					<th>Case #</th>
-					<th>Reason For Contact</th>
-					<th>Description</th>
-					<th>Flag</th>
-				</tr>
+				<th>Incident ID</th>
+				<th>Address</th>
+				<th>Case #</th>
+				<th>Reason For Contact</th>
+				<th>Description</th>
+				<th>Flag</th>
 			</thead>
+			
 			<tbody>
 			
 				<c:forEach var="incident" items="${incidentList }">
@@ -45,9 +45,11 @@
 						<td>${incident.flag }</td>
 					</tr>
 				</c:forEach>
+				
 			</tbody>
+			
 		</table>
 		
 	</c:otherwise>
-
+	
 </c:choose>

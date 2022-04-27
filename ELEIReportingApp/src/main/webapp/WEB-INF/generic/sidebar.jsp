@@ -63,7 +63,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="allIncidents.do" class="nav-link" id="nav-incidents-all">
+							<a href="departmentIncidents.do" class="nav-link" id="nav-incidents-all">
 								<i class="far fa-solid fa-file-shield nav-icon"></i>
 								<p>
 									All Incidents
@@ -105,11 +105,11 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="allCaseFiles.do" class="nav-link" id="nav-casefiles-my">
+							<a href="departmentCaseFiles.do" class="nav-link" id="nav-casefiles-my">
 								<i class="far fa-solid fa-location-dot nav-icon"></i>
 								<p>
 									All Casefiles
-									<i class="right fa-solid fa-person-military-pointing"></i>
+									<i class="right fa-solid fa-building-shield"></i>
 								</p>
 							</a>
 						</li>
@@ -139,7 +139,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="allAddresses.do" class="nav-link" id="nav-addresses-all">
+							<a href="departmentAddresses.do" class="nav-link" id="nav-addresses-all">
 								<i class="far fa-solid fa-map nav-icon"></i>
 								<p>
 									All Addresses

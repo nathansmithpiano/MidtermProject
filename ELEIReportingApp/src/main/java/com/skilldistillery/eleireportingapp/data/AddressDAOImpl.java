@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.eleireportingapp.entities.Address;
 import com.skilldistillery.eleireportingapp.entities.Department;
+import com.skilldistillery.eleireportingapp.entities.Officer;
 
 @Service
 @Transactional
@@ -30,6 +31,17 @@ public class AddressDAOImpl implements AddressDAO {
 				.getSingleResult();
 		return result;
 	}
+	
+//	public List<Address> findAllForDepartment(Department department) {
+//		// all officers at department
+//		// all persons for officers
+//		String query = 
+//	}
+//	
+//	public List<Address> findAllForOfficer(Officer officer) {
+//		// all persons for officer's incidents
+//		String query = 
+//	}
 
 	@Override
 	public List<Address> findByStreetOne(String streetOne) {

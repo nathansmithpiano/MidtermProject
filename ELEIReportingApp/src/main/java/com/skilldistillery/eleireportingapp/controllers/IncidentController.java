@@ -31,11 +31,11 @@ public class IncidentController {
 		return "incidents";
 	}
 	
-	@RequestMapping(path = "allIncidents.do")
+	@RequestMapping(path = "departmentIncidents.do")
 	public String allIncidents(Model model, HttpSession session) {
 		model.addAttribute("level", 2);
-		//limit to department
-		//send list to model
+		//TODO: limit to department
+		model.addAttribute("incidentList", incidentDao.findAll());
 		return "incidents";
 	}
 	

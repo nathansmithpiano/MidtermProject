@@ -34,7 +34,7 @@ public class IncidentPersonDAOImpl implements IncidentPersonDAO {
 				.getResultList();
 		return results;
 	}
-
+	
 	@Override
 	public List<IncidentPerson> findAll() {
 		String query = "SELECT entity FROM IncidentPerson entity";

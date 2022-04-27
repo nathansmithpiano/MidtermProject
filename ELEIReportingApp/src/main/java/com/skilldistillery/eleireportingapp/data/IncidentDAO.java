@@ -6,6 +6,7 @@ import java.util.List;
 import com.skilldistillery.eleireportingapp.entities.Address;
 import com.skilldistillery.eleireportingapp.entities.CaseFile;
 import com.skilldistillery.eleireportingapp.entities.Incident;
+import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
 import com.skilldistillery.eleireportingapp.entities.Person;
 
 public interface IncidentDAO {
@@ -13,6 +14,7 @@ public interface IncidentDAO {
 	public Incident findById(int id);
 	public List<Incident> findByAddress(Address address);
 	public List<Incident> findByPerson(Person person);
+	public List<Incident> findByDepartmentId(int id);
 	public Incident findByCase(CaseFile caseFile);
 	public List<Incident> findByIncidentDate(Timestamp incidentDate);
 	public List<Incident> findByIncidentDateRange(Timestamp start, Timestamp end);

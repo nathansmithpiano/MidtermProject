@@ -20,8 +20,9 @@ public class CaseFileController {
 		return "casefiles";
 	}
 	
-	@RequestMapping(path = { "allCaseFiles.do" })
+	@RequestMapping(path = { "departmentCaseFiles.do" })
 	public String allCaseFiles(Model model) {
+		model.addAttribute("caseFileList", caseFileDao.findAll());
 		model.addAttribute("level", 2);
 		return "casefiles";
 	}

@@ -4,12 +4,14 @@ import java.util.List;
 
 import com.skilldistillery.eleireportingapp.entities.Address;
 import com.skilldistillery.eleireportingapp.entities.Department;
+import com.skilldistillery.eleireportingapp.entities.Officer;
 
 public interface DepartmentDAO {
 	
 	public Department findById(int id);
 	public Department findByAddress(Address address);
 	public Department findByName(String name);
+	public List<Department> findByOfficerId(int id);
 	public List<Department> findAll();
 	public Department create(Department department);
 	public Department update(int id, Department department);

@@ -37,12 +37,15 @@ public class Officer {
 	@ManyToMany(mappedBy = "officers")
 	private List<Department> departments;
 	
-	@ManyToOne(cascade= {CascadeType.ALL})
+	@ManyToOne(cascade= {CascadeType.PERSIST})
 	@JoinColumn(name="supervisor_id")
 	private Officer supervisor;
 	
 	@OneToMany(mappedBy = "supervisor")
 	private List<Officer> subordinates;
+	
+	@OneToMany(mappedBy = "officer")
+	private List<Incident> incidents;
 	
 	public Officer() {
 		super();
@@ -118,6 +121,14 @@ public class Officer {
 			departments.remove(department);
 		}
 		return !departments.contains(department);
+	}
+	
+	public List<Incident> getIncidents() {
+		return incidents;
+	}
+
+	public void setIncidents(List<Incident> incidents) {
+		this.incidents = incidents;
 	}
 
 	@Override

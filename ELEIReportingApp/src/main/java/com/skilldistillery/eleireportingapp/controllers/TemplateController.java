@@ -27,8 +27,9 @@ public class TemplateController {
 		User loggedInUser = (User) session.getAttribute("loggedInUser");
 		
 		if (loggedInUser != null) {
-			model.addAttribute("loggedInUser", loggedInUser);
-			model.addAttribute("userOfficer", officerDao.findByPerson(loggedInUser.getPerson()));
+//			model.addAttribute("loggedInUser", loggedInUser);
+//			model.addAttribute("userOfficer", officerDao.findByPerson(loggedInUser.getPerson()));
+			
 			return "thome";
 		} else {
 			return "tlogin";

@@ -32,6 +32,7 @@ public class OfficerDAOImpl implements OfficerDAO {
 				.setParameter("id", person.getId())
 				.getResultList()
 				.get(0);
+		result.getDepartments().size();
 		return result;
 	}
 

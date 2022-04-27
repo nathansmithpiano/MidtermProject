@@ -9,20 +9,20 @@
 	</c:when>
 	
 	<c:otherwise>
-
-		<table id="addressesTable" class="table table-bordered table-striped">
+	
+		<table>
+		
 			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Description</th>
-					<th>Street 1</th>
-					<th>Street 2</th>
-					<th>City</th>
-					<th>State</th>
-					<th>Zip</th>
-					<th>Flag</th>
-				</tr>
+				<th>Address ID</th>
+				<th>Description</th>
+				<th>Street 1</th>
+				<th>Street 2</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Zip</th>
+				<th>Flag</th>
 			</thead>
+			
 			<tbody>
 			
 				<c:forEach var="address" items="${addressList }">
@@ -41,9 +41,11 @@
 						<td>${address.flag }</td>
 					</tr>
 				</c:forEach>
+				
 			</tbody>
+			
 		</table>
-		
-	</c:otherwise>
 
+	</c:otherwise>
+	
 </c:choose>

@@ -77,10 +77,8 @@ class IncidentTest {
 //		| 9901 Grant St |
 //		+---------------+
 		
-		
 		assertEquals("9901 Grant St", incident.getAddress().getStreetOne());
 		
-	
 	}
 	
 	@Test
@@ -98,7 +96,6 @@ class IncidentTest {
 		
 		assertEquals("Shoplifting", incident.getCaseFile().getSuspectedCrime());
 		
-	
 	}
 	
 	@Test
@@ -138,5 +135,22 @@ class IncidentTest {
 		assertTrue(incident.getNotes().size() == 1);
 		
 	}
+	
+	@Test
+	@DisplayName("Testing Incident m:1 Department mapping")
+	void test6() {
+		
+		assertNotNull(incident);
+		assertNotNull(incident.getDepartment());
+		assertEquals(1, incident.getDepartment().getId());
+	}
 
+	@Test
+	@DisplayName("Testing Incident m:1 Officer mapping")
+	void test7() {
+		
+		assertNotNull(incident);
+		assertNotNull(incident.getOfficer());
+		assertEquals(2, incident.getOfficer().getId());
+	}
 }

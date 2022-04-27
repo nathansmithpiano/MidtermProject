@@ -9,21 +9,22 @@
 	</c:when>
 	
 	<c:otherwise>
-
-		<table id="officerTable" class="table table-bordered table-striped">
+	
+		<table>
+		
 			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Badge</th>
-					<th>Name</th>
-					<th>Supervisor</th>
-					<th>Subordinates</th>
-					<th>Image</th>
-				</tr>
+				<th>ID</th>
+				<th>Badge</th>
+				<th>Name</th>
+				<th>Supervisor</th>
+				<th>Subordinates</th>
+				<th>Image</th>
 			</thead>
+			
 			<tbody>
 			
 				<c:forEach var="officer" items="${officerList }">
+				
 					<tr>
 						<td>${officer.id }</td>
 						<td>
@@ -55,10 +56,14 @@
 							</a>
 						</td>
 					</tr>
+					
 				</c:forEach>
+				
 			</tbody>
+			
 		</table>
 		
 	</c:otherwise>
-
+	
 </c:choose>
+		
