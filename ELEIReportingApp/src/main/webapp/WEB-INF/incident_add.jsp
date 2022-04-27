@@ -95,6 +95,9 @@
 										<input class="btn btn-primary" type="hidden" id="selectedAddress">
 										<input type="hidden" id="addressId" name="addressId">
 										<br>
+										<input class="btn btn-primary" type="hidden" id="selectedPerson">
+										<input type="hidden" id="personId" name="personId">
+										<br>
 										<input type="submit" value="Submit">
 									</form>
 
@@ -168,8 +171,8 @@
 		});
 	</script>
 	
-	<script>
 	<!-- ADDRESS SELECTION STUFF -->
+	<script>
 		function addAddressRowHandlers() {
 		    var table = document.getElementById("addressesTable");
 		    var rows = table.getElementsByTagName("tr");
@@ -182,15 +185,15 @@
 		                                        var cell = row.getElementsByTagName("td")[0];
 		                                        var id = cell.innerHTML;
 		                                        
-		                                        var addressTextField = document.getElementById('selectedAddress');
+		                                        var addressButton = document.getElementById('selectedAddress');
 		                                        /* put something into selectedAddress button */
-		                                        addressTextField.value = row.getElementsByTagName("td")[2].innerHTML;
+		                                        addressButton.value = row.getElementsByTagName("td")[2].innerHTML;
 		                                        
 		                                        /* hide/show toggle */
-		                                        var inputType = addressTextField.type;
+		                                        var inputType = addressButton.type;
 		                                        
 	                                        	if (inputType == 'hidden') {
-		                                        	addressTextField.type = 'button';
+	                                        		addressButton.type = 'button';
 		                                        }
 	                                        	
 	                                        	//set addressId to addressId in form
@@ -202,7 +205,6 @@
 		        currentRow.onclick = createClickHandler(currentRow);
 		    }
 		}
-	<!-- PERSON SELECTION STUFF -->
 		function addPersonRowHandlers() {
 		    var table = document.getElementById("personsTable");
 		    var rows = table.getElementsByTagName("tr");
@@ -212,22 +214,40 @@
 		            function(row) 
 		            {
 		                return function() { 
-		                                        /* var cell = row.getElementsByTagName("td")[0];
+		                                        var cell = row.getElementsByTagName("td")[0];
 		                                        var id = cell.innerHTML;
 		                                        
-		                                        var addressTextField = document.getElementById('selectedAddress');
-		                                        put something into selectedAddress button
-		                                        addressTextField.value = row.getElementsByTagName("td")[2].innerHTML;
+		                                        var personButton = document.getElementById('selectedPerson');
+		                                        /* put something into selectedPerson button */
 		                                        
-		                                        hide/show toggle
-		                                        var inputType = addressTextField.type;
+		                                        var fullName = "";
+		                                        if (row.getElementsByTagName("td")[1].innerHTML != "") {
+		                                        	fullName += row.getElementsByTagName("td")[1].innerHTML;
+		                                        }
+		                                        if (row.getElementsByTagName("td")[2].innerHTML != "") {
+		                                        	if (fullName != "") {
+		                                        		fullName += " ";
+		                                        	}
+		                                        	fullName += row.getElementsByTagName("td")[2].innerHTML;
+		                                        }
+		                                        if (row.getElementsByTagName("td")[3].innerHTML != "") {
+		                                        	if (fullName != "") {
+		                                        		fullName += " ";
+		                                        	}
+		                                        	fullName += row.getElementsByTagName("td")[3].innerHTML;
+		                                        }
+		                                        /* personButton.value = row.getElementsByTagName("td")[2].innerHTML; */
+		                                        personButton.value = fullName;
+		                                        
+		                                        /* hide/show toggle */
+		                                        var inputType = personButton.type;
 		                                        
 	                                        	if (inputType == 'hidden') {
-		                                        	addressTextField.type = 'button';
+	                                        		personButton.type = 'button';
 		                                        }
 	                                        	
-	                                        	set addressId to addressId in form
-	                                        	document.getElementById('addressId').value = id; */
+	                                        	//set personId to personId in form
+	                                        	document.getElementById('personId').value = id;
 		                                        
 		                                 };
 		            };

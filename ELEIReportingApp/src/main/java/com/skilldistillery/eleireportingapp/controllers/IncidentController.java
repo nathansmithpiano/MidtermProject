@@ -73,9 +73,9 @@ public class IncidentController {
 	@RequestMapping(path = { "createIncident.do" })
 	public String createIncident(Incident incident, Model model, HttpSession session, 
 					@RequestParam("departmentId") int departmentId,
-					@RequestParam("addressId") int addressId) {
-		incident.setDepartment(departmentDao.findById(departmentId));
-		incident.setAddress(addressDao.findById(addressId));
+					@RequestParam("addressId") int addressId,
+					@RequestParam("personId") int personId) {
+		
 		Officer userOfficer = (Officer) session.getAttribute("userOfficer");
 		
 		if (userOfficer == null) {
@@ -83,6 +83,9 @@ public class IncidentController {
 		}
 		
 		incident.setOfficer(officerDao.findById(userOfficer.getId()));
+		incident.setDepartment(departmentDao.findById(departmentId));
+		incident.setAddress(addressDao.findById(addressId));
+		incident.addPerson(personDao.findById(personId));
 		
 		incidentDao.create(incident);
 
