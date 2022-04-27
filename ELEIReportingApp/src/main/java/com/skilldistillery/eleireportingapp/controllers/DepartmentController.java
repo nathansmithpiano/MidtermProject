@@ -1,5 +1,7 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,16 @@ public class DepartmentController {
 	
 	@Autowired
 	private DepartmentDAO departmentDAO;
+	
+	@RequestMapping(path = "officerDepartment.do")
+	public String officerDepartment(Model model, HttpSession session) {
+		return "department";
+	}
+	
+	@RequestMapping(path = "departmentOfficers.do")
+	public String departmentOfficers(Model model, HttpSession session) {
+		return "officers";
+	}
 	
 	@RequestMapping(path = {"departments.do" } )
 	public String department(Model model) {

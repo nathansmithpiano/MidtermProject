@@ -2,6 +2,8 @@ package com.skilldistillery.eleireportingapp.controllers;
 
 import java.time.LocalDate;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,12 +29,29 @@ public class PersonController {
 		model.addAttribute("personList", personDao.findAll());
 		return "persons";
 	}
+	
+	@RequestMapping(path = "officerPersons.do")
+	public String officerPersons(Model model, HttpSession session) {
+		model.addAttribute("level", 1);
+		return "persons";
+	}
+	
+	@RequestMapping(path = "allPersons.do")
+	public String allPersons(Model model, HttpSession session) {
+		model.addAttribute("level", 2);
+		return "persons";
+	}
 
 	@RequestMapping(path = { "person.do" })
 	public String person(Model model, @RequestParam("id") int id) {
 		Person person = personDao.findById(id);
 		model.addAttribute("person", person);
 		return "person";
+	}
+	
+	@RequestMapping(path = "addPerson.do")
+	public String addPerson(Model model, HttpSession session) {
+		return "person_add";
 	}
 
 	@RequestMapping(path = { "addPerson.do" })

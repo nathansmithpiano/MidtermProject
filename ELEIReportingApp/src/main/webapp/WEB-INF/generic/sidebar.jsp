@@ -44,7 +44,7 @@
 				<!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 				
 				<!-- Incident Options -->
-				<li class="nav-item">
+				<li class="nav-item" id="nav-incidents">
 					<a href="#" class="nav-link">
 						<i class="far fa-solid fa-person-burst nav-icon"></i>
 						<p>
@@ -54,7 +54,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="incidents.do" class="nav-link">
+							<a href="officerIncidents.do" class="nav-link" id="nav-incidents-my">
 								<i class="far fa-solid fa-file nav-icon"></i>
 								<p>
 									My Incidents
@@ -63,7 +63,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="pages/forms/advanced.html" class="nav-link">
+							<a href="allIncidents.do" class="nav-link" id="nav-incidents-all">
 								<i class="far fa-solid fa-file-shield nav-icon"></i>
 								<p>
 									All Incidents
@@ -72,8 +72,8 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="addIncident.do" class="nav-link">
-								<i class="far fa-solid fa-file-circle-plus  nav-icon"></i>
+							<a href="addIncident.do" class="nav-link" id="nav-incidents-add">
+								<i class="far fa-solid fa-file-circle-plus nav-icon"></i>
 								<p>
 									Add Incident
 									<i class="right fa-solid fa-plus"></i>
@@ -84,19 +84,41 @@
 				</li> <!-- end Incident Options -->
 				
 				<!-- CaseFile Options -->
-				<li class="nav-item">
+				<li class="nav-item" id="nav-casefiles">
 					<a href="caseFiles.do?id=TODO" class="nav-link">
 						<i class="far fa-solid fa-briefcase nav-icon"></i>
 						<p>
 							CASEFILES
+							<i class="right fa-solid fa-angle-left"></i>
 						</p>
 					</a>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="officerCaseFiles.do" class="nav-link" id="nav-casefiles-my">
+								<i class="far fa-solid fa-location-dot nav-icon"></i>
+								<p>
+									My Casefiles
+									<i class="right fa-solid fa-person-military-pointing"></i>
+								</p>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav nav-treeview">
+						<li class="nav-item">
+							<a href="allCaseFiles.do" class="nav-link" id="nav-casefiles-my">
+								<i class="far fa-solid fa-location-dot nav-icon"></i>
+								<p>
+									All Casefiles
+									<i class="right fa-solid fa-person-military-pointing"></i>
+								</p>
+							</a>
+						</li>
+					</ul>
+					
 				</li> <!-- end CaseFile Options -->
 				
-				
-				
 				<!-- Address Options -->
-				<li class="nav-item">
+				<li class="nav-item" id="nav-addresses">
 					<a href="#" class="nav-link">
 						<i class="far fa-solid fa-map-location-dot nav-icon"></i>
 						<p>
@@ -106,7 +128,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="pages/forms/general.html" class="nav-link">
+							<a href="officerAddresses.do" class="nav-link" id="nav-addresses-my">
 								<i class="far fa-solid fa-location-dot nav-icon"></i>
 								<p>
 									My Addresses
@@ -117,7 +139,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="pages/forms/general.html" class="nav-link">
+							<a href="allAddresses.do" class="nav-link" id="nav-addresses-all">
 								<i class="far fa-solid fa-map nav-icon"></i>
 								<p>
 									All Addresses
@@ -129,7 +151,7 @@
 				</li> <!-- end Address Options -->
 				
 				<!-- Person Options -->
-				<li class="nav-item">
+				<li class="nav-item" id="nav-persons">
 					<a href="#" class="nav-link">
 						<i class="far fa-solid fa-people-group nav-icon"></i>
 						<p>
@@ -139,7 +161,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="pages/forms/general.html" class="nav-link">
+							<a href="officerPersons.do" class="nav-link" id="nav-persons-my">
 								<i class="far fa-solid fa-person-military-to-person nav-icon"></i>
 								<p>
 									My Persons
@@ -150,7 +172,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="pages/forms/general.html" class="nav-link">
+							<a href="allPersons.do" class="nav-link" id="nav-persons-all">
 								<i class="far fa-solid fa-users-between-lines nav-icon"></i>
 								<p>
 									All Persons
@@ -161,7 +183,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="addPerson.do" class="nav-link">
+							<a href="addPerson.do" class="nav-link" id="nav-persons-add">
 								<i class="far fa-solid fa-person-circle-plus nav-icon"></i>
 								<p>
 									Add Person
@@ -173,7 +195,7 @@
 				</li> <!-- end Person Options -->
 				
 				<!-- Department Options -->
-				<li class="nav-item">
+				<li class="nav-item" id="nav-department">
 					<a href="#" class="nav-link">
 						<i class="far fa-solid fa-building-shield nav-icon"></i>
 						<p>
@@ -183,7 +205,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="department.do?id=TODO" class="nav-link">
+							<a href="officerDepartment.do" class="nav-link" id="nav-department-my">
 								<i class="far fa-solid fa-building-circle-arrow-right nav-icon"></i>
 								<p>
 									My Department
@@ -194,22 +216,11 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="departmentOfficers.do" class="nav-link">
+							<a href="departmentOfficers.do" class="nav-link" id="nav-department-all-officers">
 								<i class="far fa-solid fa-building-user nav-icon"></i>
 								<p>
 									All Officers
 									<i class="right fa-solid fa-building-shield"></i>
-								</p>
-							</a>
-						</li>
-					</ul>
-					<ul class="nav nav-treeview">
-						<li class="nav-item">
-							<a href="tofficer.do?id=${sessionScope.userOfficer.id }" class="nav-link">
-								<i class="far fa-solid fa-address-card nav-icon"></i>
-								<p>
-									Officer Profile
-									<i class="right fa-solid fa-person-military-pointing"></i>
 								</p>
 							</a>
 						</li>
@@ -220,7 +231,7 @@
 				<!-- Quick Links -->
 				<li class="nav-header">QUICK LINKS</li>
 				<li class="nav-item">
-					<a href="addIncident.do" class="nav-link">
+					<a href="addIncident.do" class="nav-link"  id="nav-quick-add-incident">
 						<i class="far fa-solid fa-file-circle-plus  nav-icon"></i>
 						<p>
 							Add Incident
@@ -229,7 +240,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="addPerson.do" class="nav-link">
+					<a href="addPerson.do" class="nav-link" id="nav-quick-add-person">
 						<i class="far fa-solid fa-person-circle-plus nav-icon"></i>
 						<p>
 							Add Person
@@ -238,7 +249,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="officer.do?id=TODO" class="nav-link">
+					<a href="officer.do?id=${sessionScope.userOfficer.id }" class="nav-link" id="nav-quick-officer-profile">
 						<i class="far fa-solid fa-address-card nav-icon"></i>
 						<p>
 							Officer Profile
@@ -247,7 +258,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="tlogout.do" class="nav-link">
+					<a href="tlogout.do" class="nav-link" id="nav-quick-logout">
 						<i class="far fa-solid fa-right-from-bracket nav-icon"></i>
 						<p>
 							Logout

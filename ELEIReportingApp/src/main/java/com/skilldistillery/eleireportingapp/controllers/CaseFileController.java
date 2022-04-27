@@ -13,6 +13,18 @@ public class CaseFileController {
 
 	@Autowired
 	private CaseFileDAO caseFileDao;
+	
+	@RequestMapping(path = { "officerCaseFiles.do" })
+	public String allCaofficerCaseFilessefiles(Model model) {
+		model.addAttribute("level", 1);
+		return "casefiles";
+	}
+	
+	@RequestMapping(path = { "allCaseFiles.do" })
+	public String allCaseFiles(Model model) {
+		model.addAttribute("level", 2);
+		return "casefiles";
+	}
 
 	@RequestMapping(path = { "goToCaseFile.do" })
 	public String goToCaseFile(Model model) {
