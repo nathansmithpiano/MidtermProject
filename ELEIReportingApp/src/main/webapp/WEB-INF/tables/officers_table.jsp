@@ -27,10 +27,12 @@
 					<tr>
 						<td>${officer.id }</td>
 						<td>
-							${officer.badge }
+							<a href="officer.do?id=${officer.id }">
+								${officer.badge }
+							</a>
 						</td>
 						<td>
-							<a href="officer.do?id=${officer.person.id }">
+							<a href="person.do?id=${officer.person.id }">
 								${officer.person.fullName }
 							</a>
 						</td>
@@ -41,21 +43,19 @@
 								</a>
 							</c:if>
 						</td>
-						<td>${officer.subordinates.size() }<td>
+						<td>${officer.subordinates.size() }</td>
 						<td>
 							<c:choose>
 								<c:when test="${empty officer.imageUrl }">
 								</c:when>
 								<c:otherwise>
-									<img src="${officer.imageUrl }" />
+									<img src="${officer.imageUrl }">
 								</c:otherwise>
 							</c:choose>
-							<a href="person.do?id=${user.person.id }">
-								${user.person.fullName }
-							</a>
 						</td>
 					</tr>
 				</c:forEach>
+				
 			</tbody>
 		</table>
 		

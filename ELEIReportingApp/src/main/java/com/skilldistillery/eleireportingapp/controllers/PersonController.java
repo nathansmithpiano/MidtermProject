@@ -1,6 +1,7 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,6 +24,26 @@ public class PersonController {
 
 	@Autowired
 	private EthnicityDAO ethnicityDao;
+	
+	// USING
+	
+	@RequestMapping(path = "allPersons.do")
+	public String allPersons(Model model) {
+		List<Person> personList = personDao.findAll();
+		model.addAttribute("personList", personList);
+		model.addAttribute("level", 2);
+		return "persons";
+	}
+	
+	@RequestMapping(path = { "person.do" })
+	public String person(Model model, @RequestParam("id") int id) {
+		Person person = personDao.findById(id);
+		model.addAttribute("person", person);
+		model.addAttribute("level", 1);
+		return "person";
+	}
+	
+	// NOT USING
 
 	@RequestMapping(path = { "persons.do" })
 	public String users(Model model) {
@@ -34,19 +55,6 @@ public class PersonController {
 	public String officerPersons(Model model, HttpSession session) {
 		model.addAttribute("level", 1);
 		return "persons";
-	}
-	
-	@RequestMapping(path = "allPersons.do")
-	public String allPersons(Model model, HttpSession session) {
-		model.addAttribute("level", 2);
-		return "persons";
-	}
-
-	@RequestMapping(path = { "person.do" })
-	public String person(Model model, @RequestParam("id") int id) {
-		Person person = personDao.findById(id);
-		model.addAttribute("person", person);
-		return "person";
 	}
 	
 	@RequestMapping(path = "addPerson.do")

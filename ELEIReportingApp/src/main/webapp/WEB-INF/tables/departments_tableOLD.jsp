@@ -9,20 +9,23 @@
 	</c:when>
 	
 	<c:otherwise>
-
-		<table id="officerTable" class="table table-bordered table-striped">
+	
+		<table>
+		
 			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Address</th>
-					<th>Officers</th>
-					<th>Incidents</th>
-				</tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Officers</th>
+				<th>IncidentPersons</th>
+				<th>Incidents</th>
+				<th>CaseFiles</th>
 			</thead>
+			
 			<tbody>
 			
 				<c:forEach var="department" items="${departmentList }">
+				
 					<tr>
 						<td>${department.id }</td>
 						<td>
@@ -40,12 +43,18 @@
 								${department.officers.size() }
 							</a>
 						</td>
-						<td>${department.incidents.size() }</td>
+						<td>incidentpersons</td>
+						<td>incidents</td>
+						<td>casefiles</td>
 					</tr>
+					
 				</c:forEach>
+				
 			</tbody>
+			
 		</table>
 		
 	</c:otherwise>
-
+	
 </c:choose>
+		

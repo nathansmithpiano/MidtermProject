@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Title Goes Here</title>
+<title>${department.name }</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -32,14 +32,14 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">department.jsp</h1>
+							<h1 class="m-0">${department.name }</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Root</a></li>
-								<li class="breadcrumb-item active">Child</li>
+								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item active">${department.name }</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -57,14 +57,34 @@
 		    					<!-- Card header -->
 		    					<div class="card-header">
 		    						<h3 class="card-title">
-		    							Card Header Goes Here
+		    							${department.name }
 		    						</h3>
     						
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
-	    							<h3>Card Body Goes Here</h3>
+	    							<ul>
+										<li>ID: ${department.id }</li>
+										<li>Name: ${department.name }</li>
+										<li>Address: 
+											<a href="address.do?id=${department.address.id }">
+												${department.address.getFormattedAddress() }
+											</a>
+										</li>
+									</ul>
+									
+									<!-- Incident Stuff -->
+									<br />
+									<hr />
+									<h3>Incidents</h3>
+									${department.incidents }
+									
+									<!-- Officer Stuff -->
+									<br />
+									<hr />
+									<h3>Officers</h3>
+									${department.officers }
 	
 	    						</div> <!-- end card-body -->
 								
@@ -81,8 +101,7 @@
 	
 	<!-- Changing sidebar active page -->
 	<script>
-		document.getElementById("nav-department").className = "nav-item menu-open";
-		document.getElementById("nav-department-my").className = "nav-link active";
+		document.getElementById("nav-departments").className = "nav-item active";
 	</script>
 	
 	<!-- REQUIRED SCRIPTS -->

@@ -36,7 +36,7 @@
 							</a>
 						</td>
 						<td>
-							<a href="casefile.do?id=${incident.caseFile.id }">
+							<a href="caseFile.do?id=${incident.caseFile.id }">
 								${incident.caseFile.caseNumber }
 							</a>
 						</td>
@@ -45,6 +45,7 @@
 						<td>${incident.flag }</td>
 					</tr>
 				</c:forEach>
+				
 			</tbody>
 		</table>
 		

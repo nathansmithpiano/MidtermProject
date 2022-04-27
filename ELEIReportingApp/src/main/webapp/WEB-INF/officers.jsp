@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Title Goes Here</title>
+<title>Officers</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -38,8 +38,8 @@
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Root</a></li>
-								<li class="breadcrumb-item active">Child</li>
+								<li class="breadcrumb-item"><a href="#">Home</a></li>
+								<li class="breadcrumb-item active">Officers</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -57,14 +57,12 @@
 		    					<!-- Card header -->
 		    					<div class="card-header">
 		    						<h3 class="card-title">
-		    							Card Header Goes Here
+		    							Officers
 		    						</h3>
     						
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
-	    							
-	    							<h3>Card Body Goes Here</h3>
 	    							
 	    							<jsp:include page="tables/officers_table.jsp" />
 	
@@ -83,8 +81,8 @@
 	
 	<!-- Changing sidebar active page -->
 	<script>
-		document.getElementById("nav-department").className = "nav-item menu-open";
-		document.getElementById("nav-department-all-officers").className = "nav-link active";
+		document.getElementById("nav-departments").className = "nav-item menu-open";
+		document.getElementById("nav-departments-all-officers").className = "nav-link active";
 	</script>
 	
 	<!-- REQUIRED SCRIPTS -->
@@ -107,6 +105,12 @@
 			"autoWidth": false
 			});
 		});
+	</script>
+	
+	<!-- Changing sidebar active page -->
+	<script>
+		document.getElementById("nav-departments").className = "nav-item menu-open";
+		document.getElementById("nav-departments-all-officers").className = "nav-link active";
 	</script>
 	
 </body>

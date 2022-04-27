@@ -64,7 +64,7 @@
     					
 	    						<div class="card-body">
 	    							
-	    							<h3>Card Body Goes Here</h3>
+	    							<jsp:include page="tables/persons_table.jsp" />
 	
 	    						</div> <!-- end card-body -->
 								
@@ -93,5 +93,24 @@
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
+	
+	<!-- TABLE SCRIPTS -->
+	<jsp:include page="tables/table_scripts.jsp" />
+	
+	<!-- SPECIFIC TABLE FEATURES -->
+	<script>
+		$(function () {
+			$("#personsTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+	</script>
 </body>
 </html>

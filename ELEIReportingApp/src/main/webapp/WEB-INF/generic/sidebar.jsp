@@ -5,7 +5,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
 	<!-- Brand Logo -->
-	<a href="thome.do" class="brand-link">
+	<a href="home.do" class="brand-link">
 		<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
 		<span class="brand-text font-weight-light">ELEIReportingApp</span>
 	</a>
@@ -85,7 +85,7 @@
 				
 				<!-- CaseFile Options -->
 				<li class="nav-item" id="nav-casefiles">
-					<a href="caseFiles.do?id=TODO" class="nav-link">
+					<a href="#" class="nav-link">
 						<i class="far fa-solid fa-briefcase nav-icon"></i>
 						<p>
 							CASEFILES
@@ -194,21 +194,21 @@
 					</ul>
 				</li> <!-- end Person Options -->
 				
-				<!-- Department Options -->
-				<li class="nav-item" id="nav-department">
+				<!-- Departments Options -->
+				<li class="nav-item" id="nav-departments">
 					<a href="#" class="nav-link">
 						<i class="far fa-solid fa-building-shield nav-icon"></i>
 						<p>
-							DEPARTMENT
+							DEPARTMENTS
 							<i class="right fa-solid fa-angle-left"></i>
 						</p>
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="officerDepartment.do" class="nav-link" id="nav-department-my">
+							<a href="officerDepartments.do" class="nav-link" id="nav-departments-my">
 								<i class="far fa-solid fa-building-circle-arrow-right nav-icon"></i>
 								<p>
-									My Department
+									My Departments
 									<i class="right fa-solid fa-person-military-pointing"></i>
 								</p>
 							</a>
@@ -216,7 +216,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="departmentOfficers.do" class="nav-link" id="nav-department-all-officers">
+							<a href="departmentOfficers.do" class="nav-link" id="nav-departments-all-officers">
 								<i class="far fa-solid fa-building-user nav-icon"></i>
 								<p>
 									All Officers

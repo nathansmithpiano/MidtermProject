@@ -22,9 +22,38 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentDAO departmentDAO;
 	
-	@RequestMapping(path = "officerDepartment.do")
-	public String officerDepartment(Model model, HttpSession session) {
-		return "department";
+	// USING
+	
+	@RequestMapping(path = "officerDepartments.do")
+	public String officerDepartments(Model model, HttpSession session) {
+		User loggedInUser;
+		Officer userOfficer;
+		
+		//verify user is logged in
+		loggedInUser = (User) session.getAttribute("loggedInUser");
+		
+		if (loggedInUser == null) {
+			System.err.println("DepartmentController officerDepartments - loggedInUser is null");
+			return "tlogin";
+		} else {
+			//verfiy loggedInUser in session and select
+			userOfficer = (Officer) session.getAttribute("userOfficer");
+			if (userOfficer == null) {
+				System.err.println("DepartmentController officerDepartments - userOfficer is null");
+				return null;
+			}
+		}
+		
+		List<Department> departmentList = departmentDAO.findByOfficerId(userOfficer.getId());
+		
+		if (departmentList.size() == 0) {
+			System.err.println("DepartmentController officerDepartments - departmentList.size() is null");
+		}
+		
+		model.addAttribute("level", 1);
+		model.addAttribute("departmentList", departmentList);
+		
+		return "departments";
 	}
 	
 	@RequestMapping(path = "departmentOfficers.do")
@@ -37,9 +66,9 @@ public class DepartmentController {
 		
 		if (loggedInUser == null) {
 			System.err.println("DepartmentController departmentOfficers - loggedInUser is null");
-			return null;
+			return "tlogin";
 		} else {
-			//select logged in officer
+			//verfiy loggedInUser in session and select
 			userOfficer = (Officer) session.getAttribute("userOfficer");
 			if (userOfficer == null) {
 				System.err.println("DepartmentController departmentOfficers - userOfficer is null");
@@ -71,6 +100,8 @@ public class DepartmentController {
 		model.addAttribute("officerList", officerList);
 		return "officers";
 	}
+	
+	// NOT USING
 	
 	@RequestMapping(path = {"departments.do" } )
 	public String department(Model model) {

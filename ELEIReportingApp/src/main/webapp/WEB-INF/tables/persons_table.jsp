@@ -9,25 +9,25 @@
 	</c:when>
 	
 	<c:otherwise>
-	
-		<table>
-		
+
+		<table id="personsTable" class="table table-bordered table-striped">
 			<thead>
-				<th>ID</th>
-				<th>First</th>
-				<th>Middle</th>
-				<th>Last</th>
-				<th>Title</th>
-				<th>Birthdate</th>
-				<th>Gender</th>
-				<th>Ethnicity</th>
-				<th>Description</th>
-				<th>Flag</th>
+				<tr>
+					<th>ID</th>
+					<th>First</th>
+					<th>Middle</th>
+					<th>Last</th>
+					<th>Title</th>
+					<th>Birthdate</th>
+					<th>Gender</th>
+					<th>Ethnicity</th>
+					<th>Description</th>
+					<th>Flag</th>
+				</tr>
 			</thead>
-			
 			<tbody>
+			
 				<c:forEach var="person" items="${personList }">
-				
 					<tr>
 						<td>
 							<a href="person.do?id=${person.id }">
@@ -44,13 +44,10 @@
 						<td>${person.description }</td>
 						<td>${person.flag }</td>
 					</tr>
-					
 				</c:forEach>
 			</tbody>
-			
 		</table>
 		
 	</c:otherwise>
-	
+
 </c:choose>
-		

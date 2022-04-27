@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
 import com.skilldistillery.eleireportingapp.data.IncidentDAO;
@@ -19,6 +20,16 @@ public class IncidentController {
 	
 	@Autowired
 	private AddressDAO addressDao;
+	
+	
+	//USING
+	
+	@RequestMapping(path = "incident.do")
+	public String incident(Model model, @RequestParam("id") int id) {
+		Incident incident = incidentDao.findById(id);
+		model.addAttribute("incident", incident);
+		return "incident";
+	}
 	
 	@RequestMapping(path = "officerIncidents.do")
 	public String officerIncidents(Model model, HttpSession session) {
@@ -38,6 +49,8 @@ public class IncidentController {
 		model.addAttribute("incidentList", incidentDao.findAll());
 		return "incidents";
 	}
+	
+	//NOT USING
 	
 	@RequestMapping(path = { "goToIncident.do" })
 	public String goToIncident(Model model) {

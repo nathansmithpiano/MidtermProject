@@ -25,7 +25,7 @@ public class OfficerController {
 	public String officer(Model model, @RequestParam("id") int id) {
 		Officer officer = officerDao.findById(id);
 		model.addAttribute("officer", officer);
-		return "tofficer";
+		return "officer";
 	}
 
 }
