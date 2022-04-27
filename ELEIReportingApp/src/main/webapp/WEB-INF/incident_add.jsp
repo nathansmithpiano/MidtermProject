@@ -78,6 +78,10 @@
 										<br>
 										<input type="submit" value="Submit">
 									</form>
+									
+									<a href="goToAddNewAddress.do"><button>Add Address</button></a>
+									
+									<a href="addPerson.do"><button>Add Person</button></a>
 	
 	    						</div> <!-- end card-body -->
 	    						

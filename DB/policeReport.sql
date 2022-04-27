@@ -136,6 +136,33 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `officer`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `officer` ;
+
+CREATE TABLE IF NOT EXISTS `officer` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `person_id` INT NOT NULL,
+  `supervisor_id` INT NULL,
+  `badge` VARCHAR(45) NULL,
+  `image_url` VARCHAR(2000) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_officer_officer1_idx` (`supervisor_id` ASC),
+  UNIQUE INDEX `badge_UNIQUE` (`badge` ASC),
+  CONSTRAINT `fk_officer_person1`
+    FOREIGN KEY (`person_id`)
+    REFERENCES `person` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_officer_officer1`
+    FOREIGN KEY (`supervisor_id`)
+    REFERENCES `officer` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `incident`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `incident` ;
@@ -143,6 +170,7 @@ DROP TABLE IF EXISTS `incident` ;
 CREATE TABLE IF NOT EXISTS `incident` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `address_id` INT NOT NULL,
+  `officer_id` INT NOT NULL,
   `case_id` INT NULL,
   `reason_for_contact` VARCHAR(45) NULL DEFAULT NULL,
   `location` VARCHAR(45) NULL DEFAULT NULL,
@@ -152,6 +180,7 @@ CREATE TABLE IF NOT EXISTS `incident` (
   PRIMARY KEY (`id`),
   INDEX `fk_incident_address1_idx` (`address_id` ASC),
   INDEX `fk_incident_case1_idx` (`case_id` ASC),
+  INDEX `fk_incident_officer1_idx` (`officer_id` ASC),
   CONSTRAINT `fk_incident_address1`
     FOREIGN KEY (`address_id`)
     REFERENCES `address` (`id`)
@@ -160,6 +189,11 @@ CREATE TABLE IF NOT EXISTS `incident` (
   CONSTRAINT `fk_incident_case1`
     FOREIGN KEY (`case_id`)
     REFERENCES `case_file` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_incident_officer1`
+    FOREIGN KEY (`officer_id`)
+    REFERENCES `officer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -294,33 +328,6 @@ CREATE TABLE IF NOT EXISTS `person_note` (
   CONSTRAINT `fk_person_has_note_note1`
     FOREIGN KEY (`note_id`)
     REFERENCES `note` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `officer`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `officer` ;
-
-CREATE TABLE IF NOT EXISTS `officer` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `person_id` INT NOT NULL,
-  `supervisor_id` INT NULL,
-  `badge` VARCHAR(45) NULL,
-  `image_url` VARCHAR(2000) NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_officer_officer1_idx` (`supervisor_id` ASC),
-  UNIQUE INDEX `badge_UNIQUE` (`badge` ASC),
-  CONSTRAINT `fk_officer_person1`
-    FOREIGN KEY (`person_id`)
-    REFERENCES `person` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_officer_officer1`
-    FOREIGN KEY (`supervisor_id`)
-    REFERENCES `officer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -468,15 +475,27 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `officer`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `eleidb`;
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (1, 1, NULL, '2201', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (2, 2, 1, '2202', NULL);
+INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (3, 3, 1, '2001', NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `incident`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (1, 3, 1, 'Dispatched call for service', 'Walmart', '2022-04-22', 'Shoplift', 0);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (2, 6, NULL, 'Suspicious person diggin through trash', 'Home Depot', '2022-04-20', 'Illegal dumping', 0);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (3, 6, 1, 'Dispatched call for service', 'Home Depot', '2022-04-19', 'Shoplift', 0);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (4, 22, NULL, 'Ran a stop sign ', 'Intersection', '2022-04-19', 'Stop Sign violation', 0);
-INSERT INTO `incident` (`id`, `address_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (5, 20, NULL, 'Matched description of suspect', 'Residence', '2022-04-20', 'Suspicious person ', 0);
+INSERT INTO `incident` (`id`, `address_id`, `officer_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (1, 3, 2, 1, 'Dispatched call for service', 'Walmart', '2022-04-22', 'Shoplift', 0);
+INSERT INTO `incident` (`id`, `address_id`, `officer_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (2, 6, 3, NULL, 'Suspicious person diggin through trash', 'Home Depot', '2022-04-20', 'Illegal dumping', 0);
+INSERT INTO `incident` (`id`, `address_id`, `officer_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (3, 6, 2, 1, 'Dispatched call for service', 'Home Depot', '2022-04-19', 'Shoplift', 0);
+INSERT INTO `incident` (`id`, `address_id`, `officer_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (4, 22, 3, NULL, 'Ran a stop sign ', 'Intersection', '2022-04-19', 'Stop Sign violation', 0);
+INSERT INTO `incident` (`id`, `address_id`, `officer_id`, `case_id`, `reason_for_contact`, `location`, `incident_date`, `description`, `flag`) VALUES (5, 20, 2, NULL, 'Matched description of suspect', 'Residence', '2022-04-20', 'Suspicious person ', 0);
 
 COMMIT;
 
@@ -496,6 +515,7 @@ INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `a
 INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (3, 3, NULL, 1, 50, NULL);
 INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (7, 5, 'Suspicous person', 25, 35, 'matched description of suspect');
 INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 5, NULL, 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 3, 'Shoplift', 1, 50, NULL);
 
 COMMIT;
 
@@ -550,18 +570,6 @@ USE `eleidb`;
 INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (4, 1);
 INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (1, 1);
 INSERT INTO `person_note` (`person_id`, `note_id`) VALUES (2, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `officer`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `eleidb`;
-INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (1, 1, NULL, '2201', NULL);
-INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (2, 2, 1, '2202', NULL);
-INSERT INTO `officer` (`id`, `person_id`, `supervisor_id`, `badge`, `image_url`) VALUES (3, 3, 1, '2001', NULL);
 
 COMMIT;
 
