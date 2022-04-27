@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -31,6 +32,9 @@ public class Department {
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(name = "department_employee", joinColumns = @JoinColumn(name = "department_id"), inverseJoinColumns = @JoinColumn(name = "officer_id"))
 	private List<Officer> officers;
+	
+	@OneToMany(mappedBy = "department")
+	private List<Incident> incidents;
 
 	public Department() {
 		super();
@@ -99,6 +103,14 @@ public class Department {
 
 	public void setOfficers(List<Officer> officers) {
 		this.officers = officers;
+	}
+
+	public List<Incident> getIncidents() {
+		return incidents;
+	}
+
+	public void setIncidents(List<Incident> incidents) {
+		this.incidents = incidents;
 	}
 
 	@Override

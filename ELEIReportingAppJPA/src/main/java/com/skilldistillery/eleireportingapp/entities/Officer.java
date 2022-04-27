@@ -44,6 +44,9 @@ public class Officer {
 	@OneToMany(mappedBy = "supervisor")
 	private List<Officer> subordinates;
 	
+	@OneToMany(mappedBy = "officer")
+	private List<Incident> incidents;
+	
 	public Officer() {
 		super();
 	}
@@ -102,6 +105,14 @@ public class Officer {
 
 	public void setSubordinates(List<Officer> subordinates) {
 		this.subordinates = subordinates;
+	}
+
+	public List<Incident> getIncidents() {
+		return incidents;
+	}
+
+	public void setIncidents(List<Incident> incidents) {
+		this.incidents = incidents;
 	}
 
 	public void addDepartment(Department department) {

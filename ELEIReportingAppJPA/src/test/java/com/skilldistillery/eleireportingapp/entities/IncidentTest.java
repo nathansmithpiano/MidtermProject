@@ -138,5 +138,22 @@ class IncidentTest {
 		assertTrue(incident.getNotes().size() == 1);
 		
 	}
-
+	
+	@Test
+	@DisplayName("Testing Incident to department m:o")
+	void test6() {
+		
+		assertNotNull(incident);
+		assertNotNull(incident.getDepartment());
+		assertEquals(1, incident.getDepartment().getId());
+	}
+	@Test
+	@DisplayName("Testing Incident to officer m:o")
+	void test7() {
+		
+		assertNotNull(incident);
+		assertNotNull(incident.getOfficer());
+		assertEquals(2, incident.getOfficer().getId());
+	}
+		
 }
