@@ -39,14 +39,19 @@ public class TemplateController {
 	public String submitLogin(User user, HttpSession session) {
 		User u = userDao.validateLogin(user);
 		
-		if (u == null) {
-			return "redirect:tlogin.do";
-		} else {
+		if (u != null) {
 			session.setAttribute("loggedInUser", u);
 			Officer officer = officerDao.findByPerson(u.getPerson());
 			session.setAttribute("userOfficer", officer);
 			return "thome";
 		}
+		return "tlogin";
+	}
+	
+	@RequestMapping("tlogout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("loggedInUser");
+		return "tlogin";
 	}
 	
 	

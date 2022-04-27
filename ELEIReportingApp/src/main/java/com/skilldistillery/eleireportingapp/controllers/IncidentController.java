@@ -27,9 +27,24 @@ public class IncidentController {
 	public String goToAddNewIncident(Model model) {
 		return "addNewIncident";
 	}
-
+	
 	@RequestMapping(path = { "addNewIncident.do" })
 	public String addNewIncident(Incident incident, Model model) {
+
+		//TODO Pass in a legitimate address
+		incident.setAddress(addressDao.findById(1));
+		incidentDao.create(incident);
+
+		return "incident";
+	}
+	
+	@RequestMapping(path = { "addIncident.do" })
+	public String addIncident(Model model) {
+		return "incident_add";
+	}
+	
+	@RequestMapping(path = { "createIncident.do" })
+	public String createIncident(Incident incident, Model model) {
 
 		//TODO Pass in a legitimate address
 		incident.setAddress(addressDao.findById(1));
