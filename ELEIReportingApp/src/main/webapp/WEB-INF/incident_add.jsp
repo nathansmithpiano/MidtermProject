@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Officer Profile</title>
+<title>Add Incident</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -32,15 +32,14 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">${sessionScope.userOfficer.person.fullName }</h1>
+							<h1 class="m-0">Left Title</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item"><a href="#">Officers</a></li>
-								<li class="breadcrumb-item active">${sessionScope.userOfficer.person.fullName }</li>
+								<li class="breadcrumb-item active">Add Incident</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -58,50 +57,30 @@
 		    					<!-- Card header -->
 		    					<div class="card-header">
 		    						<h3 class="card-title">
-		    							Badge #${sessionScope.userOfficer.badge }
-		    							<c:if test="${not empty sessionScope.userOfficer.supervisor }">
-		    								Supervisor: 
-		    								<a href="officer.do?id=${sessionScope.userOfficer.supervisor.id }">
-		    									${sessionScope.userOfficer.supervisor.person.fullName }
-		   									</a>
-		    							</c:if>
+		    							Header
 		    						</h3>
     						
-	    						<!-- <div class="card-tools">
-	    								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-					                		<i class="fas fa-minus"></i>
-					              		</button>
-	    							</div> -->
-    							
-    							
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
-	    							<table id="table1" class="table table-bordered table-hover">
-	    								<thead>
-	    									<tr>
-	    										<th>Head</th>
-	    										<th>Head</th>
-	    										<th>Head</th>
-	    										<th>Head</th>
-	    										<th>Head</th>
-	    										<th>Head</th>
-	   										</tr>
-	 									</thead>
-	 									<tbody>
-	 										<tr>
-	 											<td>Entry</td>
-	 											<td>Entry</td>
-	 											<td>Entry</td>
-	 											<td>Entry</td>
-	 											<td>Entry</td>
-	 											<td>Entry</td>
-	 										</tr>
-	 									</tbody>
-									</table>
-									
-	    						
+	    							
+	    							<form action="createIncident.do" method="post">
+										<label for="reasonForContact">Reason for contact:</label>
+										<input type="text" name="reasonForContact">
+										<br>
+										<label for="location">Location:</label>
+										<input type="text" name="location">
+										<br>
+							 	 		<label for="description">Description:</label>
+										<textarea name="description" rows="10" cols="30">
+										</textarea>
+										<br>
+										<br>
+										<input type="submit" value="Submit">
+									</form>
+	
 	    						</div> <!-- end card-body -->
+	    						
 	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
@@ -109,14 +88,10 @@
     		</section>
 			
 			
-			
 		</div> <!-- end Content Wrapper. Contains page content -->
 		
 		<jsp:include page="generic/footer.jsp" />
 	</div> <!-- end main div wrapper -->
-	
-	<!-- TABLE SCRIPTS -->
-	<jsp:include page="tables/table_scripts.jsp" />
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
