@@ -34,40 +34,45 @@ public class DepartmentController {
 	}
 	
 	@RequestMapping(path = "officerDepartments.do")
-	public String officerDepartments(Model model, HttpSession session) {
+	public String officerDepartments(Model model, HttpSession session, @RequestParam("type") String type) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
 		
-		User loggedInUser;
-		Officer userOfficer = null;
-		
-		//verify user is logged in
-		loggedInUser = (User) session.getAttribute("loggedInUser");
-		
-		if (loggedInUser != null) {
-			//verfiy loggedInUser in session and select
-			userOfficer = (Officer) session.getAttribute("userOfficer");
+		if (type != null && type.equals("USER")) {
+			User loggedInUser;
+			Officer userOfficer = null;
+			
+			//verify user is logged in
+			loggedInUser = (User) session.getAttribute("loggedInUser");
+			
+			if (loggedInUser != null) {
+				//verfiy loggedInUser in session and select
+				userOfficer = (Officer) session.getAttribute("userOfficer");
+			}
+			
+			if (userOfficer == null) {
+				System.err.println("DepartmentController officerDepartments - userOfficer is null");
+				return null;
+			}
+			
+			List<Department> departmentList = departmentDAO.findByOfficerId(userOfficer.getId());
+			
+			if (departmentList.size() == 0) {
+				System.err.println("DepartmentController officerDepartments - departmentList.size() is null");
+			}
+			
+			model.addAttribute("level", 1);
+			model.addAttribute("departmentList", departmentList);
+			return "departments";
+		} else {
+			// default to return empty list
+			model.addAttribute("incidentList", null);
+			return "departments";
 		}
-		
-		if (userOfficer == null) {
-			System.err.println("DepartmentController officerDepartments - userOfficer is null");
-			return null;
-		}
-		
-		List<Department> departmentList = departmentDAO.findByOfficerId(userOfficer.getId());
-		
-		if (departmentList.size() == 0) {
-			System.err.println("DepartmentController officerDepartments - departmentList.size() is null");
-		}
-		
-		model.addAttribute("level", 1);
-		model.addAttribute("departmentList", departmentList);
-		
-		return "departments";
 	}
 	
-	@RequestMapping(path = "departmentOfficers.do")
+	@RequestMapping(path = "userOfficers.do")
 	public String departmentOfficers(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
@@ -112,6 +117,7 @@ public class DepartmentController {
 			return null;
 		}
 		
+		model.addAttribute("userDepartments", departmentList);
 		model.addAttribute("officerList", officerList);
 		return "officers";
 	}

@@ -32,7 +32,7 @@
 										My Incidents
 									</c:when>
 									<c:when test="${level == 2 }">
-										All Incidents
+										Incidents at ${sessionScope.userOfficer.departments.size() } Departments
 									</c:when>
 									<c:otherwise>
 										Officer Incidents

@@ -13,7 +13,7 @@
 		<!-- Sidebar user panel (optional) -->
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
 			<div class="image">
-				<img src="../images/police-cartoon-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+				<img src="images/police-cartoon-160x160.jpg" class="img-circle elevation-2" alt="User Image">
 			</div>
 			<div class="info">
 				<a href="officer.do?id=${sessionScope.userOfficer.id }" class="d-block">
@@ -213,7 +213,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="departmentOfficers.do" class="nav-link" id="nav-departments-all-officers">
+							<a href="userOfficers.do" class="nav-link" id="nav-departments-all-officers">
 								<i class="far fa-solid fa-building-user nav-icon"></i>
 								<p>
 									All Officers

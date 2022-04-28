@@ -126,11 +126,11 @@ public class IncidentController {
 			model.addAttribute("incidentList", incidentList);
 			model.addAttribute("level", 2);
 			return "incidents";
+		} else {
+			// default to return all incidents
+			model.addAttribute("incidentList", incidentDao.findAll());
+			return "incidents";
 		}
-		
-		// default to return all incidents
-		model.addAttribute("incidentList", incidentDao.findAll());
-		return "incidents";
 	}
 	
 	@RequestMapping(path = { "addIncident.do" })
