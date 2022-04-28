@@ -1,6 +1,8 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,7 @@ import com.skilldistillery.eleireportingapp.data.IncidentDAO;
 import com.skilldistillery.eleireportingapp.data.IncidentPersonDAO;
 import com.skilldistillery.eleireportingapp.data.OfficerDAO;
 import com.skilldistillery.eleireportingapp.data.PersonDAO;
+import com.skilldistillery.eleireportingapp.entities.Department;
 import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
 import com.skilldistillery.eleireportingapp.entities.Officer;
@@ -81,6 +84,9 @@ public class IncidentController {
 		//for sidebar link stuff ("my")
 		if (userOfficer.getId() == id) {
 			model.addAttribute("level", 1);
+		} else {
+			//for any officer
+			model.addAttribute("level", 1);
 		}
 		
 		model.addAttribute("incidentList", officerDao.findById(id).getIncidents());
@@ -88,13 +94,41 @@ public class IncidentController {
 	}
 	
 	@RequestMapping(path = "departmentIncidents.do")
-	public String allIncidents(Model model, HttpSession session) {
+	public String allIncidents(Model model, HttpSession session, @RequestParam("type") String type) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
 		
-		model.addAttribute("level", 2);
-		//TODO: limit to department
+		List<Incident> incidentList = new ArrayList<>();
+		
+		//user requesting all incidents they're attached to
+		if (type != null && type.equals("USER")) {
+			Officer officer = (Officer) session.getAttribute("userOfficer");
+			
+			if (officer == null) {
+				System.err.println("IncidentController departmentIncidents error: officer in session is null");
+			}
+			
+			//get all departments for officer
+			List<Department> departments = departmentDao.findByOfficerId(officer.getId());
+			
+			if (departments.size() == 0) {
+				System.err.println("IncidentController departmentIncidents error: departments.size() is 0");
+			}
+			
+			//add all incidents for each department
+			for (Department department: departments) {
+				//first one here doesn't work, problem with incidentDao findByDepartmentId() - department.incidents property not found
+//				incidentList.addAll(incidentDao.findByDepartmentId(department.getId())); 
+				incidentList.addAll(department.getIncidents());
+			}
+			
+			model.addAttribute("incidentList", incidentList);
+			model.addAttribute("level", 2);
+			return "incidents";
+		}
+		
+		// default to return all incidents
 		model.addAttribute("incidentList", incidentDao.findAll());
 		return "incidents";
 	}

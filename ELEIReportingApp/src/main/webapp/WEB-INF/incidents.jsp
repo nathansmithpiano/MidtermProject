@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Title Goes Here</title>
+<title>Incidents</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -26,10 +26,21 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">All Incidents</h1>
+							<h1 class="m-0">
+								<c:choose>
+									<c:when test="${level == 1}">
+										My Incidents
+									</c:when>
+									<c:when test="${level == 2 }">
+										All Incidents
+									</c:when>
+									<c:otherwise>
+										Officer Incidents
+									</c:otherwise>
+								</c:choose>
+							</h1>
 						</div><!-- /.col -->
 						
-						<!-- Breadcrumbs Title -->
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
@@ -39,7 +50,17 @@
 									</a>
 								</li>
 								<li class="breadcrumb-item active">
-									All Incidents
+									<c:choose>
+										<c:when test="${level == 1}">
+											My Incidents
+										</c:when>
+										<c:when test="${level == 2 }">
+											All incidents
+										</c:when>
+										<c:otherwise>
+											Officer Incidents
+										</c:otherwise>
+									</c:choose>
 								</li>
 							</ol>
 						</div><!-- /.col -->

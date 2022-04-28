@@ -48,21 +48,8 @@
     					<div class="col-12">
     						 <div class="card">
     				
-		    					<!-- Card header -->
-		    					<div class="card-header">
-		    						<h3 class="card-title">
-		    							My Departments
-		    							
-		    						</h3>
-    						
-    							</div> <!-- end Card header -->
-    					
 	    						<div class="card-body">
-	    							
-	    							<h3>My Departments</h3>
-	    							
 	    							<jsp:include page="tables/departments_table.jsp" />
-	
 	    						</div> <!-- end card-body -->
 								
 	    					</div> <!-- end Card -->

@@ -60,7 +60,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a href="departmentIncidents.do" class="nav-link" id="nav-incidents-all">
+							<a href="departmentIncidents.do?type=USER" class="nav-link" id="nav-incidents-all">
 								<i class="far fa-solid fa-file-shield nav-icon"></i>
 								<p>
 									All Incidents
@@ -202,7 +202,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="officerDepartments.do" class="nav-link" id="nav-departments-my">
+							<a href="officerDepartments.do?type=USER" class="nav-link" id="nav-departments-my">
 								<i class="far fa-solid fa-building-circle-arrow-right nav-icon"></i>
 								<p>
 									My Departments

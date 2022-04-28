@@ -45,11 +45,7 @@
 										${department.address.getFormattedAddress() }
 									</a>
 								</td>
-								<td>
-									<a href="departmentofficers.do?id=${department.id }">
-										${department.officers.size() }
-									</a>
-								</td>
+								<td>${department.officers.size() }</td>
 								<td>${department.incidents.size() }</td>
 							</tr>
 						</c:forEach>
