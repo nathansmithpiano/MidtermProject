@@ -1,9 +1,6 @@
 package com.skilldistillery.eleireportingapp.data;
 
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

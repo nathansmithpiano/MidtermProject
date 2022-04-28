@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.eleireportingapp.entities.Department;
 import com.skilldistillery.eleireportingapp.entities.Officer;
 import com.skilldistillery.eleireportingapp.entities.Person;
 

@@ -1,7 +1,5 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.skilldistillery.eleireportingapp.data.IncidentDAO;
 import com.skilldistillery.eleireportingapp.data.NoteDAO;
-import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Note;
 
 @Controller
@@ -71,8 +67,6 @@ public class NoteController {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
-		
-//		Note note = noteDao.findById(id);
 		
 		model.addAttribute(noteDao.delete(id));
 		

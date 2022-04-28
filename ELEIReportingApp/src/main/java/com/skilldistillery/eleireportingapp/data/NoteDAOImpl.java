@@ -9,7 +9,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Note;
 
 @Service

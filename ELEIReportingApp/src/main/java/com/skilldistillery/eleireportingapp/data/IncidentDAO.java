@@ -6,7 +6,6 @@ import java.util.List;
 import com.skilldistillery.eleireportingapp.entities.Address;
 import com.skilldistillery.eleireportingapp.entities.CaseFile;
 import com.skilldistillery.eleireportingapp.entities.Incident;
-import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
 import com.skilldistillery.eleireportingapp.entities.Person;
 
 public interface IncidentDAO {

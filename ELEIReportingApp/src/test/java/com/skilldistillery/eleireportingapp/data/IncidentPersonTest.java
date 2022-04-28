@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
 import com.skilldistillery.eleireportingapp.entities.IncidentPersonId;
-import com.skilldistillery.eleireportingapp.entities.Person;
 
 @SpringBootTest
 @EntityScan(basePackages = { "com.skilldistillery.eleireportingapp" })
@@ -24,11 +23,11 @@ class IncidentPersonTest {
 	@Autowired
 	private IncidentPersonDAOImpl dao;
 	
-	@Autowired
-	private PersonDAOImpl personDao;
-	
-	@Autowired
-	private IncidentDAOImpl incidentDao;
+//	@Autowired
+//	private PersonDAOImpl personDao;
+//	
+//	@Autowired
+//	private IncidentDAOImpl incidentDao;
 	
 	private IncidentPerson entity;
 

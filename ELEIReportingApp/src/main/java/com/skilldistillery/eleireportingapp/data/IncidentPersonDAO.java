@@ -2,10 +2,8 @@ package com.skilldistillery.eleireportingapp.data;
 
 import java.util.List;
 
-import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
 import com.skilldistillery.eleireportingapp.entities.IncidentPersonId;
-import com.skilldistillery.eleireportingapp.entities.Person;
 
 public interface IncidentPersonDAO {
 

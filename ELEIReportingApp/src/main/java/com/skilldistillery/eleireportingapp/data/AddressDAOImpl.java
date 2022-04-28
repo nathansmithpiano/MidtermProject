@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.eleireportingapp.entities.Address;
 import com.skilldistillery.eleireportingapp.entities.Department;
-import com.skilldistillery.eleireportingapp.entities.Officer;
 
 @Service
 @Transactional
