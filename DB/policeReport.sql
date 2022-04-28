@@ -406,7 +406,7 @@ USE `eleidb`;
 INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (1, 1, 'William', 'Aaron', 'Padget', NULL, '1988-06-27', 'Male', 'Police Supervisor', 0);
 INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (2, 3, 'Omar', NULL, 'Hernandez', 'jr', '1995-03-15', 'Male', 'Police Officer', 0);
 INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (3, 1, 'Steven', 'Adam', 'Burris', NULL, '1990-02-07', 'Male', 'Police Officer', 0);
-INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (4, 2, 'John', NULL, 'Terry', NULL, '1992-07-01', 'Male', 'Contacted Person', 0);
+INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (4, 1, 'John', NULL, 'Terry', NULL, '1992-07-01', 'Male', 'Contacted Person', 0);
 INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (5, 1, 'Morty', NULL, 'Smith', NULL, '2000-09-12', 'Male', 'Contacted Person', 0);
 INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (6, 1, 'Rick', NULL, 'Sanchez', NULL, '1975-01-21', 'Male', 'Contacted Person', 0);
 INSERT INTO `person` (`id`, `ethnicity_id`, `first_name`, `middle_name`, `last_name`, `title`, `birthdate`, `gender`, `description`, `flag`) VALUES (7, 1, 'Summer', NULL, 'Smith', NULL, '1995-03-22', 'Female', 'Contacted Person', 0);
@@ -556,6 +556,12 @@ INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gend
 INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (7, 5, 1, NULL, 'Suspicous person', 25, 35, 'matched description of suspect');
 INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 5, 3, NULL, NULL, 1, 50, NULL);
 INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 3, 3, NULL, 'Shoplift', 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (1, 6, 1, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (6, 6, 1, NULL, 'Disruptive person', 20, 30, 'verbal disturbance inside store');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 7, 1, NULL, NULL, 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (4, 7, 1, NULL, 'Robbery', NULL, NULL, 'pulled knife on loss-prevention');
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (2, 8, 1, NULL, NULL, 1, 50, NULL);
+INSERT INTO `incident_person` (`person_id`, `incident_id`, `ethnicity_id`, `gender`, `suspected_crime`, `age_minimum`, `age_maximum`, `description`) VALUES (11, 8, 1, NULL, 'Family Disturbance', 20, 30, 'drunk adult male');
 
 COMMIT;
 
