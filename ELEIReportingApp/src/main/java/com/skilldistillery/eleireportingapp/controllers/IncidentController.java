@@ -84,7 +84,6 @@ public class IncidentController {
 		}
 		
 		model.addAttribute("incidentList", officerDao.findById(id).getIncidents());
-		
 		return "incidents";
 	}
 	
