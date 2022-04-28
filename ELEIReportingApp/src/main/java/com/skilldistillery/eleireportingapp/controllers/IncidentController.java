@@ -154,7 +154,7 @@ public class IncidentController {
 		incident.setAddress(addressDao.findById(addressId));
 //		incident.addPerson(personDao.findById(personId));
 		
-		incidentDao.create(incident);
+		Incident newIncident = incidentDao.create(incident);
 		
 		//personId is zero when creating new person, set in javascript function
 		if (personId == 0) {
@@ -172,7 +172,7 @@ public class IncidentController {
 		incidentPerson.setDescription(incidentPersonDescription);
 		incidentPersonDao.create(incidentPerson);
 
-		return "incident";
+		return "redirect:incident.do?id=" + newIncident.getId();
 	}
 	
 	//NOT USING
