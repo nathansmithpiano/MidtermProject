@@ -43,6 +43,26 @@ public class PersonController {
 		return "person";
 	}
 	
+	@RequestMapping(path = { "addNewPerson.do" }, method = RequestMethod.POST)
+	public String addNewPerson(Person person, @RequestParam("ethnicityName") String ethnicityName,
+			@RequestParam("birth") String birth, Model model) {
+		
+		if (!birth.isEmpty() && birth != null) {
+			person.setBirthDate(LocalDate.parse(birth));
+		} else {
+			person.setBirthDate(null);
+		}
+		if (!ethnicityName.isEmpty() && ethnicityName != null) {
+			person.setEthnicity(ethnicityDao.convertToEthnicity(ethnicityName));
+		} else {
+			person.setEthnicity(ethnicityDao.findByName("Other"));
+		}
+		
+		personDao.create(person);
+		
+		return "person";
+	}
+	
 	// NOT USING
 
 	@RequestMapping(path = { "persons.do" })
@@ -67,24 +87,5 @@ public class PersonController {
 //		return "";
 //	}
 
-	@RequestMapping(path = { "addNewPerson.do" }, method = RequestMethod.POST)
-	public String addNewPerson(Person person, @RequestParam("ethnicityName") String ethnicityName,
-			@RequestParam("birth") String birth, Model model) {
-
-		if (!birth.isEmpty() && birth != null) {
-			person.setBirthDate(LocalDate.parse(birth));
-		} else {
-			person.setBirthDate(null);
-		}
-		if (!ethnicityName.isEmpty() && ethnicityName != null) {
-			person.setEthnicity(ethnicityDao.convertToEthnicity(ethnicityName));
-		} else {
-			person.setEthnicity(ethnicityDao.findByName("Other"));
-		}
-
-		personDao.create(person);
-
-		return "person";
-	}
 
 }

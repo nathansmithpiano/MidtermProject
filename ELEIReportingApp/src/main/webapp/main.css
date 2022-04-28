@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+#incident-person-form {
+	display: none;
+}
+
+#incident-add-address-table-div, #incident-add-person-table-div, #incident-new-person, #incident-new-address {
+	display: none;
+}

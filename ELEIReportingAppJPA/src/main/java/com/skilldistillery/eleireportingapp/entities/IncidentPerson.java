@@ -5,6 +5,9 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +27,16 @@ public class IncidentPerson {
 	private int ageMaximum;
 
 	private String description;
+	
+	@ManyToOne
+	@JoinColumn(name = "incident_id")
+	@MapsId(value = "incidentId")
+	private Incident incident;
+	
+	@ManyToOne
+	@JoinColumn(name = "person_id")
+	@MapsId(value = "personId")
+	private Person person;
 
 	public IncidentPerson() {
 		super();
@@ -67,6 +80,22 @@ public class IncidentPerson {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Incident getIncident() {
+		return incident;
+	}
+
+	public void setIncident(Incident incident) {
+		this.incident = incident;
+	}
+
+	public Person getPerson() {
+		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	@Override

@@ -43,14 +43,17 @@ public class IncidentPersonDAOImpl implements IncidentPersonDAO {
 	}
 
 	@Override
-	public IncidentPerson create(IncidentPerson IncidentPerson) {
-		em.persist(IncidentPerson);
+	public IncidentPerson create(IncidentPerson incidentPerson) {
+		
+		IncidentPersonId id = new IncidentPersonId(incidentPerson.getPerson().getId(), incidentPerson.getIncident().getId());
+		incidentPerson.setIncidentPersonId(id);
+		em.persist(incidentPerson);
 
-		if (!em.contains(IncidentPerson)) {
-			System.err.println("EntityDAOImpl create() error: id " + IncidentPerson.getIncidentPersonId()+ " not found in db");
+		if (!em.contains(incidentPerson)) {
+			System.err.println("EntityDAOImpl create() error: id " + incidentPerson.getIncidentPersonId()+ " not found in db");
 			return null;
 		} else {
-			return em.find(IncidentPerson.class, IncidentPerson.getIncidentPersonId());
+			return em.find(IncidentPerson.class, incidentPerson.getIncidentPersonId());
 		}
 	}
 

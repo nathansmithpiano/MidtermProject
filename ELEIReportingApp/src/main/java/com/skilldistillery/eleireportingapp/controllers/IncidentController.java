@@ -1,5 +1,7 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
+import java.time.LocalDate;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
 import com.skilldistillery.eleireportingapp.data.DepartmentDAO;
+import com.skilldistillery.eleireportingapp.data.EthnicityDAO;
 import com.skilldistillery.eleireportingapp.data.IncidentDAO;
+import com.skilldistillery.eleireportingapp.data.IncidentPersonDAO;
 import com.skilldistillery.eleireportingapp.data.OfficerDAO;
 import com.skilldistillery.eleireportingapp.data.PersonDAO;
 import com.skilldistillery.eleireportingapp.entities.Incident;
+import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
 import com.skilldistillery.eleireportingapp.entities.Officer;
+import com.skilldistillery.eleireportingapp.entities.Person;
 
 @Controller
 public class IncidentController {
@@ -29,6 +35,12 @@ public class IncidentController {
 	private PersonDAO personDao;
 	
 	@Autowired
+	private EthnicityDAO ethnicityDao;
+	
+	@Autowired
+	private IncidentPersonDAO incidentPersonDao;
+	
+	@Autowired
 	private OfficerDAO officerDao;
 	
 	@Autowired
@@ -37,8 +49,20 @@ public class IncidentController {
 	
 	//USING
 	
+	//verify loggedInUser in session, redirect if not
+	private boolean notLoggedIn(HttpSession session) {
+		if (session.getAttribute("loggedInUser") == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@RequestMapping(path = "incident.do")
-	public String incident(Model model, @RequestParam("id") int id) {
+	public String incident(Model model, HttpSession session, @RequestParam("id") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
 		Incident incident = incidentDao.findById(id);
 		model.addAttribute("incident", incident);
 		return "incident";
@@ -46,6 +70,10 @@ public class IncidentController {
 	
 	@RequestMapping(path = "officerIncidents.do")
 	public String officerIncidents(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		model.addAttribute("level", 1);
 		
 		if (session.getAttribute("userOfficer") != null) {
@@ -57,6 +85,10 @@ public class IncidentController {
 	
 	@RequestMapping(path = "departmentIncidents.do")
 	public String allIncidents(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		model.addAttribute("level", 2);
 		//TODO: limit to department
 		model.addAttribute("incidentList", incidentDao.findAll());
@@ -64,17 +96,34 @@ public class IncidentController {
 	}
 	
 	@RequestMapping(path = { "addIncident.do" })
-	public String addIncident(Model model) {
+	public String addIncident(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		model.addAttribute("addressList", addressDao.findAll());
 		model.addAttribute("personList", personDao.findAll());
 		return "incident_add";
 	}
 	
 	@RequestMapping(path = { "createIncident.do" })
-	public String createIncident(Incident incident, Model model, HttpSession session, 
-					@RequestParam("departmentId") int departmentId,
-					@RequestParam("addressId") int addressId,
-					@RequestParam("personId") int personId) {
+	public String createIncident(Incident incident,
+								Model model,
+								HttpSession session, 
+								IncidentPerson incidentPerson,
+								Person person,
+								@RequestParam("departmentId") int departmentId,
+								@RequestParam("addressId") int addressId,
+								@RequestParam("ethnicityName") String ethnicityName,
+								@RequestParam("birth") String birth,
+								@RequestParam("personDescription") String personDescription,
+								@RequestParam("incidentPersonDescription") String incidentPersonDescription,
+								@RequestParam("personId") int personId) {
+		
+		System.err.println("*** createIncident test1");
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
 		
 		Officer userOfficer = (Officer) session.getAttribute("userOfficer");
 		
@@ -82,12 +131,43 @@ public class IncidentController {
 			System.err.println("IncidentController createIncident - userOfficer is null");
 		}
 		
+//		Person stuff
+		if (!birth.isEmpty() && birth != null) {
+			person.setBirthDate(LocalDate.parse(birth));
+		} else {
+			person.setBirthDate(null);
+		}
+		if (!ethnicityName.isEmpty() && ethnicityName != null) {
+			person.setEthnicity(ethnicityDao.convertToEthnicity(ethnicityName));
+		} else {
+			person.setEthnicity(ethnicityDao.findByName("Other"));
+		}
+		if (personDescription != null) {
+			person.setDescription(personDescription);
+		}
+		
 		incident.setOfficer(officerDao.findById(userOfficer.getId()));
 		incident.setDepartment(departmentDao.findById(departmentId));
 		incident.setAddress(addressDao.findById(addressId));
-		incident.addPerson(personDao.findById(personId));
+//		incident.addPerson(personDao.findById(personId));
 		
 		incidentDao.create(incident);
+		
+		//personId is zero when creating new person, set in javascript function
+		if (personId == 0) {
+			personId = personDao.create(person).getId();
+		}
+		
+		//person was created, so should not be 0 either way
+		incidentPerson.setIncident(incident);
+		if (personId != 0) {
+			incidentPerson.setPerson(personDao.findById(personId));
+		} else {
+			System.err.println("IncidentController create error - personId is 0");
+		}
+		
+		incidentPerson.setDescription(incidentPersonDescription);
+		incidentPersonDao.create(incidentPerson);
 
 		return "incident";
 	}
