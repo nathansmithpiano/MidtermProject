@@ -12,11 +12,6 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
@@ -38,8 +33,16 @@
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">${department.name }</li>
+								<li class="breadcrumb-item">
+									<a href="officerDepartments.do">
+										My Departments
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									<a href="department.do?id=${department.id }">
+										${department.name }
+									</a>
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -56,10 +59,11 @@
     				
 		    					<!-- Card header -->
 		    					<div class="card-header">
+		    					
 		    						<h3 class="card-title">
-		    							${department.name }
+		    							Department Info
 		    						</h3>
-    						
+		    						
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
@@ -73,24 +77,16 @@
 											</a>
 										</li>
 									</ul>
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
 									
-									<!-- Incidents Stuff -->
-									<br />
-									<hr />
-									<h3>Incidents</h3>
-									<c:set var="incidentList" scope="request" value="${department.incidents }" />
-									<jsp:include page="tables/incidents_table.jsp" />
+							<!-- Incidents Card -->
+							<jsp:include page="tables/incidents_table.jsp" />
 									
-									<!-- Officer Stuff -->
-									<br />
-									<hr />
-									<h3>Officers</h3>
-									<c:set var="officerList" scope="request" value="${department.officers }" />
-									<jsp:include page="tables/officers_table.jsp" />
+							<!-- Officers Card -->
+							<jsp:include page="tables/officers_table.jsp" />
 	
-	    						</div> <!-- end card-body -->
 								
-	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->

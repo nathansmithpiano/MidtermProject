@@ -12,11 +12,6 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
@@ -38,8 +33,14 @@
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active"><a href="#">${address.getFormattedAddress() }</a></li>
+								<li class="breadcrumb-item">
+									<a href="allAddresses.do">
+										All Addresses
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									${address.getFormattedAddress() }
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -58,15 +59,20 @@
 		    					<div class="card-header">
 		    					
 		    						<h3 class="card-title">
-		    							${address.getFormattedAddress() }
+		    							Address Info
 		    						</h3>
+		    						
+		    						<!-- Buttons -->
+		    						<div class="float-right">
+			    						<div class="btn-group">
+			    							<button type="button" class="btn btn-warning">Add Note</button>
+										</div>
+									</div>
     							
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
-	    							<h1>Address</h1>
-
 									<ul>
 										<li>ID: ${address.id}</li>
 										<li>Description: ${address.description}</li>
@@ -83,11 +89,9 @@
 							</div> <!-- end Card -->
 							
 							<!-- Incidents Card -->
-							<c:set var="incidentList" scope="request" value="${address.incidents }" />
 							<jsp:include page="tables/incidents_table.jsp" />
 							
 							<!-- Persons Card -->
-							<c:set var="personList" scope="request" value="${address.persons }" />
 							<jsp:include page="tables/persons_table.jsp" />
 									
 	    				</div> <!-- end col-12 -->

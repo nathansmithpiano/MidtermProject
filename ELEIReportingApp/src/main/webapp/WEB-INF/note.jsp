@@ -12,15 +12,9 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
-		
 		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -96,15 +90,12 @@
 							</div> <!-- end Card -->
 								
 							<!-- CaseFiles Card -->
-							<c:set var="caseFileList" scope="request" value="${note.caseFiles }" />
 							<jsp:include page="tables/casefiles_table.jsp" />
 									
 							<!-- Incidents Card -->
-							<c:set var="incidentList" scope="request" value="${note.incidents }" />
 							<jsp:include page="tables/incidents_table.jsp" />
 								
 							<!-- Persons Card -->
-							<c:set var="personList" scope="request" value="${note.persons }" />
 							<jsp:include page="tables/persons_table.jsp" />
 								
 	    				</div> <!-- end col-12 -->

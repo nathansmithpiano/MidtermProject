@@ -43,7 +43,7 @@ public class AddressController {
 		return "addresses";
 	}
 	
-	@RequestMapping(path = "departmentAddresses.do")
+	@RequestMapping(path = "allAddresses.do")
 	public String departmentAddresses(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
@@ -63,6 +63,8 @@ public class AddressController {
 		
 		Address address = addressDao.findById(id);
 		model.addAttribute("address", address);
+		model.addAttribute("incidentList", address.getIncidents());
+		model.addAttribute("personList", address.getPersons());
 		model.addAttribute("level", 1);
 		return "address";
 	}

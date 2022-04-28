@@ -12,15 +12,9 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
-		
 		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -38,8 +32,14 @@
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active"><a href="#">${person.fullName }</a></li>
+								<li class="breadcrumb-item">
+									<a href="allPersons.do">
+										Persons
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									${person.fullName }
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -50,6 +50,7 @@
 			<!-- Main content -->
     		<section class="content">
     			<div class="container-fluid">
+    			
     				<div class="row">
     					<div class="col-12">
     						 <div class="card">
@@ -58,20 +59,26 @@
 		    					<div class="card-header">
 		    					
 		    						<h3 class="card-title">
-		    							${person.fullName }
+		    							Person Info
 		    						</h3>
+		    						
+		    						<!-- Buttons -->
+		    						<div class="float-right">
+			    						<div class="btn-group">
+			    							<button type="button" class="btn btn-warning">Add Note</button>
+										</div>
+									</div>
     							
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
-	    							<h1>Person</h1>
-
 									<ul>
 										<li>ID: ${person.id}</li>
 										<li>First Name: ${person.firstName}</li>
 										<li>Middle Name: ${person.middleName}</li>
 										<li>Last Name: ${person.lastName}</li>
+										<li>Full Name: ${person.fullName}</li>
 										<li>Title: ${person.title}</li>
 										<li>BirthDate: ${person.birthDate}</li>
 										<li>Gender: ${person.gender}</li>
@@ -79,37 +86,27 @@
 										<li>Flag: ${person.flag}</li>
 										<li>Ethnicity ID: ${person.ethnicity.id }</li>
 										<li>Ethnicity: ${person.ethnicity.name }</li>
+										<li>Incidents: ${person.incidents.size() }</li>
+										<li>Addresses: ${person.addresses.size() }</li>
+										<li>Notes: ${person.notes.size() }</li>
 									</ul>
 									
-									<!-- Address Stuff -->
-									<br />
-									<hr />
-									<h3>Addresses</h3>
-									<c:set var="addressList" scope="request" value="${person.addresses }" />
-									<jsp:include page="tables/addresses_table.jsp" />
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
 									
-									<!-- Incident Stuff -->
-									<br />
-									<hr />
-									<h3>Incidents</h3>
-									<c:set var="incidentList" scope="request" value="${person.incidents }" />
-									<jsp:include page="tables/incidents_table.jsp" />
+							<!-- Incidents Card -->
+							<jsp:include page="tables/incidents_table.jsp" />
+							
+							<!-- Addresses Card -->
+							<jsp:include page="tables/addresses_table.jsp" />
+							
+							<!-- Notes Card -->
+							<jsp:include page="tables/notes_table.jsp" />
 									
-									<!-- Note Stuff -->
-									<br />
-									<hr />
-									<h3>Notes</h3>
-									<c:set var="noteList" scope="request" value="${person.notes }" />
-									<jsp:include page="tables/notes_table.jsp" />
-									
-	    						</div> <!-- end card-body -->
-	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->
     		</section>
-			
-			
 			
 		</div> <!-- end Content Wrapper. Contains page content -->
 		

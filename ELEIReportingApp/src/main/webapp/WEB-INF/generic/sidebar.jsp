@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
 	<!-- Brand Logo -->
 	<a href="home.do" class="brand-link">
-		<img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+		<img src="images/SDProjectLogo.jpg" alt="SD Project Logo" class="brand-image img-circle" style="opacity: 1">
 		<span class="brand-text font-weight-light">ELEIReportingApp</span>
 	</a>
 	
@@ -94,7 +91,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="officerCaseFiles.do" class="nav-link" id="nav-casefiles-my">
+							<a href="officerCaseFiles.do?officerId=${sessionScope.userOfficer.id }" class="nav-link" id="nav-casefiles-my">
 								<i class="far fa-solid fa-location-dot nav-icon"></i>
 								<p>
 									My Casefiles
@@ -139,7 +136,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="departmentAddresses.do" class="nav-link" id="nav-addresses-all">
+							<a href="allAddresses.do" class="nav-link" id="nav-addresses-all">
 								<i class="far fa-solid fa-map nav-icon"></i>
 								<p>
 									All Addresses

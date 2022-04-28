@@ -12,15 +12,9 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
-		
 		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -32,14 +26,20 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">officers.jsp</h1>
+							<h1 class="m-0">All Officers</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active">Officers</li>
+								<li class="breadcrumb-item">
+									<a href="home.do">
+										Home
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									All Officers
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -54,18 +54,8 @@
     					<div class="col-12">
     						 <div class="card">
     				
-		    					<!-- Card header -->
-		    					<div class="card-header">
-		    						<h3 class="card-title">
-		    							Officers
-		    						</h3>
-    						
-    							</div> <!-- end Card header -->
-    					
 	    						<div class="card-body">
-	    							
 	    							<jsp:include page="tables/officers_table.jsp" />
-	
 	    						</div> <!-- end card-body -->
 								
 	    					</div> <!-- end Card -->

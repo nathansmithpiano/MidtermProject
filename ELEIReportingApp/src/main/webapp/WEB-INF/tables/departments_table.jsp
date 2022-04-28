@@ -8,10 +8,6 @@
 	<!-- Begin Card Body -->
 	<div class="card-body">
 	
-		<h3 class="card-title">
-			CaseFiles
-		</h3>
-
 		<c:choose>
 		
 			<c:when test="${empty departmentList }">
@@ -19,6 +15,10 @@
 			</c:when>
 			
 			<c:otherwise>
+			
+				<h3 class="card-title">
+					CaseFiles
+				</h3>
 		
 				<table id="departmentTable" class="table table-bordered table-striped">
 					<thead>

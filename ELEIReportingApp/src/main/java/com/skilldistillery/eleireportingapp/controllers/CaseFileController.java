@@ -36,6 +36,7 @@ public class CaseFileController {
 		
 		CaseFile caseFile = caseFileDao.findById(id);
 		model.addAttribute("caseFile", caseFile);
+		model.addAttribute("incidentList", caseFile.getIncidents());
 		return "caseFile";
 	}
 	

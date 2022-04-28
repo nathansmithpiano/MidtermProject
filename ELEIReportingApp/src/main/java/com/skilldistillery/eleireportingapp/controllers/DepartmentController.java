@@ -116,19 +116,21 @@ public class DepartmentController {
 		return "officers";
 	}
 	
+	@RequestMapping(path = {"department.do" })
+	public String departments(Model model, @RequestParam("id") int id) {
+		Department department = departmentDAO.findById(id);
+		model.addAttribute("department", department);
+		model.addAttribute("incidentList", department.getIncidents());
+		model.addAttribute("officerList", department.getOfficers());
+		return "department";
+	}
+	
 	// NOT USING
 	
 	@RequestMapping(path = {"departments.do" } )
 	public String department(Model model) {
 		model.addAttribute("departmentList", departmentDAO.findAll());
 		return "departments";
-	}
-	
-	@RequestMapping(path = {"department.do" })
-	public String departments(Model model, @RequestParam("id") int id) {
-		Department department = departmentDAO.findById(id);
-		model.addAttribute("department", department);
-		return "department";
 	}
 	
 //	@RequestMapping(path = {"departmentofficers.do" })

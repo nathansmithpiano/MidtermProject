@@ -12,15 +12,9 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
-		
 		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -32,15 +26,20 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">${officer.person.fullName } (Badge #${officer.badge })</h1>
+							<h1 class="m-0">Badge #${officer.badge }</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item"><a href="#">Officers</a></li>
-								<li class="breadcrumb-item active">${officer.person.fullName } (Badge #${officer.badge })</li>
+								<li class="breadcrumb-item">
+									<a href="departmentOfficers.do">
+										Department Officers
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									Badge #${officer.badge }
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -57,8 +56,10 @@
     				
 		    					<!-- Card header -->
 		    					<div class="card-header">
+		    					
 		    						<h3 class="card-title">
-		    							Badge #${officer.badge }
+		    							${officer.person.fullName } (Badge #${officer.badge })
+		    							
 		    							<c:if test="${not empty officer.supervisor }">
 		    								Supervisor: 
 		    								<a href="officer.do?id=${officer.supervisor.id }">
@@ -66,19 +67,11 @@
 		   									</a>
 		    							</c:if>
 		    						</h3>
-    						
-	    						<!-- <div class="card-tools">
-	    								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-					                		<i class="fas fa-minus"></i>
-					              		</button>
-	    							</div> -->
-    							
     							
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
-	    							<h3>Officer Stuff</h3>
 									<ul>
 										<li>Name: 
 											<a href="person.do?id=${officer.person.id }">
@@ -105,30 +98,19 @@
 										<li>Image URL: ${officer.imageUrl }</li>
 									</ul>
 									
-									<!-- Departments Stuff -->
-									<br />
-									<hr />
-									<h3>Departments</h3>
-									<c:set var="departmentList" scope="request" value="${officer.departments }" />
-									<jsp:include page="tables/departments_table.jsp" />
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
 									
-									<!-- Incidents Stuff -->
-									<br />
-									<hr />
-									<h3>Incidents</h3>
-									<c:set var="incidentList" scope="request" value="${officer.incidents }" />
-									<jsp:include page="tables/incidents_table.jsp" />
+							<!-- Departments Card -->
+							<jsp:include page="tables/departments_table.jsp" />
 									
-									
+							<!-- Incidents Card -->
+							<jsp:include page="tables/incidents_table.jsp" />
 	    						
-	    						</div> <!-- end card-body -->
-	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->
     		</section>
-			
-			
 			
 		</div> <!-- end Content Wrapper. Contains page content -->
 		
