@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Incident</title>
+<title>Incident ${incident.id } - Add Note</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -54,15 +54,6 @@
 		    						<h3 class="card-title">
 		    							Incident #${incident.id }
 		    						</h3>
-		    						
-		    						<!-- Buttons -->
-		    						<div class="float-right">
-			    						<div class="btn-group">
-			    							<a href="addNoteToIncident.do?incidentId=${incident.id }">
-			    								<button type="button" class="btn btn-warning">Add Note</button>
-			    							</a>
-										</div>
-									</div>
     							
     							</div> <!-- end Card header -->
     					
@@ -110,11 +101,9 @@
 								</div> <!-- end Card Body -->
 							</div> <!-- end Card -->
 									
-							<!-- Persons Card -->
-							<jsp:include page="tables/persons_table.jsp" />
+							<!-- New add note card -->
+							<jsp:include page="forms/incident_add_note_form.jsp" />
 							
-							<!-- Notes Card -->
-							<jsp:include page="tables/notes_table.jsp" />
 	    						
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
@@ -132,35 +121,5 @@
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
 	
-	<!-- TABLE SCRIPTS -->
-	<jsp:include page="tables/table_scripts.jsp" />
-	
-	<!-- SPECIFIC TABLE FEATURES -->
-	<script>
-		$(function () {
-			$("#personsTable").DataTable({
-			"paging": true,
-			"searching": true,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true,
-			"lengthChange": false,
-			"autoWidth": false
-			});
-		});
-		$(function () {
-			$("#noteTable").DataTable({
-			"paging": true,
-			"searching": true,
-			"ordering": true,
-			"info": true,
-			"autoWidth": false,
-			"responsive": true,
-			"lengthChange": false,
-			"autoWidth": false
-			});
-		});
-	</script>
 </body>
 </html>

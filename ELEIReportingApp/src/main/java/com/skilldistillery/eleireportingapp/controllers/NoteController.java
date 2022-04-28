@@ -8,7 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.eleireportingapp.data.IncidentDAO;
 import com.skilldistillery.eleireportingapp.data.NoteDAO;
+import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Note;
 
 @Controller
@@ -16,6 +18,9 @@ public class NoteController {
 
 	@Autowired
 	private NoteDAO noteDao;
+	
+	@Autowired
+	private IncidentDAO incidentDao;
 	
 	//USING
 	
@@ -40,6 +45,37 @@ public class NoteController {
 		model.addAttribute("incidentList", note.getIncidents());
 		model.addAttribute("personList", note.getPersons());
 		return "note";
+	}
+	
+	@RequestMapping(path = "addNoteToIncident.do")
+	public String addNoteToIncidnet(Model model, HttpSession session, @RequestParam("incidentId") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		model.addAttribute("incident", incidentDao.findById(id));
+		return "incident_add_note";
+	}
+	
+	@RequestMapping(path = "createNoteForIncident.do")
+	public String createNoteForIncident(Model model, HttpSession session, Note note, 
+			@RequestParam("userId") int userId, @RequestParam("incidentId") int incidentId) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		Incident incident = incidentDao.findById(incidentId);
+		if (incident == null) {
+			System.err.println("NoteController createNoteForIncident error - incident is null");
+		}
+		
+		incident.addNote(note);
+		note.addIncident(incidentDao.findById(incidentId));
+		
+		note.setUserId(userId);
+		Note newNote = noteDao.create(note);
+		
+		return "redirect:note.do?id=" + newNote.getId();
 	}
 	
 	//Temporary **********

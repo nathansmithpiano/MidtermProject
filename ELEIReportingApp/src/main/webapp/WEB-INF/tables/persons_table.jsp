@@ -7,10 +7,6 @@
 
 	<!-- Begin Card Body -->
 	<div class="card-body">
-	
-		<h3 class="card-title">
-			Persons
-		</h3>
 
 		<c:choose>
 		
@@ -19,6 +15,10 @@
 			</c:when>
 			
 			<c:otherwise>
+			
+				<h3 class="card-title">
+					Persons
+				</h3>
 		
 				<table id="personsTable" class="table table-bordered table-striped">
 					<thead>
