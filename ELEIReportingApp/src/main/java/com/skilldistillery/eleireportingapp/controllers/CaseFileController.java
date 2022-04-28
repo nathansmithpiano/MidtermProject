@@ -41,12 +41,12 @@ public class CaseFileController {
 	}
 	
 	@RequestMapping(path = { "officerCaseFiles.do" })
-	public String allCaofficerCaseFilessefiles(Model model, HttpSession session) {
+	public String allCaofficerCaseFilessefiles(Model model, HttpSession session, @RequestParam("officerId") int officerId) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
 		
-		model.addAttribute("level", 1);
+		model.addAttribute("level", 1); //"my" vs "all" sidebar stuff
 		return "casefiles";
 	}
 	
