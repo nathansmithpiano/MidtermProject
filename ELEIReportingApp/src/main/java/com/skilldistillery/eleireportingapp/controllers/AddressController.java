@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
-import com.skilldistillery.eleireportingapp.data.DepartmentDAO;
 import com.skilldistillery.eleireportingapp.entities.Address;
 
 @Controller
@@ -20,8 +19,8 @@ public class AddressController {
 	@Autowired
 	private AddressDAO addressDao;
 	
-	@Autowired
-	private DepartmentDAO departmentDAO;
+//	@Autowired
+//	private DepartmentDAO departmentDAO;
 	
 	// USING
 	

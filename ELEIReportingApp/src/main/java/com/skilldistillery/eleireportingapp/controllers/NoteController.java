@@ -42,6 +42,41 @@ public class NoteController {
 		return "note";
 	}
 	
+	//Temporary **********
+	
+	@RequestMapping(path = { "goToUpdateNote.do" })
+	public String goToUpdateNote(Model model, HttpSession session, @RequestParam("id") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		model.addAttribute("note", noteDao.findById(id));
+		
+		return "updateNote";
+	}
+	
+	@RequestMapping(path = { "updateNote.do" })
+	public String updateNote(Model model, HttpSession session, @RequestParam("id") int id, @RequestParam("content") String content) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		model.addAttribute(noteDao.update(id, content));
+		
+		return "note";
+	}
+	
+	@RequestMapping(path = { "deleteNote.do" })
+	public String deleteNote(Model model, HttpSession session, @RequestParam("id") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		model.addAttribute(noteDao.delete(id));
+		
+		return "thome";
+	}
+	
 	//NOT USING
 	
 	@RequestMapping(path = { "goToNote.do" })

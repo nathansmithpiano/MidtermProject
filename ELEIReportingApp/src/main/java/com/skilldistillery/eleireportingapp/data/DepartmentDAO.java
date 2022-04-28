@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.skilldistillery.eleireportingapp.entities.Address;
 import com.skilldistillery.eleireportingapp.entities.Department;
-import com.skilldistillery.eleireportingapp.entities.Officer;
 
 public interface DepartmentDAO {
 	

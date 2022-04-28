@@ -8,10 +8,8 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
-import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.IncidentPerson;
 import com.skilldistillery.eleireportingapp.entities.IncidentPersonId;
-import com.skilldistillery.eleireportingapp.entities.Person;
 
 @Service
 @Transactional
