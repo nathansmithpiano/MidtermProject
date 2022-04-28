@@ -46,6 +46,7 @@ public class CaseFileController {
 			return "tlogin";
 		}
 		
+		//TODO: link officer and casefiles, return specific list
 		model.addAttribute("level", 1); //"my" vs "all" sidebar stuff
 		return "casefiles";
 	}

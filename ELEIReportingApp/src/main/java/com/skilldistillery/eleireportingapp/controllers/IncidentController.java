@@ -71,17 +71,20 @@ public class IncidentController {
 	}
 	
 	@RequestMapping(path = "officerIncidents.do")
-	public String officerIncidents(Model model, HttpSession session) {
+	public String officerIncidents(Model model, HttpSession session, @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
 		
-		model.addAttribute("level", 1);
+		Officer userOfficer = (Officer) session.getAttribute("userOfficer");
 		
-		if (session.getAttribute("userOfficer") != null) {
-			//userOfficer received
-			//send model list of incidents related to that officer
+		//for sidebar link stuff ("my")
+		if (userOfficer.getId() == id) {
+			model.addAttribute("level", 1);
 		}
+		
+		model.addAttribute("incidentList", officerDao.findById(id).getIncidents());
+		
 		return "incidents";
 	}
 	

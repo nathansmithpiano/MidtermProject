@@ -51,7 +51,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="officerIncidents.do" class="nav-link" id="nav-incidents-my">
+							<a href="officerIncidents.do?id=${sessionScope.userOfficer.id }" class="nav-link" id="nav-incidents-my">
 								<i class="far fa-solid fa-file nav-icon"></i>
 								<p>
 									My Incidents
