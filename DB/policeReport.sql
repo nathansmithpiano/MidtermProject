@@ -233,7 +233,7 @@ DROP TABLE IF EXISTS `incident_person` ;
 CREATE TABLE IF NOT EXISTS `incident_person` (
   `person_id` INT NOT NULL AUTO_INCREMENT,
   `incident_id` INT NOT NULL,
-  `ethnicity_id` INT NOT NULL,
+  `ethnicity_id` INT NOT NULL DEFAULT 7,
   `gender` VARCHAR(45) NULL,
   `suspected_crime` VARCHAR(45) NULL,
   `age_minimum` INT NULL,
