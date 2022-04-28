@@ -1,5 +1,7 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.skilldistillery.eleireportingapp.data.IncidentDAO;
 import com.skilldistillery.eleireportingapp.data.NoteDAO;
+import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Note;
 
 @Controller
@@ -36,6 +40,43 @@ public class NoteController {
 		
 		model.addAttribute("note", noteDao.findById(id));
 		return "note";
+	}
+	
+	//Temporary **********
+	
+	@RequestMapping(path = { "goToUpdateNote.do" })
+	public String goToUpdateNote(Model model, HttpSession session, @RequestParam("id") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		model.addAttribute("note", noteDao.findById(id));
+		
+		return "updateNote";
+	}
+	
+	@RequestMapping(path = { "updateNote.do" })
+	public String updateNote(Model model, HttpSession session, @RequestParam("id") int id, @RequestParam("content") String content) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		model.addAttribute(noteDao.update(id, content));
+		
+		return "note";
+	}
+	
+	@RequestMapping(path = { "deleteNote.do" })
+	public String deleteNote(Model model, HttpSession session, @RequestParam("id") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+//		Note note = noteDao.findById(id);
+		
+		model.addAttribute(noteDao.delete(id));
+		
+		return "thome";
 	}
 	
 	//NOT USING

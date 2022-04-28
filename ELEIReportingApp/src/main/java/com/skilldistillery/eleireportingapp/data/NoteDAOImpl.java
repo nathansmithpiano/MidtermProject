@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Note;
 
 @Service
@@ -72,13 +73,14 @@ public class NoteDAOImpl implements NoteDAO {
 	}
 
 	@Override
-	public Note update(int id, Note Note) {
+	public Note update(int id, String content) {
 		if (em.find(Note.class, id) == null) {
 			System.err.println("EntityDAOImpl update() error: id " + id + " not found in db");
 			return null;
 		} else {
 			Note managed = em.find(Note.class, id);
-			em.merge(Note);
+			managed.setContent(content);
+			em.merge(managed);
 			return managed;
 		}
 	}
@@ -86,10 +88,32 @@ public class NoteDAOImpl implements NoteDAO {
 	@Override
 	public Note delete(int id) {
 		Note backup = em.find(Note.class, id);
+		
+		
+		
 		if (backup == null) {
 			System.err.println("EntityDAOImpl delete() error: id " + id + " not found in db");
 			return null;
 		} else {
+			
+			while (backup.getIncidents().size() > 0) {
+				
+				backup.getIncidents().get(0).removeNote(backup);
+				em.persist(backup.getIncidents().get(0));
+				backup.removeIncident(backup.getIncidents().get(0));
+				
+			}
+			
+			while (backup.getPersons().size() > 0) {
+				
+				backup.getPersons().get(0).removeNote(backup);
+				em.persist(backup.getPersons().get(0));
+				backup.removePerson(backup.getPersons().get(0));
+				
+			}
+			
+			em.persist(backup);
+			
 			em.remove(em.find(Note.class, id));
 			if (em.contains(backup)) {
 				System.err.println("EntityDAOImpl delete() error: id " + id + " still exists in db");

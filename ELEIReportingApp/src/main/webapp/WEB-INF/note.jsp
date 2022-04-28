@@ -66,8 +66,13 @@
 		    						<!-- Buttons -->
 		    						<div class="float-right">
 			    						<div class="btn-group">
+			    						
+			    						<a href="goToUpdateNote.do?id=${note.id }">
 											<button type="button" class="btn btn-info">Update</button>
-	                  						<button type="button" class="btn btn-danger">Delete</button>
+										</a>
+			    						<a href="deleteNote.do?id=${note.id }">
+											<button type="button" class="btn btn-danger">Delete</button>
+										</a>
 										</div>
 									</div>
     						
