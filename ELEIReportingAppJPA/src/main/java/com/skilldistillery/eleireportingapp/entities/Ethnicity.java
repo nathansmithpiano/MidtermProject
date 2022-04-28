@@ -22,6 +22,9 @@ public class Ethnicity {
 //	@OneToMany(mappedBy = "ethnicity", fetch = FetchType.EAGER)
 	@OneToMany(mappedBy = "ethnicity")
 	private List<Person> persons;
+	
+	@OneToMany(mappedBy = "ethnicity")
+	private List<IncidentPerson> incident_person;
 
 	public Ethnicity() {
 		super();

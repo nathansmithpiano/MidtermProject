@@ -34,6 +34,11 @@ public class IncidentPerson {
 	private Incident incident;
 	
 	@ManyToOne
+	@JoinColumn(name = "ethinicity_id")
+	@MapsId(value = "incidentId")
+	private Ethnicity ethnicity;
+	
+	@ManyToOne
 	@JoinColumn(name = "person_id")
 	@MapsId(value = "personId")
 	private Person person;
@@ -88,6 +93,14 @@ public class IncidentPerson {
 
 	public void setIncident(Incident incident) {
 		this.incident = incident;
+	}
+
+	public Ethnicity getEthnicity() {
+		return ethnicity;
+	}
+
+	public void setEthnicity(Ethnicity ethnicity) {
+		this.ethnicity = ethnicity;
 	}
 
 	public Person getPerson() {
