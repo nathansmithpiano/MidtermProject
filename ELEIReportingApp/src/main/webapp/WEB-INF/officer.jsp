@@ -105,11 +105,19 @@
 										<li>Image URL: ${officer.imageUrl }</li>
 									</ul>
 									
-									<!-- Incident Stuff -->
+									<!-- Departments Stuff -->
+									<br />
+									<hr />
+									<h3>Departments</h3>
+									<c:set var="departmentList" scope="request" value="${officer.departments }" />
+									<jsp:include page="tables/departments_table.jsp" />
+									
+									<!-- Incidents Stuff -->
 									<br />
 									<hr />
 									<h3>Incidents</h3>
-									${officer.incidents }
+									<c:set var="incidentList" scope="request" value="${officer.incidents }" />
+									<jsp:include page="tables/incidents_table.jsp" />
 									
 									
 	    						
@@ -127,10 +135,46 @@
 		<jsp:include page="generic/footer.jsp" />
 	</div> <!-- end main div wrapper -->
 	
-	<!-- TABLE SCRIPTS -->
-	<jsp:include page="tables/table_scripts.jsp" />
+	<!-- Changing sidebar active page -->
+	<script>
+		if (${officer.id } == ${sessionScope.userOfficer.id }) {
+			document.getElementById("nav-quick-officer-profile").className = "nav-link active";
+		}
+		
+	</script>
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
+	
+	<!-- TABLE SCRIPTS -->
+	<jsp:include page="tables/table_scripts.jsp" />
+	
+	<!-- SPECIFIC TABLE FEATURES -->
+	<script>
+		$(function () {
+			$("#departmentTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+		$(function () {
+			$("#incidentTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+	</script>
 </body>
 </html>

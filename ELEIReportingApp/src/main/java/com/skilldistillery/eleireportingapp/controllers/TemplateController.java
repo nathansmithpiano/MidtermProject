@@ -22,18 +22,22 @@ public class TemplateController {
 	@Autowired
 	OfficerDAO officerDao;
 	
+	//verify loggedInUser in session, redirect if not
+	private boolean notLoggedIn(HttpSession session) {
+		if (session.getAttribute("loggedInUser") == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@RequestMapping(path = {"thome.do" } )
 	public String home(Model model, HttpSession session) {
-		User loggedInUser = (User) session.getAttribute("loggedInUser");
-		
-		if (loggedInUser != null) {
-//			model.addAttribute("loggedInUser", loggedInUser);
-//			model.addAttribute("userOfficer", officerDao.findByPerson(loggedInUser.getPerson()));
-			
-			return "thome";
-		} else {
+		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
+			
+		return "thome";
 	}
 	
 	@PostMapping(path = {"tlogin.do" } )
@@ -51,6 +55,10 @@ public class TemplateController {
 	
 	@RequestMapping("tlogout.do")
 	public String logout(HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		session.removeAttribute("loggedInUser");
 		return "tlogin";
 	}

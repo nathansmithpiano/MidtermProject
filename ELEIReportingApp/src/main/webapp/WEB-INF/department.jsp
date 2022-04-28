@@ -74,17 +74,19 @@
 										</li>
 									</ul>
 									
-									<!-- Incident Stuff -->
+									<!-- Incidents Stuff -->
 									<br />
 									<hr />
 									<h3>Incidents</h3>
-									${department.incidents }
+									<c:set var="incidentList" scope="request" value="${department.incidents }" />
+									<jsp:include page="tables/incidents_table.jsp" />
 									
 									<!-- Officer Stuff -->
 									<br />
 									<hr />
 									<h3>Officers</h3>
-									${department.officers }
+									<c:set var="officerList" scope="request" value="${department.officers }" />
+									<jsp:include page="tables/officers_table.jsp" />
 	
 	    						</div> <!-- end card-body -->
 								
@@ -106,6 +108,37 @@
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
+	
+	<!-- TABLE SCRIPTS -->
+	<jsp:include page="tables/table_scripts.jsp" />
+	
+	<!-- SPECIFIC TABLE FEATURES -->
+	<script>
+		$(function () {
+			$("#incidentTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+		$(function () {
+			$("#officerTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+	</script>
 	
 </body>
 </html>

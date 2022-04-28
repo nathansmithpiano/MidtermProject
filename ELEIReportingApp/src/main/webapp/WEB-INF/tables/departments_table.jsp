@@ -10,7 +10,7 @@
 	
 	<c:otherwise>
 
-		<table id="officerTable" class="table table-bordered table-striped">
+		<table id="departmentTable" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>ID</th>

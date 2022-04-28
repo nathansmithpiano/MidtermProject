@@ -75,11 +75,12 @@
 										<li>Flag: ${caseFile.flag}</li>
 									</ul>
 									
-									<!-- Incident Stuff -->
+									<!-- Incidents Stuff -->
 									<br />
 									<hr />
 									<h3>Incidents</h3>
-									${caseFile.incidents }
+									<c:set var="incidentList" scope="request" value="${caseFile.incidents }" />
+									<jsp:include page="tables/incidents_table.jsp" />
 									
 	    						</div> <!-- end card-body -->
 	    					</div> <!-- end Card -->
@@ -98,5 +99,24 @@
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
+	
+	<!-- TABLE SCRIPTS -->
+	<jsp:include page="tables/table_scripts.jsp" />
+	
+	<!-- SPECIFIC TABLE FEATURES -->
+	<script>
+		$(function () {
+			$("#incidentTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+	</script>
 </body>
 </html>

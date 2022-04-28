@@ -80,17 +80,19 @@
 										<li>Persons: ${address.persons.size() }</li>
 									</ul>
 									
-									<!-- Persons Stuff -->
+									<!-- Incidents Stuff -->
 									<br />
 									<hr />
 									<h3>Incidents</h3>
-									${address.incidents }
+									<c:set var="incidentList" scope="request" value="${address.incidents }" />
+									<jsp:include page="tables/incidents_table.jsp" />
 									
 									<!-- Persons Stuff -->
 									<br />
 									<hr />
 									<h3>Persons</h3>
-									${address.persons }
+									<c:set var="personList" scope="request" value="${address.persons }" />
+									<jsp:include page="tables/persons_table.jsp" />
 									
 	    						</div> <!-- end card-body -->
 	    					</div> <!-- end Card -->
@@ -109,5 +111,96 @@
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
+	
+	<!-- TABLE SCRIPTS -->
+	<jsp:include page="tables/table_scripts.jsp" />
+	
+	<!-- SPECIFIC TABLE FEATURES -->
+	<script>
+		$(function () {
+			$("#incidentTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+		$(function () {
+			$("#personsTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+		/* $(function () {
+			$("#noteTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		}); */
+		/* $(function () {
+			$("#addressesTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		}); */
+		/* $(function () {
+			$("#caseFileTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		}); */
+		/* $(function () {
+			$("#caseFileTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		}); */
+		/* $(function () {
+			$("#officerTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		}); */
+	</script>
 </body>
 </html>

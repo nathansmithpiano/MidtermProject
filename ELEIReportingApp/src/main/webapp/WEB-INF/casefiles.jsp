@@ -103,7 +103,7 @@
 	<!-- SPECIFIC TABLE FEATURES -->
 	<script>
 		$(function () {
-			$("#incidentTable").DataTable({
+			$("#caseFileTable").DataTable({
 			"paging": true,
 			"searching": true,
 			"ordering": true,

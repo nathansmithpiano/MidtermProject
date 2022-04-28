@@ -105,7 +105,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="departmentCaseFiles.do" class="nav-link" id="nav-casefiles-my">
+							<a href="departmentCaseFiles.do" class="nav-link" id="nav-casefiles-all">
 								<i class="far fa-solid fa-location-dot nav-icon"></i>
 								<p>
 									All Casefiles

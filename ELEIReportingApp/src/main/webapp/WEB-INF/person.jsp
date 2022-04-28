@@ -85,17 +85,23 @@
 									<br />
 									<hr />
 									<h3>Addresses</h3>
-									${person.addresses }
+									<c:set var="addressList" scope="request" value="${person.addresses }" />
+									<jsp:include page="tables/addresses_table.jsp" />
 									
 									<!-- Incident Stuff -->
+									<br />
+									<hr />
+									<h3>Incidents</h3>
+									<c:set var="incidentList" scope="request" value="${person.incidents }" />
+									<jsp:include page="tables/incidents_table.jsp" />
 									
 									<!-- Note Stuff -->
 									<br />
 									<hr />
 									<h3>Notes</h3>
-									${person.notes }
+									<c:set var="noteList" scope="request" value="${person.notes }" />
+									<jsp:include page="tables/notes_table.jsp" />
 									
-	    						
 	    						</div> <!-- end card-body -->
 	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
@@ -113,5 +119,48 @@
 	
 	<!-- REQUIRED SCRIPTS -->
 	<jsp:include page="generic/required_scripts.jsp" />
+	
+	<!-- TABLE SCRIPTS -->
+	<jsp:include page="tables/table_scripts.jsp" />
+	
+	<!-- SPECIFIC TABLE FEATURES -->
+	<script>
+		$(function () {
+			$("#addressesTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+		$(function () {
+			$("#incidentTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+		$(function () {
+			$("#noteTable").DataTable({
+			"paging": true,
+			"searching": true,
+			"ordering": true,
+			"info": true,
+			"autoWidth": false,
+			"responsive": true,
+			"lengthChange": false,
+			"autoWidth": false
+			});
+		});
+	</script>
 </body>
 </html>

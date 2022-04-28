@@ -65,6 +65,8 @@ public class IncidentController {
 		}
 		Incident incident = incidentDao.findById(id);
 		model.addAttribute("incident", incident);
+		model.addAttribute("noteList", incident.getNotes());
+		model.addAttribute("personList", incident.getPersons());
 		return "incident";
 	}
 	
@@ -120,7 +122,6 @@ public class IncidentController {
 								@RequestParam("incidentPersonDescription") String incidentPersonDescription,
 								@RequestParam("personId") int personId) {
 		
-		System.err.println("*** createIncident test1");
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}

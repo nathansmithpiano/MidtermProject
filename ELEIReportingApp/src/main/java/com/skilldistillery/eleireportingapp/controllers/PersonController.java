@@ -27,8 +27,21 @@ public class PersonController {
 	
 	// USING
 	
+	//verify loggedInUser in session, redirect if not
+	private boolean notLoggedIn(HttpSession session) {
+		if (session.getAttribute("loggedInUser") == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@RequestMapping(path = "allPersons.do")
-	public String allPersons(Model model) {
+	public String allPersons(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		List<Person> personList = personDao.findAll();
 		model.addAttribute("personList", personList);
 		model.addAttribute("level", 2);
@@ -36,7 +49,11 @@ public class PersonController {
 	}
 	
 	@RequestMapping(path = { "person.do" })
-	public String person(Model model, @RequestParam("id") int id) {
+	public String person(Model model, HttpSession session,  @RequestParam("id") int id) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		Person person = personDao.findById(id);
 		model.addAttribute("person", person);
 		model.addAttribute("level", 1);
@@ -44,8 +61,12 @@ public class PersonController {
 	}
 	
 	@RequestMapping(path = { "addNewPerson.do" }, method = RequestMethod.POST)
-	public String addNewPerson(Person person, @RequestParam("ethnicityName") String ethnicityName,
+	public String addNewPerson(Person person, HttpSession session, @RequestParam("ethnicityName") String ethnicityName,
 			@RequestParam("birth") String birth, Model model) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		
 		if (!birth.isEmpty() && birth != null) {
 			person.setBirthDate(LocalDate.parse(birth));

@@ -24,24 +24,35 @@ public class DepartmentController {
 	
 	// USING
 	
+	//verify loggedInUser in session, redirect if not
+	private boolean notLoggedIn(HttpSession session) {
+		if (session.getAttribute("loggedInUser") == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	@RequestMapping(path = "officerDepartments.do")
 	public String officerDepartments(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		User loggedInUser;
-		Officer userOfficer;
+		Officer userOfficer = null;
 		
 		//verify user is logged in
 		loggedInUser = (User) session.getAttribute("loggedInUser");
 		
-		if (loggedInUser == null) {
-			System.err.println("DepartmentController officerDepartments - loggedInUser is null");
-			return "tlogin";
-		} else {
+		if (loggedInUser != null) {
 			//verfiy loggedInUser in session and select
 			userOfficer = (Officer) session.getAttribute("userOfficer");
-			if (userOfficer == null) {
-				System.err.println("DepartmentController officerDepartments - userOfficer is null");
-				return null;
-			}
+		}
+		
+		if (userOfficer == null) {
+			System.err.println("DepartmentController officerDepartments - userOfficer is null");
+			return null;
 		}
 		
 		List<Department> departmentList = departmentDAO.findByOfficerId(userOfficer.getId());
@@ -58,6 +69,10 @@ public class DepartmentController {
 	
 	@RequestMapping(path = "departmentOfficers.do")
 	public String departmentOfficers(Model model, HttpSession session) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
 		User loggedInUser;
 		Officer userOfficer;
 		
