@@ -30,15 +30,13 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public List<Person> findByIncident(Incident incident) {
-		// TODO probably don't need this method
-		// TODO Auto-generated method stub
+	public List<Person> findByOfficerId(int id) {
+				
 		return null;
 	}
 
 	@Override
 	public List<Person> findByFirstName(String firstName) {
-
 		String query = "SELECT p FROM Person p WHERE p.firstName IS :firstName";
 		List<Person> results = em.createQuery(query, Person.class).setParameter("firstName", firstName).getResultList();
 		return results;

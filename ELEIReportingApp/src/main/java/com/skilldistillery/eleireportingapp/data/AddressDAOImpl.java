@@ -31,12 +31,6 @@ public class AddressDAOImpl implements AddressDAO {
 		return result;
 	}
 	
-//	public List<Address> findAllForDepartment(Department department) {
-//		// all officers at department
-//		// all persons for officers
-//		String query = 
-//	}
-//	
 //	public List<Address> findAllForOfficer(Officer officer) {
 //		// all persons for officer's incidents
 //		String query = 

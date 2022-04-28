@@ -10,7 +10,7 @@ public interface PersonDAO {
 	
 	public Person findByPerson(Person person);
 	public Person findById(int id);
-	public List<Person> findByIncident(Incident incident);
+	public List<Person> findByOfficerId(int id);
 	public List<Person> findByFirstName(String firstName);
 	public List<Person> findByMiddleName(String middleName);
 	public List<Person> findByLastName(String lastName);

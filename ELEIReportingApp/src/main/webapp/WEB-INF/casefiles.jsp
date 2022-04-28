@@ -26,7 +26,19 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">CaseFiles</h1>
+							<h1 class="m-0">
+								<c:choose>
+									<c:when test="${not empty userDepartments && userDepartments.size() > 1}">
+										All CaseFiles at ${userDepartments.size() } Departments
+									</c:when>
+									<c:when test="${not empty userDepartments && userDepartments.size() == 1}">
+										All CaseFiles at ${userDepartments.size() } Department
+									</c:when>
+									<c:otherwise>
+										All CaseFiles
+									</c:otherwise>
+								</c:choose>
+							</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->

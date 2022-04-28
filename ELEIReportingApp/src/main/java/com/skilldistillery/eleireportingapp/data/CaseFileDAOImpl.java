@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.eleireportingapp.entities.CaseFile;
+import com.skilldistillery.eleireportingapp.entities.Department;
 
 @Service
 @Transactional
@@ -46,6 +47,17 @@ public class CaseFileDAOImpl implements CaseFileDAO {
 				.setParameter("end", end)
 				.getResultList();
 		return results;		
+	}
+	
+	@Override
+	public List<CaseFile> findByDepartmentId(int id) {
+		String query = "SELECT DISTINCT casefile FROM CaseFile casefile "
+				+ "JOIN Incident incident ON incident.caseFile.id = casefile.id "
+				+ "JOIN Department department ON department.id = :id";
+		List<CaseFile> results = em.createQuery(query, CaseFile.class)
+				.setParameter("id", id)
+				.getResultList();
+		return results;
 	}
 
 	@Override

@@ -13,6 +13,7 @@ public interface IncidentDAO {
 	public Incident findById(int id);
 	public List<Incident> findByAddress(Address address);
 	public List<Incident> findByPerson(Person person);
+	public List<Incident> findByOfficerId(int id);
 	public List<Incident> findByDepartmentId(int id);
 	public Incident findByCase(CaseFile caseFile);
 	public List<Incident> findByIncidentDate(Timestamp incidentDate);

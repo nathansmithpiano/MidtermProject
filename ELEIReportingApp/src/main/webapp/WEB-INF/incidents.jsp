@@ -31,8 +31,11 @@
 									<c:when test="${level == 1}">
 										My Incidents
 									</c:when>
-									<c:when test="${level == 2 }">
-										Incidents at ${sessionScope.userOfficer.departments.size() } Departments
+									<c:when test="${level == 2 && sessionScope.userOfficer.departments.size() == 1}">
+										All Incidents at ${sessionScope.userOfficer.departments.size() } Department
+									</c:when>
+									<c:when test="${level == 2 && sessionScope.userOfficer.departments.size() > 1}">
+										All Incidents at ${sessionScope.userOfficer.departments.size() } Departments
 									</c:when>
 									<c:otherwise>
 										Officer Incidents

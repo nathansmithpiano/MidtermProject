@@ -102,7 +102,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="departmentCaseFiles.do" class="nav-link" id="nav-casefiles-all">
+							<a href="userCaseFiles.do" class="nav-link" id="nav-casefiles-all">
 								<i class="far fa-solid fa-location-dot nav-icon"></i>
 								<p>
 									All Casefiles
@@ -125,7 +125,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="officerAddresses.do" class="nav-link" id="nav-addresses-my">
+							<a href="officerAddresses.do?officerId=${sessionScope.userOfficer.id }" class="nav-link" id="nav-addresses-my">
 								<i class="far fa-solid fa-location-dot nav-icon"></i>
 								<p>
 									My Addresses
@@ -138,10 +138,7 @@
 						<li class="nav-item">
 							<a href="allAddresses.do" class="nav-link" id="nav-addresses-all">
 								<i class="far fa-solid fa-map nav-icon"></i>
-								<p>
-									All Addresses
-									<i class="right fa-solid fa-building-shield"></i>
-								</p>
+								<p>All Addresses</p>
 							</a>
 						</li>
 					</ul>
@@ -173,7 +170,6 @@
 								<i class="far fa-solid fa-users-between-lines nav-icon"></i>
 								<p>
 									All Persons
-									<i class="right fa-solid fa-building-shield"></i>
 								</p>
 							</a>
 						</li>

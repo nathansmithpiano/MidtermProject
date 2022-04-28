@@ -10,6 +10,7 @@ public interface CaseFileDAO {
 	public int findMaxCaseNumber();
 	public CaseFile findByCaseNumber(int caseNumber);
 	public List<CaseFile> findByCaseNumberRange(int start, int end);
+	public List<CaseFile> findByDepartmentId(int id);
 	public List<CaseFile> findByStatus(boolean flag);
 	public List<CaseFile> findAll();
 	public CaseFile create(CaseFile caseFile);

@@ -26,7 +26,16 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">All Addresses</h1>
+							<h1 class="m-0">
+							<c:choose>
+								<c:when test="${not empty incidentCount && incidentCount > 0 }">
+									All Persons for ${incidentCount } incidents
+								</c:when>
+								<c:otherwise>
+									All Persons
+								</c:otherwise>
+							</c:choose>
+							</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
@@ -38,7 +47,7 @@
 									</a>
 								</li>
 								<li class="breadcrumb-item active">
-									All Addresses
+									All Persons
 								</li>
 							</ol>
 						</div><!-- /.col -->

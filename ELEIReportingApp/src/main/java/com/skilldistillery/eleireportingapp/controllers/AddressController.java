@@ -1,5 +1,6 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
+import com.skilldistillery.eleireportingapp.data.DepartmentDAO;
 import com.skilldistillery.eleireportingapp.entities.Address;
+import com.skilldistillery.eleireportingapp.entities.Department;
+import com.skilldistillery.eleireportingapp.entities.Officer;
 
 @Controller
 public class AddressController {
@@ -19,8 +23,8 @@ public class AddressController {
 	@Autowired
 	private AddressDAO addressDao;
 	
-//	@Autowired
-//	private DepartmentDAO departmentDAO;
+	@Autowired
+	private DepartmentDAO departmentDao;
 	
 	// USING
 	
@@ -44,13 +48,12 @@ public class AddressController {
 	}
 	
 	@RequestMapping(path = "allAddresses.do")
-	public String departmentAddresses(Model model, HttpSession session) {
+	public String allAddresses(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
 		
-		List<Address> addressList = addressDao.findAll();
-		model.addAttribute("addressList", addressList);
+		model.addAttribute("addressList", addressDao.findAll());
 		model.addAttribute("level", 2);
 		return "addresses";
 	}

@@ -44,6 +44,15 @@ public class IncidentDAOImpl implements IncidentDAO {
 		return results;
 	}
 	
+	@Override
+	public List<Incident> findByOfficerId(int id) {
+		String query = "SELECT incident FROM Incident incident WHERE incident.officer.id = :id";
+		List<Incident> results = em.createQuery(query, Incident.class)
+				.setParameter("id", id)
+				.getResultList();
+		return results;
+	}
+	
 	public List<Incident> findByDepartmentId(int id) {
 		String query = "SELECT incident FROM Incident incident JOIN department.incidents incident WHERE department.id = :id";
 		List<Incident> results = em.createQuery(query, Incident.class)
