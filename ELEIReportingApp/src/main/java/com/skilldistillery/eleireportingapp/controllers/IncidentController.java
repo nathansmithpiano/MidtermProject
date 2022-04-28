@@ -203,6 +203,7 @@ public class IncidentController {
 			System.err.println("IncidentController create error - personId is 0");
 		}
 		
+		incidentPerson.setEthnicity(person.getEthnicity());
 		incidentPerson.setDescription(incidentPersonDescription);
 		incidentPersonDao.create(incidentPerson);
 
