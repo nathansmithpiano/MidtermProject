@@ -2,49 +2,62 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:choose>
+<!-- Begin Card -->
+<div class="card">
 
-	<c:when test="${empty noteList }">
-		<h4>No notes found</h4>
-	</c:when>
+	<!-- Begin Card Body -->
+	<div class="card-body">
 	
-	<c:otherwise>
+		<h3 class="card-title">
+			<c:choose>
+				<c:when test="${empty noteList }">
+					No notes found
+				</c:when>
+				<c:otherwise>
+					Notes
+				</c:otherwise>
+			</c:choose>
+		</h3>
 
-		<table id="noteTable" class="table table-bordered table-striped">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>User ID</th>
-					<th>Created</th>
-					<th>Updated</th>
-					<th>CaseFiles</th>
-					<th>Incidents</th>
-					<th>Persons</th>
-					<th>Content</th>
-				</tr>
-			</thead>
-			<tbody>
+		<c:if test="${not empty noteList }">
 			
-				<c:forEach var="note" items="${noteList }">
+			<table id="noteTable" class="table table-bordered table-striped">
+				<thead>
 					<tr>
-						<td>
-							<a href="note.do?id=${note.id }">
-								${note.id }
-							</a>
-						</td>
-						<td>${note.userId }</td>
-						<td>${note.created }</td>
-						<td>${note.updated }</td>
-						<td>${note.caseFiles.size() }</td>
-						<td>${note.incidents.size() }</td>
-						<td>${note.persons.size() }</td>
-						<td>${note.content }</td>
+						<th>ID</th>
+						<th>User ID</th>
+						<th>Created</th>
+						<th>Updated</th>
+						<th>CaseFiles</th>
+						<th>Incidents</th>
+						<th>Persons</th>
+						<th>Content</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
 				
-			</tbody>
-		</table>
+					<c:forEach var="note" items="${noteList }">
+						<tr>
+							<td>
+								<a href="note.do?id=${note.id }">
+									${note.id }
+								</a>
+							</td>
+							<td>${note.userId }</td>
+							<td>${note.created }</td>
+							<td>${note.updated }</td>
+							<td>${note.caseFiles.size() }</td>
+							<td>${note.incidents.size() }</td>
+							<td>${note.persons.size() }</td>
+							<td>${note.content }</td>
+						</tr>
+					</c:forEach>
+					
+				</tbody>
+			</table>
+				
+		</c:if>
 		
-	</c:otherwise>
-
-</c:choose>
+	</div> <!-- end Card Body -->
+	
+</div> <!-- end Card -->

@@ -2,48 +2,62 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:choose>
+<!-- Begin Card -->
+<div class="card">
 
-	<c:when test="${empty userList }">
-		<h4>No users found</h4>
-	</c:when>
+	<!-- Begin Card Body -->
+	<div class="card-body">
 	
-	<c:otherwise>
-	
-		<table>
+		<h3 class="card-title">
+			Users
+		</h3>
+
+		<c:choose>
 		
-			<thead>
-				<th>ID</th>
-				<th>Permission Level</th>
-				<th>Username</th>
-				<th>Password</th>
-				<th>Active</th>
-				<th>Person</th>
-			</thead>
+			<c:when test="${empty userList }">
+				<h4>No users found</h4>
+			</c:when>
 			
-			<tbody>
-				<c:forEach var="user" items="${userList }">
+			<c:otherwise>
+			
+				<table>
 				
-					<tr>
-						<td>${user.id }</td>
-						<td>${user.permissionLevel }</td>
-						<td>${user.username }</td>
-						<td>${user.password }</td>
-						<td>${user.active }</td>
-						<td>
-							<a href="person.do?id=${user.person.id }">
-								${user.person.fullName }
-							</a>
-						</td>
-					</tr>
+					<thead>
+						<th>ID</th>
+						<th>Permission Level</th>
+						<th>Username</th>
+						<th>Password</th>
+						<th>Active</th>
+						<th>Person</th>
+					</thead>
 					
-				</c:forEach>
+					<tbody>
+						<c:forEach var="user" items="${userList }">
+						
+							<tr>
+								<td>${user.id }</td>
+								<td>${user.permissionLevel }</td>
+								<td>${user.username }</td>
+								<td>${user.password }</td>
+								<td>${user.active }</td>
+								<td>
+									<a href="person.do?id=${user.person.id }">
+										${user.person.fullName }
+									</a>
+								</td>
+							</tr>
+							
+						</c:forEach>
+						
+					</tbody>
+					
+				</table>
 				
-			</tbody>
+			</c:otherwise>
 			
-		</table>
+		</c:choose>
 		
-	</c:otherwise>
+	</div> <!-- end Card Body -->
 	
-</c:choose>
+</div> <!-- end Card -->
 		

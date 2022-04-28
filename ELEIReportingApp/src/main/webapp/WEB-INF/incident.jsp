@@ -104,19 +104,15 @@
 										<li>Persons: ${incident.persons.size() }</li>
 										<li>Notes: ${incident.notes.size()}</li>
 									</ul>
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
 									
-									<!-- Person Stuff -->
-									<h3>Persons</h3>
-									<jsp:include page="tables/persons_table.jsp" />
-									<br />
-									<hr />
-									<!-- Note Stuff -->
-									<h3>Notes</h3>
-									<jsp:include page="tables/notes_table.jsp" />
-									
+							<!-- Persons Card -->
+							<jsp:include page="tables/persons_table.jsp" />
+							
+							<!-- Notes Card -->
+							<jsp:include page="tables/notes_table.jsp" />
 	    						
-	    						</div> <!-- end card-body -->
-	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->

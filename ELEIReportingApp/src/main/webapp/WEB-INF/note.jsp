@@ -53,6 +53,8 @@
     			<div class="container-fluid">
     				<div class="row">
     					<div class="col-12">
+    					
+    						<!-- Begin Note Card -->
     						 <div class="card">
     				
 		    					<!-- Card header -->
@@ -60,6 +62,14 @@
 		    						<h3 class="card-title">
 		    							Note ${note.id }
 		    						</h3>
+		    						
+		    						<!-- Buttons -->
+		    						<div class="float-right">
+			    						<div class="btn-group">
+											<button type="button" class="btn btn-info">Update</button>
+	                  						<button type="button" class="btn btn-danger">Delete</button>
+										</div>
+									</div>
     						
     							</div> <!-- end Card header -->
     					
@@ -77,41 +87,30 @@
 										<li>Persons: ${note.persons.size() }</li>
 									</ul>
 									
-									<!-- CaseFile Stuff -->
-									<br />
-									<hr />
-									<h3>CaseFiles</h3>
-									<c:set var="caseFileList" scope="request" value="${note.caseFiles }" />
-									<jsp:include page="tables/casefiles_table.jsp" />
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
+								
+							<!-- CaseFiles Card -->
+							<c:set var="caseFileList" scope="request" value="${note.caseFiles }" />
+							<jsp:include page="tables/casefiles_table.jsp" />
 									
-									<!-- Incident Stuff -->
-									<br />
-									<hr />
-									<h3>Incidents</h3>
-									<c:set var="incidentList" scope="request" value="${note.incidents }" />
-									<jsp:include page="tables/incidents_table.jsp" />
-									
-									<!-- Person Stuff -->
-									<br />
-									<hr />
-									<h3>Persons</h3>
-									<c:set var="personList" scope="request" value="${note.persons }" />
-									<jsp:include page="tables/persons_table.jsp" />
-									
-									
-	    						
-	    						</div> <!-- end card-body -->
-	    					</div> <!-- end Card -->
+							<!-- Incidents Card -->
+							<c:set var="incidentList" scope="request" value="${note.incidents }" />
+							<jsp:include page="tables/incidents_table.jsp" />
+								
+							<!-- Persons Card -->
+							<c:set var="personList" scope="request" value="${note.persons }" />
+							<jsp:include page="tables/persons_table.jsp" />
+								
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->
     		</section>
 			
-			
-			
 		</div> <!-- end Content Wrapper. Contains page content -->
 		
 		<jsp:include page="generic/footer.jsp" />
+		
 	</div> <!-- end main div wrapper -->
 	
 	<!-- REQUIRED SCRIPTS -->
@@ -159,5 +158,6 @@
 			});
 		});
 	</script>
+	
 </body>
 </html>

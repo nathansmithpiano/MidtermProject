@@ -79,23 +79,17 @@
 										<li>Incidents: ${address.incidents.size()}</li>
 										<li>Persons: ${address.persons.size() }</li>
 									</ul>
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
+							
+							<!-- Incidents Card -->
+							<c:set var="incidentList" scope="request" value="${address.incidents }" />
+							<jsp:include page="tables/incidents_table.jsp" />
+							
+							<!-- Persons Card -->
+							<c:set var="personList" scope="request" value="${address.persons }" />
+							<jsp:include page="tables/persons_table.jsp" />
 									
-									<!-- Incidents Stuff -->
-									<br />
-									<hr />
-									<h3>Incidents</h3>
-									<c:set var="incidentList" scope="request" value="${address.incidents }" />
-									<jsp:include page="tables/incidents_table.jsp" />
-									
-									<!-- Persons Stuff -->
-									<br />
-									<hr />
-									<h3>Persons</h3>
-									<c:set var="personList" scope="request" value="${address.persons }" />
-									<jsp:include page="tables/persons_table.jsp" />
-									
-	    						</div> <!-- end card-body -->
-	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->
