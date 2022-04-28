@@ -44,6 +44,8 @@ public class OfficerController {
 		
 		Officer officer = officerDao.findById(id);
 		model.addAttribute("officer", officer);
+		model.addAttribute("departmentList", officer.getDepartments());
+		model.addAttribute("incidentList", officer.getIncidents());
 		return "officer";
 	}
 

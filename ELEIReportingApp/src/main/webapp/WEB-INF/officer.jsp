@@ -12,15 +12,9 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
-		
 		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -105,30 +99,19 @@
 										<li>Image URL: ${officer.imageUrl }</li>
 									</ul>
 									
-									<!-- Departments Stuff -->
-									<br />
-									<hr />
-									<h3>Departments</h3>
-									<c:set var="departmentList" scope="request" value="${officer.departments }" />
-									<jsp:include page="tables/departments_table.jsp" />
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
 									
-									<!-- Incidents Stuff -->
-									<br />
-									<hr />
-									<h3>Incidents</h3>
-									<c:set var="incidentList" scope="request" value="${officer.incidents }" />
-									<jsp:include page="tables/incidents_table.jsp" />
+							<!-- Departments Card -->
+							<jsp:include page="tables/departments_table.jsp" />
 									
-									
+							<!-- Incidents Card -->
+							<jsp:include page="tables/incidents_table.jsp" />
 	    						
-	    						</div> <!-- end card-body -->
-	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->
     		</section>
-			
-			
 			
 		</div> <!-- end Content Wrapper. Contains page content -->
 		

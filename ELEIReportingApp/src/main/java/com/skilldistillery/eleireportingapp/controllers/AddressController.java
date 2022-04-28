@@ -64,6 +64,8 @@ public class AddressController {
 		
 		Address address = addressDao.findById(id);
 		model.addAttribute("address", address);
+		model.addAttribute("incidentList", address.getIncidents());
+		model.addAttribute("personList", address.getPersons());
 		model.addAttribute("level", 1);
 		return "address";
 	}

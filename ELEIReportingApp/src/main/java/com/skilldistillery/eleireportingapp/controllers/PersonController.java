@@ -56,6 +56,9 @@ public class PersonController {
 		
 		Person person = personDao.findById(id);
 		model.addAttribute("person", person);
+		model.addAttribute("addressList", person.getAddresses());
+		model.addAttribute("incidentList", person.getIncidents());
+		model.addAttribute("noteList", person.getNotes());
 		model.addAttribute("level", 1);
 		return "person";
 	}

@@ -12,15 +12,9 @@
 	<!-- main div wrapper -->
 	<div class="wrapper">
 	
-		<!-- Preloader -->
-		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__wobble" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-		</div>
-		
 		<!-- Generics -->
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
-		
 		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -38,8 +32,16 @@
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active"><a href="#">CaseFile #${caseFile.caseNumber }</a></li>
+								<li class="breadcrumb-item">
+									<a href="officerCaseFiles.do?officerId=${sessionScope.userOfficer.id }">
+										My CaseFiles
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									<a href="caseFile.do?id=${caseFile.id }">
+										#${caseFile.caseNumber }
+									</a>
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -58,15 +60,22 @@
 		    					<div class="card-header">
 		    					
 		    						<h3 class="card-title">
-		    							CaseFile #${caseFile.caseNumber }
+		    							CaseFile Info
 		    						</h3>
+		    						
+		    						<!-- Buttons -->
+		    						<div class="float-right">
+			    						<div class="btn-group">
+			    							<button type="button" class="btn btn-warning">Add Note</button>
+											<button type="button" class="btn btn-info">Update</button>
+	                  						<button type="button" class="btn btn-danger">Delete</button>
+										</div>
+									</div>
     							
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
-	    							<h1>CaseFile</h1>
-
 									<ul>
 										<li>ID: ${caseFile.id}</li>
 										<li>Case #: ${caseFile.caseNumber}</li>
@@ -75,21 +84,16 @@
 										<li>Flag: ${caseFile.flag}</li>
 									</ul>
 									
-									<!-- Incidents Stuff -->
-									<br />
-									<hr />
-									<h3>Incidents</h3>
-									<c:set var="incidentList" scope="request" value="${caseFile.incidents }" />
-									<jsp:include page="tables/incidents_table.jsp" />
+								</div> <!-- end Card Body -->
+							</div> <!-- end Card -->
 									
-	    						</div> <!-- end card-body -->
-	    					</div> <!-- end Card -->
+							<!-- Incidents Card -->
+							<jsp:include page="tables/incidents_table.jsp" />
+									
 	    				</div> <!-- end col-12 -->
 	    			</div> <!-- end row -->
 	   			</div> <!-- end container-fluid -->
     		</section>
-			
-			
 			
 		</div> <!-- end Content Wrapper. Contains page content -->
 		

@@ -34,7 +34,11 @@ public class NoteController {
 			return "tlogin";
 		}
 		
-		model.addAttribute("note", noteDao.findById(id));
+		Note note = noteDao.findById(id);
+		model.addAttribute("note", note);
+		model.addAttribute("caseFileList", note.getCaseFiles());
+		model.addAttribute("incidentList", note.getIncidents());
+		model.addAttribute("personList", note.getPersons());
 		return "note";
 	}
 	
