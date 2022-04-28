@@ -1,5 +1,7 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +49,21 @@ public class NoteController {
 		return "note";
 	}
 	
+	@RequestMapping(path = "noteFromIncident.do" )
+	public String note(Model model, HttpSession session, @RequestParam("id") int id, @RequestParam("incidentId") int incidentId) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		Note note = noteDao.findById(id);
+		model.addAttribute("note", note);
+		model.addAttribute("incidentId", incidentId);
+		model.addAttribute("caseFileList", note.getCaseFiles());
+		model.addAttribute("incidentList", note.getIncidents());
+		model.addAttribute("personList", note.getPersons());
+		return "note";
+	}
+	
 	@RequestMapping(path = "addNoteToIncident.do")
 	public String addNoteToIncidnet(Model model, HttpSession session, @RequestParam("incidentId") int id) {
 		if (notLoggedIn(session)) {
@@ -81,36 +98,51 @@ public class NoteController {
 	//Temporary **********
 	
 	@RequestMapping(path = { "goToUpdateNote.do" })
-	public String goToUpdateNote(Model model, HttpSession session, @RequestParam("id") int id) {
+	public String goToUpdateNote(Model model, HttpSession session, 
+			@RequestParam("id") int id, @RequestParam("incidentId") int incidentId) {
+		if (notLoggedIn(session)) {
+			return "tlogin";
+		}
+		
+		model.addAttribute("incident", incidentDao.findById(incidentId));
+		model.addAttribute("note", noteDao.findById(id));
+		
+		return "incident_update_note";
+	}
+	
+	@RequestMapping(path = { "updateNote.do" })
+	public String updateNote(Model model, HttpSession session, 
+			@RequestParam("id") int id, @RequestParam("incidentId") int incidentId, @RequestParam("content") String content) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
 		
 		model.addAttribute("note", noteDao.findById(id));
-		
-		return "updateNote";
-	}
-	
-	@RequestMapping(path = { "updateNote.do" })
-	public String updateNote(Model model, HttpSession session, @RequestParam("id") int id, @RequestParam("content") String content) {
-		if (notLoggedIn(session)) {
-			return "tlogin";
-		}
-		
+		model.addAttribute("incidentId", incidentId);
 		model.addAttribute(noteDao.update(id, content));
 		
 		return "note";
 	}
 	
 	@RequestMapping(path = { "deleteNote.do" })
-	public String deleteNote(Model model, HttpSession session, @RequestParam("id") int id) {
+	public String deleteNote(Model model, HttpSession session, 
+			@RequestParam("id") int id, @RequestParam("incidentId") int incidentId) {
 		if (notLoggedIn(session)) {
 			return "tlogin";
 		}
 		
-		model.addAttribute(noteDao.delete(id));
+		Note note = noteDao.findById(id);
+		List<Incident> incidents = note.getIncidents();
 		
-		return "thome";
+		noteDao.delete(id);
+		
+		if (incidents.size() > 1) {
+			return "thome";
+		} else {
+			return "redirect:incident.do?id=" + incidentId;
+		}
+		
+		
 	}
 	
 	//NOT USING

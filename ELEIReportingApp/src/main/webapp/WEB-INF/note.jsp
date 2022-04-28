@@ -61,12 +61,22 @@
 		    						<div class="float-right">
 			    						<div class="btn-group">
 			    						
-			    						<a href="goToUpdateNote.do?id=${note.id }">
+			    						<a href="goToUpdateNote.do?id=${note.id }&incidentId=${incidentId }">
 											<button type="button" class="btn btn-info">Update</button>
 										</a>
-			    						<a href="deleteNote.do?id=${note.id }">
-											<button type="button" class="btn btn-danger">Delete</button>
-										</a>
+										<c:choose>
+											<c:when test="${not empty incidentId }">
+												<a href="deleteNote.do?id=${note.id }&incidentId=${incidentId }">
+													<button type="button" class="btn btn-danger">Delete</button>
+												</a>
+											</c:when>
+											<c:otherwise>
+												<a href="deleteNote.do?id=${note.id }">
+													<button type="button" class="btn btn-danger">Delete</button>
+												</a>
+											</c:otherwise>
+										</c:choose>
+			    						
 										</div>
 									</div>
     						
@@ -76,7 +86,7 @@
 	    							
 	    							<!-- Note Stuff -->
 									<ul>
-										<li>Id:${note.id }</li>
+										<li>Id: ${note.id }</li>
 										<li>User ID: ${note.userId }</li>
 										<li>Created: ${note.created }</li>
 										<li>Updated: ${note.updated }</li>
