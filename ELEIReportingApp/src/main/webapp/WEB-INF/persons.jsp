@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Title Goes Here</title>
+<title>Persons</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -26,14 +26,20 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">persons.jsp</h1>
+							<h1 class="m-0">All Addresses</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Root</a></li>
-								<li class="breadcrumb-item active">Child</li>
+								<li class="breadcrumb-item">
+									<a href="home.do">
+										Home
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									All Addresses
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -48,18 +54,8 @@
     					<div class="col-12">
     						 <div class="card">
     				
-		    					<!-- Card header -->
-		    					<div class="card-header">
-		    						<h3 class="card-title">
-		    							Card Header Goes Here
-		    						</h3>
-    						
-    							</div> <!-- end Card header -->
-    					
 	    						<div class="card-body">
-	    							
 	    							<jsp:include page="tables/persons_table.jsp" />
-	
 	    						</div> <!-- end card-body -->
 								
 	    					</div> <!-- end Card -->

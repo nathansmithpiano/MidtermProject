@@ -34,14 +34,12 @@
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item">
-									<a href="officerAddresses.do?officerId=${sessionScope.userOfficer.id }">
-										My Addresses
+									<a href="allAddresses.do">
+										All Addresses
 									</a>
 								</li>
 								<li class="breadcrumb-item active">
-									<a href="address.do?id=${address.id }">
-										${address.getFormattedAddress() }
-									</a>
+									${address.getFormattedAddress() }
 								</li>
 							</ol>
 						</div><!-- /.col -->
@@ -68,8 +66,6 @@
 		    						<div class="float-right">
 			    						<div class="btn-group">
 			    							<button type="button" class="btn btn-warning">Add Note</button>
-											<button type="button" class="btn btn-info">Update</button>
-	                  						<button type="button" class="btn btn-danger">Delete</button>
 										</div>
 									</div>
     							

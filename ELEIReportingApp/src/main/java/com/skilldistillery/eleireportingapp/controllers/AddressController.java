@@ -44,7 +44,7 @@ public class AddressController {
 		return "addresses";
 	}
 	
-	@RequestMapping(path = "departmentAddresses.do")
+	@RequestMapping(path = "allAddresses.do")
 	public String departmentAddresses(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
 			return "tlogin";

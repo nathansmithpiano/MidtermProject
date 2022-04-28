@@ -91,7 +91,7 @@
 					</a>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="officerCaseFiles.do" class="nav-link" id="nav-casefiles-my">
+							<a href="officerCaseFiles.do?officerId=${sessionScope.userOfficer.id }" class="nav-link" id="nav-casefiles-my">
 								<i class="far fa-solid fa-location-dot nav-icon"></i>
 								<p>
 									My Casefiles
@@ -136,7 +136,7 @@
 					</ul>
 					<ul class="nav nav-treeview">
 						<li class="nav-item">
-							<a href="departmentAddresses.do" class="nav-link" id="nav-addresses-all">
+							<a href="allAddresses.do" class="nav-link" id="nav-addresses-all">
 								<i class="far fa-solid fa-map nav-icon"></i>
 								<p>
 									All Addresses

@@ -38,9 +38,7 @@
 									</a>
 								</li>
 								<li class="breadcrumb-item active">
-									<a href="caseFile.do?id=${caseFile.id }">
-										#${caseFile.caseNumber }
-									</a>
+									#${caseFile.caseNumber }
 								</li>
 							</ol>
 						</div><!-- /.col -->
@@ -67,8 +65,6 @@
 		    						<div class="float-right">
 			    						<div class="btn-group">
 			    							<button type="button" class="btn btn-warning">Add Note</button>
-											<button type="button" class="btn btn-info">Update</button>
-	                  						<button type="button" class="btn btn-danger">Delete</button>
 										</div>
 									</div>
     							

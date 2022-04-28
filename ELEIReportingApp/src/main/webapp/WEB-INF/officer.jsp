@@ -26,15 +26,20 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">${officer.person.fullName } (Badge #${officer.badge })</h1>
+							<h1 class="m-0">Badge #${officer.badge }</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item"><a href="#">Officers</a></li>
-								<li class="breadcrumb-item active">${officer.person.fullName } (Badge #${officer.badge })</li>
+								<li class="breadcrumb-item">
+									<a href="departmentOfficers.do">
+										Department Officers
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									Badge #${officer.badge }
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -51,8 +56,10 @@
     				
 		    					<!-- Card header -->
 		    					<div class="card-header">
+		    					
 		    						<h3 class="card-title">
-		    							Badge #${officer.badge }
+		    							${officer.person.fullName } (Badge #${officer.badge })
+		    							
 		    							<c:if test="${not empty officer.supervisor }">
 		    								Supervisor: 
 		    								<a href="officer.do?id=${officer.supervisor.id }">
@@ -60,19 +67,11 @@
 		   									</a>
 		    							</c:if>
 		    						</h3>
-    						
-	    						<!-- <div class="card-tools">
-	    								<button type="button" class="btn btn-tool" data-card-widget="collapse">
-					                		<i class="fas fa-minus"></i>
-					              		</button>
-	    							</div> -->
-    							
     							
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
-	    							<h3>Officer Stuff</h3>
 									<ul>
 										<li>Name: 
 											<a href="person.do?id=${officer.person.id }">

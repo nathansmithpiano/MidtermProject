@@ -64,15 +64,6 @@
 		    							Department Info
 		    						</h3>
 		    						
-		    						<!-- Buttons -->
-		    						<div class="float-right">
-			    						<div class="btn-group">
-			    							<button type="button" class="btn btn-warning">Add Note</button>
-											<button type="button" class="btn btn-info">Update</button>
-	                  						<button type="button" class="btn btn-danger">Delete</button>
-										</div>
-									</div>
-    						
     							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">

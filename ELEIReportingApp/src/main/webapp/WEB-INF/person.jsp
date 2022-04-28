@@ -38,9 +38,7 @@
 									</a>
 								</li>
 								<li class="breadcrumb-item active">
-									<a href="person.do?id=${person.id }">
-										${person.fullName }
-									</a>
+									${person.fullName }
 								</li>
 							</ol>
 						</div><!-- /.col -->
@@ -68,8 +66,6 @@
 		    						<div class="float-right">
 			    						<div class="btn-group">
 			    							<button type="button" class="btn btn-warning">Add Note</button>
-											<button type="button" class="btn btn-info">Update</button>
-	                  						<button type="button" class="btn btn-danger">Delete</button>
 										</div>
 									</div>
     							

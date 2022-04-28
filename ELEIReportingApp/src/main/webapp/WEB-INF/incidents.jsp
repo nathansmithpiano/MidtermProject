@@ -26,14 +26,21 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">incidents.jsp</h1>
+							<h1 class="m-0">All Incidents</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
+						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Root</a></li>
-								<li class="breadcrumb-item active">Child</li>
+								<li class="breadcrumb-item">
+									<a href="home.do">
+										Home
+									</a>
+								</li>
+								<li class="breadcrumb-item active">
+									All Incidents
+								</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -48,21 +55,8 @@
     					<div class="col-12">
     						 <div class="card">
     				
-		    					<!-- Card header -->
-		    					<div class="card-header">
-		    						<h3 class="card-title">
-		    							Card Header Goes Here
-		    							
-		    						</h3>
-    						
-    							</div> <!-- end Card header -->
-    					
 	    						<div class="card-body">
-	    							
-	    							<h3>Card Body Goes Here</h3>
-	    							
 	    							<jsp:include page="tables/incidents_table.jsp" />
-	
 	    						</div> <!-- end card-body -->
 								
 	    					</div> <!-- end Card -->
