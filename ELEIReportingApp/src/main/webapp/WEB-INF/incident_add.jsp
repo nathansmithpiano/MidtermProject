@@ -56,17 +56,13 @@
 						<div class="col-12">
 							<div class="card">
 
-								<!-- Card header -->
-								<div class="card-header">
-									<h3 class="card-title">Add New Incident</h3>
-
-								</div>
-								<!-- end Card header -->
-
 								<div class="card-body">
 
 									<form action="createIncident.do" method="post">
 										<div class="form-group">
+										
+											<h3>Incident Details</h3>
+											<br>
 
 											<label for="departmentId">Department:</label>
 											<select class="form-control" id="departmentId" name="departmentId" required>
@@ -88,27 +84,6 @@
 											<textarea class="form-control" name="description" rows="10" cols="30"></textarea>
 											<br> 
 											
-											<div id="incident-person-form">
-												<label id="selectedAddressLabel" for="selectedAddress">Selected Address:</label> 
-												<input class="btn btn-success btn-block" type="hidden" id="selectedAddress">
-												<br> 
-												
-												<label id="selectedPersonLabel" for="selectedPerson">Selected Person:</label>
-												<input class="btn btn-success btn-block" type="button" id="selectedPerson">
-												<br>
-											</div>
-
-											<br>
-											<div class="container-fluid">
-												<div class="row">
-													<input type="hidden" id="addressId" name="addressId" placeholder="addressId" required />
-													<input type="hidden" id="personIdHidden" name="personId" placeholder="personId" required />
-													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickNewPersonButton()" id="newPersonButton" value="Create New Person" />
-													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickPersonTableButton()" id="choosePersonFromList" value="Select Person From List" />
-													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickAddressTableButton()" id="chooseAddressFromList" value="Select Address From List" />
-												</div>
-											</div>
-
 											<input type="hidden" id="addressId" name="addressId">
 											<input type="hidden" id="personIdHidden" name="personId">
 
@@ -122,16 +97,49 @@
 											<input type="hidden" id="ethnicityNameHidden" name="ethnicityName">
 											<input type="hidden" id="personDescriptionHidden" name="personDescription">
 											
-											<div id="incident-person-form">
-												
-												<!-- IncidentPerson stuff -->
-												<input type="hidden" id="ageMinimumHidden" name="ageMinimum">
-												<input type="hidden" id="ageMaximumHidden" name="ageMaximum">
-												<input type="hidden" id="suspectedCrimeHidden" name="suspectedCrime">
-												<input type="hidden" id="incidentPersonDescriptionHidden" name="incidentPersonDescription">
-												
+											<input type="hidden" id="ageMinimumHidden" name="ageMinimum">
+											<input type="hidden" id="ageMaximumHidden" name="ageMaximum">
+											<input type="hidden" id="suspectedCrimeHidden" name="suspectedCrime">
+											<input type="hidden" id="incidentPersonDescriptionHidden" name="incidentPersonDescription">
+											<hr />
+											<div class="form-group">
+												<h3>Person Details</h3>
+												<br>
+												<label for="ageMinimumForm">Person Age Min:</label>
+												<input class="form-control" type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" required>
+												<div id="ageMinRequired"><code>Required, between 1-125</code></div>
+											</div>
+											<div class="form-group">
+												<label for="ageMaximumForm">Person Age Max:</label>
+												<input class="form-control" type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" required>
+												<div id="ageMaxRequired"><code>Required, between 1-125</code></div>
+											</div>
+												<label for="suspectedCrimeForm">Person Suspected Crime:</label>
+												<input class="form-control" type="text" id="suspectedCrimeForm" name="suspectedCrimeForm">
+											<div class="form-group">
+												<br>
+												<label for="incidentPersonDescriptionForm">Description of Person:</label>
+												<textarea class="form-control" name="incidentPersonDescriptionForm" id="incidentPersonDescriptionForm" rows="10" cols="30"></textarea>
+											</div>
+											<!-- IncidentPerson stuff -->
+											<div id="selectedPersonDiv">
+												<label id="selectedPersonLabel" for="selectedPerson">Selected Person:</label>
+												<input class="btn btn-success btn-block" type="button" id="selectedPerson">
 											</div>
 											<br>
+											<div id="selectedAddressDiv">
+												<label id="selectedAddressLabel" for="selectedAddress">Selected Address:</label> 
+												<input class="btn btn-success btn-block" type="button" id="selectedAddress">
+											</div>
+											<br>
+											<div class="container-fluid">
+												<div class="row">
+													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickNewPersonButton()" id="newPersonButton" value="Create New Person" />
+													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickPersonTableButton()" id="choosePersonFromList" value="Select Person From List" />
+													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickAddressTableButton()" id="chooseAddressFromList" value="Select Address From List" />
+												</div>
+											</div>
+											
 											<br>
 											<button type="button" class="btn btn-primary" id="verifyButton" onclick="verify()">Check before adding</button>
 											<input class="btn btn-primary btn-lg" type="hidden" id="submitButton" value="Submit">
@@ -156,24 +164,6 @@
 										<h3>Add a new person</h3>
 										<form id="incident-new-person-form">
 											<jsp:include page="generic/person_add_form.jsp" />
-											<div class="form-group">
-											<h3>Incident Details:</h3>
-												<label for="ageMinimumForm">Age Min:</label>
-												<input class="form-control" type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" required>
-												<div id="ageMinRequired"><code>Required, between 1-125</code></div>
-											</div>
-											<div class="form-group">
-												<label for="ageMaximumForm">Age Max:</label>
-												<input class="form-control" type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" required>
-												<div id="ageMaxRequired"><code>Required, between 1-125</code></div>
-											</div>
-												<label for="suspectedCrimeForm">Suspected Crime:</label>
-												<input class="form-control" type="text" id="suspectedCrimeForm" name="suspectedCrimeForm">
-											<div class="form-group">
-												<br>
-												<label for="incidentPersonDescriptionForm">Description of Incident:</label>
-												<textarea class="form-control" name="incidentPersonDescriptionForm" id="incidentPersonDescriptionForm" rows="10" cols="30"></textarea>
-											</div>
 											<br>
 											<input class="btn btn-primary btn-lg" type="button" onclick="clickNewPersonFormButton()" id="newPersonFormButton" value="Add Person">
 										</form>
@@ -278,7 +268,10 @@
 						//set addressId to addressId in form
 						document.getElementById('addressId').value = id;
 						
-						document.getElementById('selectedAddressLabel').style.display = "block";
+						//click on address row, show button and label
+						var addressDiv = document.getElementById('selectedAddressDiv');
+						addressDiv.style.display = "block";
+						
 					};
 				};
 
@@ -320,9 +313,8 @@
 								.getElementById('selectedPerson');
 						personButton.value = fullName;
 
-						/* display personDiv once clicked */
-						personDiv.style.display = "block";
-
+						
+						
 						//set personId to personId in form
 						document.getElementById('personIdHidden').value = id;
 
@@ -332,7 +324,21 @@
 						//set ethnicityName to hidden field
 						document.getElementById("birthHidden").value = "${personList.get(id).getBirthDate().toString() }";
 						
-						document.getElementById('selectedPersonLabel').style.display = "block";
+						//ageMin ageMax stuff
+						if (row.getElementsByTagName("td")[5].innerHTML != "") {
+							var birthYearString = row.getElementsByTagName("td")[5].innerHTML.substring(0, 4);
+							var birthYear = parseInt(birthYearString);
+							var currentYear = new Date().getFullYear();
+							var age = currentYear - birthYear;
+							document.getElementById("ageMinimumHidden").value = age;
+							document.getElementById("ageMinimumForm").value = age;
+							document.getElementById("ageMaximumHidden").value = age;
+							document.getElementById("ageMaximumForm").value = age;
+						}
+						
+						/* display once clicked */
+						var personDiv = document.getElementById('selectedPersonDiv');
+						personDiv.style.display = "block";
 					};
 				};
 
@@ -403,10 +409,7 @@
 				} else {
 					personButton.value = fullName;
 				}
-
-				var personDiv = document.getElementById('incident-person-form');
-				personDiv.style.display = "block";
-
+				
 				document.getElementById("personIdHidden").value = "0";
 				if (document.getElementById("firstName").value != null) {
 					document.getElementById("firstNameHidden").value = document.getElementById("firstName").value;
@@ -444,6 +447,10 @@
 				if (document.getElementById("incidentPersonDescriptionForm").value != null) {
 					document.getElementById("incidentPersonDescriptionHidden").value = document.getElementById("incidentPersonDescriptionForm").value;
 				}
+				
+				/* display once clicked */
+				var personDiv = document.getElementById('selectedPersonDiv')
+				personDiv.style.display = "block";
 
 				hideAll();
 			}
@@ -474,8 +481,10 @@
 			document.getElementById('incident-new-person').style.display = "none";
 		}
 		
-		document.getElementById('selectedAddressLabel').style.display = "none";
-		document.getElementById('selectedPersonLabel').style.display = "none";
+		var addressDiv = document.getElementById('selectedAddressDiv');
+		addressDiv.style.display = "none";
+		var personDiv = document.getElementById('selectedPersonDiv');
+		personDiv.style.display = "none";
 
 		window.onload = addAddressRowHandlers();
 		window.onload = addPersonRowHandlers();

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>THome</title>
+<title>ELEI Reporting App</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -26,15 +26,13 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-12">
-							<h1 class="m-0"><a href="https://leg.colorado.gov/bills/sb20-217" target="_blank">SB 20-217 Enhance Law Enforcement Integrity</a></h1>
+							<h1 class="m-0">
+								<a href="https://leg.colorado.gov/bills/sb20-217" target="_blank">
+									SB 20-217 Enhance Law Enforcement Integrity
+								</a>
+							</h1>
 						</div><!-- /.col -->
 						<!-- Card header -->
-		    					<div class="card-header">
-		    						<h3 class="card-title">
-		    							 
-		    						</h3>
-    						
-    							</div> <!-- end Card header -->
     					
 	    						<div class="card-body">
 	    							
