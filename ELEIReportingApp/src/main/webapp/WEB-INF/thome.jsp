@@ -68,7 +68,7 @@
 										format and publish the database on its website. 
 										Any state or local law enforcement agency that fails to 
 										meet its reporting requirements is subject to suspension 
-										of its funding by its appropriating authority.</p>
+				s						of its funding by its appropriating authority.</p>
 	    						</div> <!-- end card-body -->
 					</div><!-- /.row -->
 				</div><!-- /.container-fluid -->
