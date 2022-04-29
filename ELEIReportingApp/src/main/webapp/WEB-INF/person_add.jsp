@@ -60,7 +60,7 @@
 	
 									<form action="addNewPerson.do" method="post">
 										<jsp:include page="generic/person_add_form.jsp" />
-										<input type="submit" value="Submit">
+										<input class="btn btn-primary btn-lg" type="submit" value="Submit">
 									</form>
 	
 								</div> <!-- end card-body -->
