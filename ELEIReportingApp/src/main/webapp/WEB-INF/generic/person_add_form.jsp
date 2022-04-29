@@ -41,10 +41,12 @@
 		<option value="Pacific Islander"/>
 		<option value="Other"/>
 	</datalist>
+	<div id="ethnicityNameRequired"><code>Required</code></div>
 	<br>
 	 
 	<label for="gender">Gender:</label>
 	<input class="form-control" type="text" name="gender" id="gender" required>
+	<div id="genderRequired"><code>Required</code></div>
 	<br>
 	
 	<label for="description">Description:</label>

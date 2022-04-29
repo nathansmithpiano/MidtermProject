@@ -88,15 +88,15 @@
 											<textarea class="form-control" name="description" rows="10" cols="30"></textarea>
 											<br> 
 											
-											<label for="selectedAddress">Selected Address:</label> 
-											<input class="btn btn-success btn-block" type="hidden" id="selectedAddress">
-											<br> 
-											
 											<div id="incident-person-form">
-												<label for="selectedPerson">Selected Person:</label>
+												<label id="selectedAddressLabel" for="selectedAddress">Selected Address:</label> 
+												<input class="btn btn-success btn-block" type="hidden" id="selectedAddress">
+												<br> 
+												
+												<label id="selectedPersonLabel" for="selectedPerson">Selected Person:</label>
 												<input class="btn btn-success btn-block" type="button" id="selectedPerson">
+												<br>
 											</div>
-											<br>
 											
 											<input type="hidden" id="addressId" name="addressId" placeholder="addressId" required />
 											<input type="hidden" id="personIdHidden" name="personId" placeholder="personId" required />
@@ -154,12 +154,12 @@
 											<div class="form-group">
 												<label for="ageMinimumForm">Age Min:</label>
 												<input type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" value="0" required>
-												<div id="ageMinRequired"><code>Required</code></div>
+												<div id="ageMinRequired"><code>Required, between 1-125</code></div>
 											</div>
 											<div class="form-group">
 												<label for="ageMaximumForm">Age Max:</label>
 												<input type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" value="0" required>
-												<div id="ageMaxRequired"><code>Required</code></div>
+												<div id="ageMaxRequired"><code>Required, between 1-125</code></div>
 											</div>
 												<label for="suspectedCrimeForm">Suspected Crime:</label>
 												<input type="text" id="suspectedCrimeForm" name="suspectedCrimeForm">
@@ -270,7 +270,8 @@
 
 						//set addressId to addressId in form
 						document.getElementById('addressId').value = id;
-
+						
+						document.getElementById('selectedAddressLabel').style.display = "block";
 					};
 				};
 
@@ -323,6 +324,8 @@
 
 						//set ethnicityName to hidden field
 						document.getElementById("birthHidden").value = "${personList.get(id).getBirthDate().toString() }";
+						
+						document.getElementById('selectedPersonLabel').style.display = "block";
 					};
 				};
 
@@ -333,20 +336,29 @@
 		function clickNewPersonFormButton() {
 
 			if (document.getElementById("ethnicityName").value == "") {
-				document.getElementById("ethnicityName").placeholder = "required";
+				/* document.getElementById("ethnicityName").placeholder = "required"; */
+				document.getElementById('ethnicityNameRequired').style.display = "block";
+			} else {
+				document.getElementById('ethnicityNameRequired').style.display = "none";
 			}
 
 			if (document.getElementById("gender").value == "") {
-				document.getElementById("gender").placeholder = "required";
+				/* document.getElementById("gender").placeholder = "required"; */
+				document.getElementById('genderRequired').style.display = "block";
+			} else {
+				document.getElementById('genderRequired').style.display = "none";
 			}
 			
-			if (document.getElementById("ageMinimumForm").value == "") {
+			if (document.getElementById("ageMinimumForm").value == "" || 
+					document.getElementById("ageMinimumForm").value < 1 ||
+					document.getElementById("ageMinimumForm").value > 125) {
 				document.getElementById('ageMinRequired').style.display = "block";
 			} else {
 				document.getElementById('ageMinRequired').style.display = "none";
 			}
 			
-			if (document.getElementById("ageMaximumForm").value == "") {
+			if (document.getElementById("ageMaximumForm").value == "" ||
+					document.getElementById("ageMaximumForm").value > 125) {
 				document.getElementById('ageMaxRequired').style.display = "block";
 			} else {
 				document.getElementById('ageMaxRequired').style.display = "none";
@@ -355,6 +367,10 @@
 			if (document.getElementById("gender").value != ""
 					&& document.getElementById("ethnicityName").value != ""
 					&& document.getElementById("ageMinimumForm").value != ""
+					&& document.getElementById("ageMinimumForm").value > 0
+					&& document.getElementById("ageMinimumForm").value <= 125
+					&& document.getElementById("ageMaximumForm").value > 0
+					&& document.getElementById("ageMaximumForm").value <= 125
 					&& document.getElementById("ageMaximumForm").value != "") {
 
 				// set full name and add to top
@@ -440,17 +456,20 @@
 		function clickNewPersonButton() {
 			hideAll();
 			document.getElementById('incident-new-person').style.display = "block";
-			document.getElementById('ageMinimumForm').value = "";
-			document.getElementById('ageMaximumForm').value = "";
 		}
 
 		function hideAll() {
 			document.getElementById('ageMinRequired').style.display = "none";
 			document.getElementById('ageMaxRequired').style.display = "none";
+			document.getElementById('ethnicityNameRequired').style.display = "none";
+			document.getElementById('genderRequired').style.display = "none";
 			document.getElementById('incident-add-person-table-div').style.display = "none";
 			document.getElementById('incident-add-address-table-div').style.display = "none";
 			document.getElementById('incident-new-person').style.display = "none";
 		}
+		
+		document.getElementById('selectedAddressLabel').style.display = "none";
+		document.getElementById('selectedPersonLabel').style.display = "none";
 
 		/* var addressTableButton = document.getElementById("chooseAddressFromList");
 		addressTableButton.onclick = clickAddressTableButton();
