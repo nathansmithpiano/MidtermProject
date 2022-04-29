@@ -94,6 +94,7 @@
 											
 											<div id="incident-person-form">
 												<label for="selectedPerson">Selected Person:</label>
+											
 												<input class="btn btn-success btn-block" type="button" id="selectedPerson">
 											</div>
 											<br>
@@ -102,84 +103,103 @@
 											<input type="hidden" id="personIdHidden" name="personId" placeholder="personId" required />
 											<input class="btn btn-dark col-2" type="button" onclick="clickNewPersonButton()" id="newPersonButton" value="Create New Person" />
 											<input class="btn btn-dark col-2" type="button" onclick="clickPersonTableButton()" id="choosePersonFromList" value="Select Person From List" />
+											<!-- <input type="button" onclick="clickNewAddressButton()" id="newAddressButton" value="Create New Address" /> -->
 											<input class="btn btn-dark col-2" type="button" onclick="clickAddressTableButton()" id="chooseAddressFromList" value="Select Address From List" />
 
 											<input type="hidden" id="addressId" name="addressId">
 											<input type="hidden" id="personIdHidden" name="personId">
 
-											<!-- New Person Stuff -->
-											<input type="hidden" id="firstNameHidden" name="firstName">
-											<input type="hidden" id="middleNameHidden" name="middleName">
-											<input type="hidden" id="lastNameHidden" name="lastName">
-											<input type="hidden" id="titleHidden" name="title">
-											<input type="hidden" id="birthHidden" name="birth">
-											<input type="hidden" id="genderHidden" name="gender">
-											<input type="hidden" id="ethnicityNameHidden" name="ethnicityName">
-											<input type="hidden" id="personDescriptionHidden" name="personDescription">
-											
 											<div id="incident-person-form">
-												
-												<!-- IncidentPerson stuff -->
-												<input type="hidden" id="ageMinimumHidden" name="ageMinimum">
-												<input type="hidden" id="ageMaximumHidden" name="ageMaximum">
-												<input type="hidden" id="suspectedCrimeHidden" name="suspectedCrime">
-												<input type="hidden" id="incidentPersonDescriptionHidden" name="incidentPersonDescription">
-												
+												 <input type="hidden"
+													id="firstNameHidden" name="firstName"> <input
+													type="hidden" id="middleNameHidden" name="middleName">
+												<input type="hidden" id="lastNameHidden" name="lastName">
+												<input type="hidden" id="titleHidden" name="title">
+												<input type="hidden" id="birthHidden" name="birth">
+												<input type="hidden" id="genderHidden" name="gender">
+												<input type="hidden" id="ethnicityNameHidden"
+													name="ethnicityName"> <input type="hidden"
+													id="personDescriptionHidden" name="personDescription">
+												<label for="ageMinimum">Age Min:</label>
+												<input type="number" id="ageMinimum" name="ageMinimum" min="1" max="125" value="0" required>
+												<label for="ageMaximum">Age Max:</label>
+												<input type="number" id="ageMaximum" name="ageMaximum" min="1" max="125" value="0" required>
+												<label for="suspectedCrime">Suspected Crime:</label>
+												<input type="text" id="suspectedCrime" name="suspectedCrime">
+												<label for="incidentPersonDescription">Description:</label>
+												<textarea name="incidentPersonDescription" rows="10" cols="30"></textarea>
 											</div>
 											<br>
 											<br>
-											<button type="button" class="btn btn-primary" id="verifyButton" onclick="verify()">Check before adding</button>
+											<button type="button" class="btn btn-primary"
+												id="verifyButton" onclick="verify()">Check before
+												adding</button>
 											<input type="hidden" id="submitButton" value="Submit">
 										</div>
 									</form>
-									
-									
-									<!-- ADDRESS TABLE -->
-									<div id="incident-add-address-table-div">
-										<h3>Select address to attach to incident</h3>
-										<jsp:include page="tables/incident_add_address_table.jsp" />
-									</div> <!-- end ADDRESS TABLE -->
-									
-									<!-- PERSON TABLE -->
-									<div id="incident-add-person-table-div">
-										<h3>Select persons to add to incident</h3>
-										<jsp:include page="tables/incident_add_person_table.jsp" />
-									</div> <!-- end PERSON TABLE -->
-									
-									<!-- NEW PERSON -->
-									<div id="incident-new-person">
-										<h3>Add a new person</h3>
-										<form id="incident-new-person-form">
-											<jsp:include page="generic/person_add_form.jsp" />
-											<div class="form-group">
-												<label for="ageMinimumForm">Age Min:</label>
-												<input type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" value="0" required>
-												<div id="ageMinRequired"><code>Required</code></div>
-											</div>
-											<div class="form-group">
-												<label for="ageMaximumForm">Age Max:</label>
-												<input type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" value="0" required>
-												<div id="ageMaxRequired"><code>Required</code></div>
-											</div>
-												<label for="suspectedCrimeForm">Suspected Crime:</label>
-												<input type="text" id="suspectedCrimeForm" name="suspectedCrimeForm">
-											<div class="form-group">
-												<label for="incidentPersonDescriptionForm">Description:</label>
-												<textarea name="incidentPersonDescriptionForm" id="incidentPersonDescriptionForm" rows="10" cols="30"></textarea>
-											</div>
-											<br>
-											<input type="button" onclick="clickNewPersonFormButton()" id="newPersonFormButton" value="Add Person">
-										</form>
-									</div> <!-- end NEW PERSON -->
-									
-									
 								</div> <!-- end card-body -->
 							</div> <!-- end card -->
 
-					</div> <!-- end col-12 -->
-				</div> <!-- end row -->
-			</div> <!-- end container-fluid -->
+							<!-- ADDRESS TABLE -->
+							<div id="incident-add-address-table-div">
+								<div class="card-header">
+									<h3 class="card-title">Select address to attach to
+										incident</h3>
+								</div>
+
+								<div class="card-body">
+									<jsp:include page="tables/incident_add_address_table.jsp" />
+								</div>
+							</div>
+							<!-- end ADDRESS TABLE -->
+
+							<!-- PERSON TABLE -->
+							<div id="incident-add-person-table-div">
+								<div class="card-header">
+									<h3 class="card-title">Select persons to add to incident</h3>
+								</div>
+
+								<div class="card-body">
+									<jsp:include page="tables/incident_add_person_table.jsp" />
+								</div>
+							</div>
+							<!-- end PERSON TABLE -->
+
+							<!-- NEW PERSON -->
+							<div id="incident-new-person">
+								<div class="card-header">
+									<h3 class="card-title">Add a new person</h3>
+								</div>
+
+								<div class="card-body">
+									<form>
+										<jsp:include page="generic/person_add_form.jsp" />
+										<input type="button" onclick="clickNewPersonFormButton()"
+											id="newPersonFormButton" value="Add Person">
+									</form>
+								</div>
+							</div>
+							<!-- end NEW PERSON -->
+							<div id="incident-new-address">
+								<div class="card-header">
+									<h3 class="card-title">Create a new address</h3>
+								</div>
+
+								<div class="card-body">
+									<p>Hello World</p>
+								</div>
+							</div>
+
+						</div>
+						<!-- end Card -->
+					</div>
+					<!-- end col-12 -->
+				</div>
+				<!-- end row -->
+		</div>
+		<!-- end container-fluid -->
 		</section>
+
 
 	</div>
 	<!-- end Content Wrapper. Contains page content -->
@@ -198,7 +218,7 @@
 
 	<!-- TABLE SCRIPTS -->
 	<jsp:include page="tables/table_scripts.jsp" />
-	
+
 	<!-- SPECIFIC TABLE FEATURES -->
 	<script>
 		$(function() {
@@ -240,6 +260,7 @@
 			} else {
 				document.getElementById("verifyButton").style.display = "none";
 				document.getElementById("submitButton").type = "submit";
+
 			}
 		}
 	</script>
@@ -339,23 +360,9 @@
 			if (document.getElementById("gender").value == "") {
 				document.getElementById("gender").placeholder = "required";
 			}
-			
-			if (document.getElementById("ageMinimumForm").value == "") {
-				document.getElementById('ageMinRequired').style.display = "block";
-			} else {
-				document.getElementById('ageMinRequired').style.display = "none";
-			}
-			
-			if (document.getElementById("ageMaximumForm").value == "") {
-				document.getElementById('ageMaxRequired').style.display = "block";
-			} else {
-				document.getElementById('ageMaxRequired').style.display = "none";
-			}
-			
+
 			if (document.getElementById("gender").value != ""
-					&& document.getElementById("ethnicityName").value != ""
-					&& document.getElementById("ageMinimumForm").value != ""
-					&& document.getElementById("ageMaximumForm").value != "") {
+					&& document.getElementById("ethnicityName").value != "") {
 
 				// set full name and add to top
 				var fullName = "";
@@ -387,40 +394,36 @@
 
 				document.getElementById("personIdHidden").value = "0";
 				if (document.getElementById("firstName").value != null) {
-					document.getElementById("firstNameHidden").value = document.getElementById("firstName").value;
+					document.getElementById("firstNameHidden").value = document
+							.getElementById("firstName").value;
 				}
 				if (document.getElementById("middleName").value != null) {
-					document.getElementById("middleNameHidden").value = document.getElementById("middleName").value;
+					document.getElementById("middleNameHidden").value = document
+							.getElementById("middleName").value;
 				}
 				if (document.getElementById("lastName").value != null) {
-					document.getElementById("lastNameHidden").value = document.getElementById("lastName").value;
+					document.getElementById("lastNameHidden").value = document
+							.getElementById("lastName").value;
 				}
 				if (document.getElementById("title").value != null) {
-					document.getElementById("titleHidden").value = document	.getElementById("title").value;
+					document.getElementById("titleHidden").value = document
+							.getElementById("title").value;
 				}
 				if (document.getElementById("birth").value != null) {
-					document.getElementById("birthHidden").value = document.getElementById("birth").value;
+					document.getElementById("birthHidden").value = document
+							.getElementById("birth").value;
 				}
 				if (document.getElementById("ethnicityName").value != null) {
-					document.getElementById("ethnicityNameHidden").value = document.getElementById("ethnicityName").value;
+					document.getElementById("ethnicityNameHidden").value = document
+							.getElementById("ethnicityName").value;
 				}
 				if (document.getElementById("gender").value != null) {
-					document.getElementById("genderHidden").value = document.getElementById("gender").value;
+					document.getElementById("genderHidden").value = document
+							.getElementById("gender").value;
 				}
 				if (document.getElementById("personDescription").value != null) {
-					document.getElementById("personDescriptionHidden").value = document.getElementById("personDescription").value;
-				}
-				if (document.getElementById("ageMinimumForm").value != null) {
-					document.getElementById("ageMinimumHidden").value = document.getElementById("ageMinimumForm").value;
-				}
-				if (document.getElementById("ageMaximumForm").value != null) {
-					document.getElementById("ageMaximumHidden").value = document.getElementById("ageMaximumForm").value;
-				}
-				if (document.getElementById("suspectedCrimeForm").value != null) {
-					document.getElementById("suspectedCrimeHidden").value = document.getElementById("suspectedCrimeForm").value;
-				}
-				if (document.getElementById("incidentPersonDescriptionForm").value != null) {
-					document.getElementById("incidentPersonDescriptionHidden").value = document.getElementById("incidentPersonDescriptionForm").value;
+					document.getElementById("personDescriptionHidden").value = document
+							.getElementById("personDescription").value;
 				}
 
 				hideAll();
@@ -440,16 +443,18 @@
 		function clickNewPersonButton() {
 			hideAll();
 			document.getElementById('incident-new-person').style.display = "block";
-			document.getElementById('ageMinimumForm').value = "";
-			document.getElementById('ageMaximumForm').value = "";
+		}
+
+		function clickNewAddressButton() {
+			hideAll();
+			document.getElementById('incident-new-address').style.display = "block";
 		}
 
 		function hideAll() {
-			document.getElementById('ageMinRequired').style.display = "none";
-			document.getElementById('ageMaxRequired').style.display = "none";
 			document.getElementById('incident-add-person-table-div').style.display = "none";
 			document.getElementById('incident-add-address-table-div').style.display = "none";
 			document.getElementById('incident-new-person').style.display = "none";
+			document.getElementById('incident-new-address').style.display = "none";
 		}
 
 		/* var addressTableButton = document.getElementById("chooseAddressFromList");

@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Title Goes Here</title>
+<title>Add New Person</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -26,14 +26,14 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">person_add.jsp</h1>
+							<h1 class="m-0">Add New Person</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Root</a></li>
-								<li class="breadcrumb-item active">Child</li>
+								<li class="breadcrumb-item"><a href="home.do">Home</a></li>
+								<li class="breadcrumb-item active">Add New Person</li>
 							</ol>
 						</div><!-- /.col -->
 						
@@ -58,12 +58,12 @@
     					
 	    						<div class="card-body">
 	
-			<form action="addNewPerson.do" method="post">
-				<jsp:include page="generic/person_add_form.jsp" />
-				<input type="submit" value="Submit">
-			</form>
+									<form action="addNewPerson.do" method="post">
+										<jsp:include page="generic/person_add_form.jsp" />
+										<input type="submit" value="Submit">
+									</form>
 	
-	</div> <!-- end card-body -->
+								</div> <!-- end card-body -->
 								
 	    					</div> <!-- end Card -->
 	    				</div> <!-- end col-12 -->

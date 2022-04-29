@@ -50,5 +50,5 @@
 	<label for="description">Description:</label>
 	<textarea class="form-control" name="description" id="personDescription"rows="10" cols="30"></textarea>
 	<br>
-	</div>
+</div>
 	

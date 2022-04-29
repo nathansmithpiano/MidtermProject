@@ -68,8 +68,6 @@
     					
 	    						<div class="card-body">
 	    							
-	    							<h1>Incident</h1>
-
 									<ul>
 										<li>ID: ${incident.id}</li>
 										<li>Department: 
