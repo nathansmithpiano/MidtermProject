@@ -36,7 +36,7 @@ public class DepartmentController {
 	@RequestMapping(path = "officerDepartments.do")
 	public String officerDepartments(Model model, HttpSession session, @RequestParam("type") String type) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		if (type != null && type.equals("USER")) {
@@ -75,7 +75,7 @@ public class DepartmentController {
 	@RequestMapping(path = "userOfficers.do")
 	public String departmentOfficers(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		User loggedInUser;
@@ -86,7 +86,7 @@ public class DepartmentController {
 		
 		if (loggedInUser == null) {
 			System.err.println("DepartmentController departmentOfficers - loggedInUser is null");
-			return "tlogin";
+			return "login";
 		} else {
 			//verfiy loggedInUser in session and select
 			userOfficer = (Officer) session.getAttribute("userOfficer");

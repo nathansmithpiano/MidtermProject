@@ -16,7 +16,6 @@
 		<jsp:include page="generic/navbar.jsp" />
 		<jsp:include page="generic/sidebar.jsp" />
 		
-		
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 		

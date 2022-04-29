@@ -1,7 +1,9 @@
 package com.skilldistillery.eleireportingapp.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.skilldistillery.eleireportingapp.data.AddressDAO;
 import com.skilldistillery.eleireportingapp.data.DepartmentDAO;
+import com.skilldistillery.eleireportingapp.data.OfficerDAO;
 import com.skilldistillery.eleireportingapp.entities.Address;
-import com.skilldistillery.eleireportingapp.entities.Department;
+import com.skilldistillery.eleireportingapp.entities.Incident;
 import com.skilldistillery.eleireportingapp.entities.Officer;
+import com.skilldistillery.eleireportingapp.entities.Person;
 
 @Controller
 public class AddressController {
@@ -25,6 +29,9 @@ public class AddressController {
 	
 	@Autowired
 	private DepartmentDAO departmentDao;
+	
+	@Autowired
+	private OfficerDAO officerDao;
 	
 	// USING
 	
@@ -38,11 +45,37 @@ public class AddressController {
 	}
 	
 	@RequestMapping(path = "officerAddresses.do")
-	public String officerAddresses(Model model, HttpSession session) {
+	public String officerAddresses(Model model, HttpSession session, @RequestParam("officerId") int officerId) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
+		Officer officer = officerDao.findById(officerId);
+		Map<Integer, Address> addressMap = new HashMap<>();
+		
+		if (officer != null) {
+			List<Incident> incidentList = officer.getIncidents();
+			for (Incident incident : incidentList) {
+				addressMap.put(incident.getAddress().getId(), incident.getAddress());
+				List<Person> incidentPersons = incident.getPersons();
+				for (Person person: incidentPersons) {
+					List<Address> personAddresses = person.getAddresses();
+					for (Address address : personAddresses) {
+						addressMap.put(address.getId(), address);
+					}
+				}
+			}
+		}
+		
+		//all addresses at connected incidents
+		//all addresses for persons at connected incidents
+		
+		List<Address> addressList = new ArrayList<>();
+		for (int i : addressMap.keySet()) {
+			addressList.add(addressMap.get(i));
+		}
+		
+		model.addAttribute("addressList", addressList);
 		model.addAttribute("level", 1);
 		return "addresses";
 	}
@@ -50,7 +83,7 @@ public class AddressController {
 	@RequestMapping(path = "allAddresses.do")
 	public String allAddresses(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("addressList", addressDao.findAll());
@@ -61,7 +94,7 @@ public class AddressController {
 	@RequestMapping(path = { "address.do" })
 	public String person(Model model, HttpSession session, @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Address address = addressDao.findById(id);
@@ -77,7 +110,7 @@ public class AddressController {
 	@RequestMapping(path = { "addresses.do" })
 	public String addresses(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("addressList", addressDao.findAll());

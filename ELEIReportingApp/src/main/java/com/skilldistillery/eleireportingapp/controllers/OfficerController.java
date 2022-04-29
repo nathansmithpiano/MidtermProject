@@ -29,7 +29,7 @@ public class OfficerController {
 	@RequestMapping(path = {"officers.do" } )
 	public String users(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("officerList", officerDao.findAll());
@@ -39,7 +39,7 @@ public class OfficerController {
 	@RequestMapping(path = {"officer.do" })
 	public String officer(Model model, HttpSession session, @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Officer officer = officerDao.findById(id);

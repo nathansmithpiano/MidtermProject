@@ -97,12 +97,6 @@
 												<input class="btn btn-success btn-block" type="button" id="selectedPerson">
 												<br>
 											</div>
-											
-											<input type="hidden" id="addressId" name="addressId" placeholder="addressId" required />
-											<input type="hidden" id="personIdHidden" name="personId" placeholder="personId" required />
-											<input class="btn btn-dark col-2" type="button" onclick="clickNewPersonButton()" id="newPersonButton" value="Create New Person" />
-											<input class="btn btn-dark col-2" type="button" onclick="clickPersonTableButton()" id="choosePersonFromList" value="Select Person From List" />
-											<input class="btn btn-dark col-2" type="button" onclick="clickAddressTableButton()" id="chooseAddressFromList" value="Select Address From List" />
 
 											<br>
 											<div class="container-fluid">
@@ -165,20 +159,13 @@
 											<div class="form-group">
 											<h3>Incident Details:</h3>
 												<label for="ageMinimumForm">Age Min:</label>
-												<input type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" value="0" required>
+												<input class="form-control" type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" required>
 												<div id="ageMinRequired"><code>Required, between 1-125</code></div>
 											</div>
 											<div class="form-group">
 												<label for="ageMaximumForm">Age Max:</label>
-												<input type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" value="0" required>
+												<input class="form-control" type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" required>
 												<div id="ageMaxRequired"><code>Required, between 1-125</code></div>
-												<input class="form-control" type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" value="0" required>
-												<div id="ageMinRequired"><code>Required</code></div>
-											</div>
-											<div class="form-group">
-												<label for="ageMaximumForm">Age Max:</label>
-												<input class="form-control" type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" value="0" required>
-												<div id="ageMaxRequired"><code>Required</code></div>
 											</div>
 												<label for="suspectedCrimeForm">Suspected Crime:</label>
 												<input class="form-control" type="text" id="suspectedCrimeForm" name="suspectedCrimeForm">
@@ -356,14 +343,12 @@
 		function clickNewPersonFormButton() {
 
 			if (document.getElementById("ethnicityName").value == "") {
-				/* document.getElementById("ethnicityName").placeholder = "required"; */
 				document.getElementById('ethnicityNameRequired').style.display = "block";
 			} else {
 				document.getElementById('ethnicityNameRequired').style.display = "none";
 			}
 
 			if (document.getElementById("gender").value == "") {
-				/* document.getElementById("gender").placeholder = "required"; */
 				document.getElementById('genderRequired').style.display = "block";
 			} else {
 				document.getElementById('genderRequired').style.display = "none";
@@ -378,6 +363,7 @@
 			}
 			
 			if (document.getElementById("ageMaximumForm").value == "" ||
+					document.getElementById("ageMaximumForm").value < 1 ||
 					document.getElementById("ageMaximumForm").value > 125) {
 				document.getElementById('ageMaxRequired').style.display = "block";
 			} else {
@@ -490,11 +476,6 @@
 		
 		document.getElementById('selectedAddressLabel').style.display = "none";
 		document.getElementById('selectedPersonLabel').style.display = "none";
-
-		/* var addressTableButton = document.getElementById("chooseAddressFromList");
-		addressTableButton.onclick = clickAddressTableButton();
-		var personTableButton = document.getElementById("choosePersonFromList");
-		personTableButton.onclick = clickPersonTableButton(); */
 
 		window.onload = addAddressRowHandlers();
 		window.onload = addPersonRowHandlers();

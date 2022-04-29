@@ -38,7 +38,7 @@ public class NoteController {
 	@RequestMapping(path = { "note.do" })
 	public String note(Model model, HttpSession session, @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Note note = noteDao.findById(id);
@@ -52,7 +52,7 @@ public class NoteController {
 	@RequestMapping(path = "noteFromIncident.do" )
 	public String note(Model model, HttpSession session, @RequestParam("id") int id, @RequestParam("incidentId") int incidentId) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Note note = noteDao.findById(id);
@@ -67,7 +67,7 @@ public class NoteController {
 	@RequestMapping(path = "addNoteToIncident.do")
 	public String addNoteToIncidnet(Model model, HttpSession session, @RequestParam("incidentId") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("incident", incidentDao.findById(id));
@@ -78,7 +78,7 @@ public class NoteController {
 	public String createNoteForIncident(Model model, HttpSession session, Note note, 
 			@RequestParam("userId") int userId, @RequestParam("incidentId") int incidentId) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Incident incident = incidentDao.findById(incidentId);
@@ -101,7 +101,7 @@ public class NoteController {
 	public String goToUpdateNote(Model model, HttpSession session, 
 			@RequestParam("id") int id, @RequestParam("incidentId") int incidentId) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("incident", incidentDao.findById(incidentId));
@@ -114,7 +114,7 @@ public class NoteController {
 	public String updateNote(Model model, HttpSession session, 
 			@RequestParam("id") int id, @RequestParam("incidentId") int incidentId, @RequestParam("content") String content) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("note", noteDao.findById(id));
@@ -128,7 +128,7 @@ public class NoteController {
 	public String deleteNote(Model model, HttpSession session, 
 			@RequestParam("id") int id, @RequestParam("incidentId") int incidentId) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Note note = noteDao.findById(id);
@@ -137,7 +137,7 @@ public class NoteController {
 		noteDao.delete(id);
 		
 		if (incidents.size() > 1) {
-			return "thome";
+			return "home";
 		} else {
 			return "redirect:incident.do?id=" + incidentId;
 		}

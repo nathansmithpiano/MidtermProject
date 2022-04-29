@@ -26,14 +26,14 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">Incident #${incident.id }</h1>
+							<h1 class="m-0">Add Note to Incident #${incident.id }</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
-								<li class="breadcrumb-item"><a href="#">Home</a></li>
-								<li class="breadcrumb-item active"><a href="#">Incident #${incident.id }</a></li>
+								<li class="breadcrumb-item"><a href="#">Notes</a></li>
+								<li class="breadcrumb-item active">Incident #${incident.id }</li>
 							</ol>
 						</div><!-- /.col -->
 						

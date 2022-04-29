@@ -35,7 +35,14 @@
 										All CaseFiles at ${userDepartments.size() } Department
 									</c:when>
 									<c:otherwise>
-										All CaseFiles
+										<c:choose>
+											<c:when test="${level == 1 }">
+												My CaseFiles
+											</c:when>
+											<c:otherwise>
+												All CaseFiles
+											</c:otherwise>
+										</c:choose>
 									</c:otherwise>
 								</c:choose>
 							</h1>
@@ -46,25 +53,11 @@
 							<ol class="breadcrumb float-sm-right">
 						
 								<c:choose>
-									<c:when test="${not empty param.officerId }">
-										<li class="breadcrumb-item">
-											<a href="home.do">
-												Home
-											</a>
-										</li>
-										<li class="breadcrumb-item active">
-											My CaseFiles
-										</li>
+									<c:when test="${level == 1 }">
+										My CaseFiles
 									</c:when>
 									<c:otherwise>
-										<li class="breadcrumb-item">
-											<a href="home.do">
-												Home
-											</a>
-										</li>
-										<li class="breadcrumb-item active">
-											All CaseFiles
-										</li>
+										All CaseFiles
 									</c:otherwise>
 								</c:choose>
 								

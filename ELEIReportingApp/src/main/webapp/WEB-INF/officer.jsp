@@ -33,8 +33,8 @@
 						<div class="col-sm-6">
 							<ol class="breadcrumb float-sm-right">
 								<li class="breadcrumb-item">
-									<a href="departmentOfficers.do">
-										Department Officers
+									<a href="userOfficers.do">
+										Officers
 									</a>
 								</li>
 								<li class="breadcrumb-item active">

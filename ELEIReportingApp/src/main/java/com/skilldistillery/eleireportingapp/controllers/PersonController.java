@@ -46,7 +46,7 @@ public class PersonController {
 	@RequestMapping(path = "allPersons.do")
 	public String allPersons(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		List<Person> personList = personDao.findAll();
@@ -58,7 +58,7 @@ public class PersonController {
 	@RequestMapping(path = "officerPersons.do")
 	public String officerPersons(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Officer officer = (Officer) session.getAttribute("userOfficer");
@@ -87,7 +87,7 @@ public class PersonController {
 	@RequestMapping(path = { "person.do" })
 	public String person(Model model, HttpSession session,  @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Person person = personDao.findById(id);
@@ -103,7 +103,7 @@ public class PersonController {
 	public String addNewPerson(Person person, HttpSession session, @RequestParam("ethnicityName") String ethnicityName,
 			@RequestParam("birth") String birth, Model model) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		

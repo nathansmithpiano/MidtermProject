@@ -4,85 +4,56 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.skilldistillery.eleireportingapp.data.OfficerDAO;
 import com.skilldistillery.eleireportingapp.data.UserDAO;
+import com.skilldistillery.eleireportingapp.entities.Officer;
 import com.skilldistillery.eleireportingapp.entities.User;
 
 @Controller
 public class LoginController {
 	
 	@Autowired
-	UserDAO dao;
+	UserDAO userDao;
 	
-	//USING
+	@Autowired
+	OfficerDAO officerDao;
 	
-	@RequestMapping("login.do")
-	public ModelAndView displayLogin(HttpSession session) {
-		ModelAndView mv = new ModelAndView();
-		User loggedInUser = (User) session.getAttribute("loggedInUser");
-		if (loggedInUser != null) {
-			mv.addObject("loggedInUser", loggedInUser);
-			mv.setViewName("TestUserLogin");
+	//verify loggedInUser in session, redirect if not
+	private boolean notLoggedIn(HttpSession session) {
+		if (session.getAttribute("loggedInUser") == null) {
+			return true;
 		} else {
-			mv.setViewName("login");
+			return false;
 		}
-		return mv;
 	}
 	
-	@RequestMapping(path = "login.do", method = RequestMethod.POST)
-	public String submitLogin(User user, HttpSession session) {
-		User u = dao.validateLogin(user);
-		if (u == null) {
-			return "redirect:login.do";
-		} else {
+	@PostMapping(path = {"login.do" } )
+	public String submilogin(User user, HttpSession session) {
+		User u = userDao.validateLogin(user);
+		
+		if (u != null) {
 			session.setAttribute("loggedInUser", u);
+			Officer officer = officerDao.findByPerson(u.getPerson());
+			session.setAttribute("userOfficer", officer);
+			return "redirect:/";
 		}
-		return "TestUserLogin";
+		return "login";
 	}
 	
 	@RequestMapping("logout.do")
 	public String logout(HttpSession session) {
-		session.removeAttribute("loggedInUser");
+		if (notLoggedIn(session)) {
+			return "login";
+		}
 		
-		return "home.do";
+		session.removeAttribute("loggedInUser");
+		return "login";
 	}
-	
-	//NOT USING
-	
-//	@RequestMapping("beginLogin.do")
-//	public ModelAndView displayLogin(HttpSession session) {
-//		ModelAndView mv = new ModelAndView();
-//		mv.addObject("user", new User());
-//		if (session.getAttribute("user") != null) {
-//			mv.setViewName("redirect:tryLogin.do");
-//		} else {
-//			mv.addObject("userCommandObject", new User());
-//			mv.setViewName("login");
-//		}
-//		return mv;
-//	}
-//	
-//	@RequestMapping(path = "tryLogin.do", method = RequestMethod.POST)
-//	public String submitLogin(User user, HttpSession session) {
-//		User u = dao.findByUserName(user.getUsername());
-//		System.out.println("*****************************************" + u);
-//		if (u == null) {
-//			System.out.println("****************** U IS NULL");
-//			return "redirect:beginLogin.do";
-//		}
-//		session.setAttribute("user", u);
-//
-//		return "users.do";
-//	}
-//	
-//	@RequestMapping("logout.do")
-//	public String logout(HttpSession session) {
-//		session.removeAttribute("user");
-//		
-//		return "redirect:index.do";
-//	}
 
 }

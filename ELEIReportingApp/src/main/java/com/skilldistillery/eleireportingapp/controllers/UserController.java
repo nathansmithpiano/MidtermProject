@@ -27,7 +27,7 @@ public class UserController {
 	@RequestMapping(path = "users.do")
 	public String allUsers(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("userList", userDao.findAll());
@@ -37,7 +37,7 @@ public class UserController {
 	@RequestMapping(path = "user.do")
 	public String singleUser(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		return "user";

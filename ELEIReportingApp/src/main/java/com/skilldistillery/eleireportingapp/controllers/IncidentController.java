@@ -64,7 +64,7 @@ public class IncidentController {
 	@RequestMapping(path = "incident.do")
 	public String incident(Model model, HttpSession session, @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		Incident incident = incidentDao.findById(id);
 		model.addAttribute("incident", incident);
@@ -76,7 +76,7 @@ public class IncidentController {
 	@RequestMapping(path = "officerIncidents.do")
 	public String officerIncidents(Model model, HttpSession session, @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Officer userOfficer = (Officer) session.getAttribute("userOfficer");
@@ -96,7 +96,7 @@ public class IncidentController {
 	@RequestMapping(path = "departmentIncidents.do")
 	public String allIncidents(Model model, HttpSession session, @RequestParam("type") String type) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		List<Incident> incidentList = new ArrayList<>();
@@ -136,7 +136,7 @@ public class IncidentController {
 	@RequestMapping(path = { "addIncident.do" })
 	public String addIncident(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		model.addAttribute("addressList", addressDao.findAll());
@@ -159,7 +159,7 @@ public class IncidentController {
 								@RequestParam("personId") int personId) {
 		
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Officer userOfficer = (Officer) session.getAttribute("userOfficer");
