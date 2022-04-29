@@ -5,7 +5,7 @@
 <html>
 <head>
 	<jsp:include page="generic/head.jsp" />
-<title>Incident</title>
+	<title>Incident</title>
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 	
@@ -27,7 +27,7 @@
 						<!-- Left Title -->
 						<div class="col-sm-6">
 							<h1 class="m-0">Incident #${incident.id }</h1>
-						</div><!-- /.col -->
+						</div>
 						
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">

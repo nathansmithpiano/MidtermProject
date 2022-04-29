@@ -5,12 +5,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="generic/head.jsp" />
-<title>Add Incident</title>
-<link rel="stylesheet" href="main.css">
+	<jsp:include page="generic/head.jsp" />
+	<title>Add Incident</title>
+	<link rel="stylesheet" href="main.css">
 </head>
-<body
-	class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 
 	<!-- main div wrapper -->
 	<div class="wrapper">
@@ -31,7 +30,6 @@
 						<div class="col-sm-6">
 							<h1 class="m-0">Create Incident</h1>
 						</div>
-						<!-- /.col -->
 
 						<!-- Breadcrumbs Title -->
 						<div class="col-sm-6">
@@ -42,76 +40,64 @@
 						</div>
 						<!-- /.col -->
 
-					</div>
-					<!-- /.row -->
-				</div>
-				<!-- /.container-fluid -->
-			</div>
-			<!-- end Content Header (Page header) -->
+					</div> <!-- /.row -->
+				</div> <!-- /.container-fluid -->
+			</div> <!-- end Content Header (Page header) -->
 
 			<!-- Main content -->
 			<section class="content">
+			
 				<div class="container-fluid">
 					<div class="row">
 						<div class="col-12">
+						
 							<div class="card">
-
-								<!-- Card header -->
-								<div class="card-header">
-									<h3 class="card-title">Add New Incident</h3>
-
-								</div>
-								<!-- end Card header -->
-
 								<div class="card-body">
+								
+									<h3 class="card-title">
+										Add New Incident
+									</h3>
 
 									<form action="createIncident.do" method="post">
 										<div class="form-group">
 
-											<label for="departmentId">Department:</label> <select
-												class="form-control" id="departmentId" name="departmentId"
-												required>
-												<c:forEach var="department"
-													items="${sessionScope.userOfficer.departments }">
+											<label for="departmentId">Department:</label>
+											<select class="form-control" id="departmentId" name="departmentId" required>
+												<c:forEach var="department" items="${sessionScope.userOfficer.departments }">
 													<option value="${department.id }">${department.name }</option>
 												</c:forEach>
-											</select> <br> <label for="reasonForContact">Reason for
-												contact:</label> <input class="form-control" type="text"
-												name="reasonForContact"> <br> <label
-												for="location">Location:</label> <input class="form-control"
-												type="text" name="location"> <br> <label
-												for="description">Description:</label> <br>
-											<textarea class="form-control" name="description" rows="10"
-												cols="30"></textarea>
+											</select> <br> <label for="reasonForContact">Reason for contact:</label>
+											
+											<input class="form-control" type="text" name="reasonForContact">
+											<br>
+											
+											<label for="location">Location:</label>
+											<input class="form-control" type="text" name="location">
+											<br>
+											
+											<label for="description">Description:</label>
 											<br> 
-											<label for="selectedAddress">Selected
-												Address:</label> 
-												
-												<input class="btn btn-success btn-block"
-												type="hidden" id="selectedAddress"> <br> 
-												<div id="incident-person-form">
-												 <label for="selectedPerson">Selected
-												Person:</label>
-												
-												<input class="btn btn-success btn-block" type="button"
-													id="selectedPerson">
-													</div>
-													<br>
-												
-												<input
-												type="hidden" id="addressId" name="addressId"
-												placeholder="addressId" required /> <input type="hidden"
-												id="personIdHidden" name="personId" placeholder="personId"
-												required /> <input class="btn btn-dark col-2" type="button"
-												onclick="clickNewPersonButton()" id="newPersonButton"
-												value="Create New Person" /> <input
-												class="btn btn-dark col-2" type="button"
-												onclick="clickPersonTableButton()" id="choosePersonFromList"
-												value="Select Person From List" />
+											
+											<textarea class="form-control" name="description" rows="10" cols="30"></textarea>
+											<br> 
+											
+											<label for="selectedAddress">Selected Address:</label> 
+											<input class="btn btn-success btn-block" type="hidden" id="selectedAddress">
+											<br> 
+											
+											<div id="incident-person-form">
+												<label for="selectedPerson">Selected Person:</label>
+											
+												<input class="btn btn-success btn-block" type="button" id="selectedPerson">
+											</div>
+											<br>
+											
+											<input type="hidden" id="addressId" name="addressId" placeholder="addressId" required />
+											<input type="hidden" id="personIdHidden" name="personId" placeholder="personId" required />
+											<input class="btn btn-dark col-2" type="button" onclick="clickNewPersonButton()" id="newPersonButton" value="Create New Person" />
+											<input class="btn btn-dark col-2" type="button" onclick="clickPersonTableButton()" id="choosePersonFromList" value="Select Person From List" />
 											<!-- <input type="button" onclick="clickNewAddressButton()" id="newAddressButton" value="Create New Address" /> -->
-											<input class="btn btn-dark col-2" type="button"
-												onclick="clickAddressTableButton()"
-												id="chooseAddressFromList" value="Select Address From List" />
+											<input class="btn btn-dark col-2" type="button" onclick="clickAddressTableButton()" id="chooseAddressFromList" value="Select Address From List" />
 
 											<input type="hidden" id="addressId" name="addressId">
 											<input type="hidden" id="personIdHidden" name="personId">
@@ -127,95 +113,77 @@
 												<input type="hidden" id="ethnicityNameHidden"
 													name="ethnicityName"> <input type="hidden"
 													id="personDescriptionHidden" name="personDescription">
-												<label for="ageMinimum">Age Min:</label> <input
-													type="number" id="ageMinimum" name="ageMinimum" min="1"
-													max="125" value="0" required> <label
-													for="ageMaximum">Age Max:</label> <input type="number"
-													id="ageMaximum" name="ageMaximum" min="1" max="125"
-													value="0" required> <label for="suspectedCrime">Suspected
-													Crime:</label> <input type="text" id="suspectedCrime"
-													name="suspectedCrime"> <label
-													for="incidentPersonDescription">Description:</label>
-												<textarea name="incidentPersonDescription" rows="10"
-													cols="30"></textarea>
+												<label for="ageMinimum">Age Min:</label>
+												<input type="number" id="ageMinimum" name="ageMinimum" min="1" max="125" value="0" required>
+												<label for="ageMaximum">Age Max:</label>
+												<input type="number" id="ageMaximum" name="ageMaximum" min="1" max="125" value="0" required>
+												<label for="suspectedCrime">Suspected Crime:</label>
+												<input type="text" id="suspectedCrime" name="suspectedCrime">
+												<label for="incidentPersonDescription">Description:</label>
+												<textarea name="incidentPersonDescription" rows="10" cols="30"></textarea>
 											</div>
-											<br> <br>
+											<br>
+											<br>
 											<button type="button" class="btn btn-primary"
 												id="verifyButton" onclick="verify()">Check before
 												adding</button>
 											<input type="hidden" id="submitButton" value="Submit">
 										</div>
 									</form>
-								</div>
-							</div>
-							<!-- end card-body -->
+								</div> <!-- end card-body -->
+							</div> <!-- end card -->
 
 							<!-- ADDRESS TABLE -->
-							<div id="incident-add-address-table-div">
-								<div class="card-header">
-									<h3 class="card-title">Select address to attach to
-										incident</h3>
-								</div>
-
+							<div class="card" id="incident-add-address-table-div">
 								<div class="card-body">
+								
+									<h3 class="card-title">
+										Select address to attach to incident
+									</h3>
+	
 									<jsp:include page="tables/incident_add_address_table.jsp" />
+									
 								</div>
-							</div>
-							<!-- end ADDRESS TABLE -->
+							</div> <!-- end ADDRESS TABLE card -->
 
 							<!-- PERSON TABLE -->
-							<div id="incident-add-person-table-div">
-								<div class="card-header">
-									<h3 class="card-title">Select persons to add to incident</h3>
-								</div>
-
+							<div class="card" id="incident-add-person-table-div">
 								<div class="card-body">
+								
+									<h3 class="card-title">
+										Select persons to add to incident
+									</h3>
+	
 									<jsp:include page="tables/incident_add_person_table.jsp" />
+									
 								</div>
-							</div>
-							<!-- end PERSON TABLE -->
+							</div> <!-- end PERSON TABLE card -->
 
 							<!-- NEW PERSON -->
-							<div id="incident-new-person">
-								<div class="card-header">
-									<h3 class="card-title">Add a new person</h3>
-								</div>
-
+							<div class="card" id="incident-new-person">
 								<div class="card-body">
+								
+									<h3 class="card-title">
+										Add a new person
+									</h3>
+	
 									<form>
 										<jsp:include page="generic/person_add_form.jsp" />
-										<input type="button" onclick="clickNewPersonFormButton()"
-											id="newPersonFormButton" value="Add Person">
+										<input type="button" onclick="clickNewPersonFormButton()" id="newPersonFormButton" value="Add Person">
 									</form>
+									
 								</div>
-							</div>
-							<!-- end NEW PERSON -->
-							<div id="incident-new-address">
-								<div class="card-header">
-									<h3 class="card-title">Create a new address</h3>
-								</div>
+							</div> <!-- end NEW PERSON card -->
+							
+						</div> <!-- end col-12 -->
+					</div> <!-- end row -->
+				</div> <!-- end container-fluid -->
+		
+			</section>
 
-								<div class="card-body">
-									<p>Hello World</p>
-								</div>
-							</div>
+		</div> <!-- end Content Wrapper. Contains page content -->
 
-						</div>
-						<!-- end Card -->
-					</div>
-					<!-- end col-12 -->
-				</div>
-				<!-- end row -->
-		</div>
-		<!-- end container-fluid -->
-		</section>
-
-
-	</div>
-	<!-- end Content Wrapper. Contains page content -->
-
-	</div>
-	<!-- end main div wrapper -->
+	</div> <!-- end main div wrapper -->
 
 	<!-- Changing sidebar active page -->
 	<script>
