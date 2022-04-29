@@ -26,7 +26,16 @@
 					
 						<!-- Left Title -->
 						<div class="col-sm-6">
-							<h1 class="m-0">All Addresses</h1>
+							<h1 class="m-0">
+								<c:choose>
+									<c:when test="${level == 1 }">
+										My Addresses
+									</c:when>
+									<c:otherwise>
+										All Addresses
+									</c:otherwise>
+								</c:choose>
+							</h1>
 						</div><!-- /.col -->
 						
 						<!-- Breadcrumbs Title -->
@@ -38,7 +47,14 @@
 									</a>
 								</li>
 								<li class="breadcrumb-item active">
-									All Addresses
+									<c:choose>
+										<c:when test="${level == 1 }">
+											My Addresses
+										</c:when>
+										<c:otherwise>
+											All Addresses
+										</c:otherwise>
+									</c:choose>
 								</li>
 							</ol>
 						</div><!-- /.col -->

@@ -45,7 +45,7 @@ public class CaseFileController {
 	@RequestMapping(path = "caseFile.do")
 	public String caseFile(Model model, HttpSession session, @RequestParam("id") int id) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		CaseFile caseFile = caseFileDao.findById(id);
@@ -57,7 +57,7 @@ public class CaseFileController {
 	@RequestMapping(path = { "officerCaseFiles.do" })
 	public String allCaofficerCaseFilessefiles(Model model, HttpSession session, @RequestParam("officerId") int officerId) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		//TODO: link officer and casefiles, return specific list
@@ -68,7 +68,7 @@ public class CaseFileController {
 	@RequestMapping(path = { "userCaseFiles.do" })
 	public String userCaseFiles(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
 		Officer officer = (Officer) session.getAttribute("userOfficer");

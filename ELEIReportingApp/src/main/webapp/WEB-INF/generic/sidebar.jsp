@@ -251,7 +251,7 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a href="tlogout.do" class="nav-link" id="nav-quick-logout">
+					<a href="logout.do" class="nav-link" id="nav-quick-logout">
 						<i class="far fa-solid fa-right-from-bracket nav-icon"></i>
 						<p>
 							Logout

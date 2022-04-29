@@ -29,7 +29,7 @@
 							<h1 class="m-0">
 							<c:choose>
 								<c:when test="${not empty incidentCount && incidentCount > 0 }">
-									All Persons for ${incidentCount } incidents
+									My Persons for ${incidentCount } incidents
 								</c:when>
 								<c:otherwise>
 									All Persons
@@ -47,7 +47,15 @@
 									</a>
 								</li>
 								<li class="breadcrumb-item active">
-									All Persons
+									<c:choose>
+										<c:when test="${level ==1 }">
+											My Persons
+										</c:when>
+										<c:otherwise>
+											All Persons
+										</c:otherwise>
+									</c:choose>
+									
 								</li>
 							</ol>
 						</div><!-- /.col -->

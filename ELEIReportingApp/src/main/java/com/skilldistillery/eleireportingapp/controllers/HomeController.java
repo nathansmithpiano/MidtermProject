@@ -21,10 +21,10 @@ public class HomeController {
 	@RequestMapping(path = {"/", "home.do" } )
 	public String home(Model model, HttpSession session) {
 		if (notLoggedIn(session)) {
-			return "tlogin";
+			return "login";
 		}
 		
-		return "thome";
+		return "home";
 	}
 	
 }

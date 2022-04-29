@@ -61,12 +61,12 @@
 		    						<div class="float-right">
 			    						<div class="btn-group">
 			    						
-			    						<a href="goToUpdateNote.do?id=${note.id }&incidentId=${incidentId }">
+			    						<a href="goToUpdateNote.do?id=${note.id }&incidentId=${incident.id }">
 											<button type="button" class="btn btn-info">Update</button>
 										</a>
 										<c:choose>
-											<c:when test="${not empty incidentId }">
-												<a href="deleteNote.do?id=${note.id }&incidentId=${incidentId }">
+											<c:when test="${not empty incident }">
+												<a href="deleteNote.do?id=${note.id }&incidentId=${incident.id }">
 													<button type="button" class="btn btn-danger">Delete</button>
 												</a>
 											</c:when>
