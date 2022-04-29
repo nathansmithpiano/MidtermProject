@@ -104,6 +104,17 @@
 											<input class="btn btn-dark col-2" type="button" onclick="clickPersonTableButton()" id="choosePersonFromList" value="Select Person From List" />
 											<input class="btn btn-dark col-2" type="button" onclick="clickAddressTableButton()" id="chooseAddressFromList" value="Select Address From List" />
 
+											<br>
+											<div class="container-fluid">
+												<div class="row">
+													<input type="hidden" id="addressId" name="addressId" placeholder="addressId" required />
+													<input type="hidden" id="personIdHidden" name="personId" placeholder="personId" required />
+													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickNewPersonButton()" id="newPersonButton" value="Create New Person" />
+													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickPersonTableButton()" id="choosePersonFromList" value="Select Person From List" />
+													<input class="btn btn-dark btn-lg col-lg" type="button" onclick="clickAddressTableButton()" id="chooseAddressFromList" value="Select Address From List" />
+												</div>
+											</div>
+
 											<input type="hidden" id="addressId" name="addressId">
 											<input type="hidden" id="personIdHidden" name="personId">
 
@@ -129,7 +140,7 @@
 											<br>
 											<br>
 											<button type="button" class="btn btn-primary" id="verifyButton" onclick="verify()">Check before adding</button>
-											<input type="hidden" id="submitButton" value="Submit">
+											<input class="btn btn-primary btn-lg" type="hidden" id="submitButton" value="Submit">
 										</div>
 									</form>
 									
@@ -152,6 +163,7 @@
 										<form id="incident-new-person-form">
 											<jsp:include page="generic/person_add_form.jsp" />
 											<div class="form-group">
+											<h3>Incident Details:</h3>
 												<label for="ageMinimumForm">Age Min:</label>
 												<input type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" value="0" required>
 												<div id="ageMinRequired"><code>Required, between 1-125</code></div>
@@ -160,15 +172,23 @@
 												<label for="ageMaximumForm">Age Max:</label>
 												<input type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" value="0" required>
 												<div id="ageMaxRequired"><code>Required, between 1-125</code></div>
+												<input class="form-control" type="number" id="ageMinimumForm" name="ageMinimumForm" min="1" max="125" value="0" required>
+												<div id="ageMinRequired"><code>Required</code></div>
+											</div>
+											<div class="form-group">
+												<label for="ageMaximumForm">Age Max:</label>
+												<input class="form-control" type="number" id="ageMaximumForm" name="ageMaximumForm" min="1" max="125" value="0" required>
+												<div id="ageMaxRequired"><code>Required</code></div>
 											</div>
 												<label for="suspectedCrimeForm">Suspected Crime:</label>
-												<input type="text" id="suspectedCrimeForm" name="suspectedCrimeForm">
+												<input class="form-control" type="text" id="suspectedCrimeForm" name="suspectedCrimeForm">
 											<div class="form-group">
-												<label for="incidentPersonDescriptionForm">Description:</label>
-												<textarea name="incidentPersonDescriptionForm" id="incidentPersonDescriptionForm" rows="10" cols="30"></textarea>
+												<br>
+												<label for="incidentPersonDescriptionForm">Description of Incident:</label>
+												<textarea class="form-control" name="incidentPersonDescriptionForm" id="incidentPersonDescriptionForm" rows="10" cols="30"></textarea>
 											</div>
 											<br>
-											<input type="button" onclick="clickNewPersonFormButton()" id="newPersonFormButton" value="Add Person">
+											<input class="btn btn-primary btn-lg" type="button" onclick="clickNewPersonFormButton()" id="newPersonFormButton" value="Add Person">
 										</form>
 									</div> <!-- end NEW PERSON -->
 									
