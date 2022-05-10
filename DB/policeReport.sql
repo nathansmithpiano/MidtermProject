@@ -484,6 +484,7 @@ INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (7, 5);
 INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (8, 7);
 INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (9, 8);
 INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (10, 9);
+INSERT INTO `person_address` (`person_id`, `address_id`) VALUES (11, 11);
 
 COMMIT;
 
@@ -571,7 +572,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `eleidb`;
-INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, '2022-04-22 12:00:01', '2022-04-22 12:27:00', 'CONTENT1');
+INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (1, 1, '2022-04-22 12:00:01', '2022-04-22 12:27:00', 'Suspect put a hoodie on, drank a monster energy drink, and took a box of donuts. He walked out without paying. Loss prevention contacted suspect and detained him until police arrived.');
 INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (2, 2, '2022-04-22 12:00:01', '2022-04-22 12:27:00', 'CONTENT2');
 INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (3, 2, '2022-04-22 12:00:01', '2022-04-22 12:27:00', 'CONTENT3');
 INSERT INTO `note` (`id`, `user_id`, `created`, `updated`, `content`) VALUES (4, 2, '2022-04-22 12:00:01', '2022-04-22 12:27:00', 'CONTENT4');
