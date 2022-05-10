@@ -11,6 +11,6 @@ It features:
 - login users connected to all people they contact and input
 
 ## Authors
--Dustin Jennings [@dustinjennings](https://github.com/Dustinj11)
--Nathan Smith [@nathansmith](https://github.com/nathansmithpiano)
--Austin Lambert [@austinlambert](https://github.com/aslusaf)
+- Dustin Jennings [@dustinjennings](https://github.com/Dustinj11)
+- Nathan Smith [@nathansmith](https://github.com/nathansmithpiano)
+- Austin Lambert [@austinlambert](https://github.com/aslusaf)
