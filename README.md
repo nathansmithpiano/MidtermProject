@@ -1,6 +1,8 @@
 # MidtermProject
 This project is a Full Stack Java/SpringMVC/JPA group project.
 
+View this project deployed to AWS: http://52.52.235.108:8080/ELEIReportingApp/
+
 # Description
 This project was created as a possible solution to the mandatory reporting for Police Officers in the State of Colorado in reference to the new Colorado Legislative Bill SB20-217. This bill required certain things to be documented on every officer initiated contact. There are not many documentation programs for police officers that are mobile-friendly so we focused on making this program user-friendly across multiple platforms.
 
