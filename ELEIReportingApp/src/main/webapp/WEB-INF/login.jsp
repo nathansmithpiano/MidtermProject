@@ -29,7 +29,7 @@
 				
 					<!-- Username -->
 					<div class="input-group mb-3">
-						<input type="text" name="username" class="form-control" placeholder="Username" />
+						<input type="text" name="username" value="policeofficer" class="form-control" placeholder="Username" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fa-solid fa-user"></span>
@@ -39,7 +39,7 @@
 					
 					<!-- Password -->
 					<div class="input-group mb-3">
-						<input type="password" name="password" class="form-control" placeholder="Password" />
+						<input type="password" name="password" value="officer" class="form-control" placeholder="Password" />
 						<div class="input-group-append">
 							<div class="input-group-text">
 								<span class="fa-solid fa-lock"></span>
@@ -58,6 +58,9 @@
 						</div>
 					</div> <!-- end Button Row -->
 					
+					<hr />
+					<p class="login-box-msg">For testing purposes, press 'Login'<br>username: policeofficer<br>password: officer</p>
+					<hr />
 					<p class="login-box-msg"><br>To request access, please contact your administrator.</p>
 					
 				</form> <!-- end Login Form -->
