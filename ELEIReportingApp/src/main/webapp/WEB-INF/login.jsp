@@ -58,7 +58,9 @@
 						</div>
 					</div> <!-- end Button Row -->
 					
-					<p class="login-box-msg">For testing purposes, press 'Login'
+					<p class="login-box-msg">
+						<br>
+						For testing purposes, press 'Login'
 						<br>
 						username: policeofficer
 						<br>
