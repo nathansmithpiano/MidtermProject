@@ -58,8 +58,12 @@
 						</div>
 					</div> <!-- end Button Row -->
 					
-					<hr />
-					<p class="login-box-msg">For testing purposes, press 'Login'<br>username: policeofficer<br>password: officer</p>
+					<p class="login-box-msg">For testing purposes, press 'Login'
+						<br>
+						username: policeofficer
+						<br>
+						password: officer
+					</p>
 					<hr />
 					<p class="login-box-msg"><br>To request access, please contact your administrator.</p>
 					
